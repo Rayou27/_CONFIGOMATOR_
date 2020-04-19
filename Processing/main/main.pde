@@ -39,13 +39,18 @@ void setup() {
 void draw() {
   afficherCapital();
   afficherNiveauEnCours();
+  afficherTexteBulle();
 }
 
-void afficherCapital() {
+void afficherCapital() {    // affiche en temps réel l'argent possédé
   textSize(30);
   text(capital + " $", 30, 50);
 }
 
-void afficherNiveauEnCours() {
+void afficherNiveauEnCours() { // affiche en temps réel le niveau en cours
   text(niveauEnCours, 700, 50);
+}
+
+void afficherTexteBulle() {
+
 }
