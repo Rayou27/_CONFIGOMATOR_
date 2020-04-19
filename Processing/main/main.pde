@@ -17,6 +17,11 @@ void setup() {
   fill(255);
   rect(0, 470, 800, 130);
 
+  // bouton jouer
+  fill(255,0,0);
+  smooth(8);
+  rect(330,370, 350,80);
+
   // contours
   noFill();
   stroke(0);
@@ -35,22 +40,39 @@ void setup() {
 
   // bordure droite
   line(796, 72, 796, 470);
+  
+  // contour pour rouge
+  rect(330,370, 350,80);
+  
+  // nom du jeu
+  fill(255);
+  textSize(30);
+  text("_CONFIGOMATOR_", 270, 47);
+  
+  // texte jouer
+  textSize(50);
+  text("JOUER", 430, 427);
 }
 void draw() {
   afficherCapital();
   afficherNiveauEnCours();
-  afficherTexteBulle();
+  afficherTexteBulle(); // encore à faire
 }
 
+
+
 void afficherCapital() {    // affiche en temps réel l'argent possédé
+  fill(255);
   textSize(30);
   text(capital + " $", 30, 50);
 }
 
 void afficherNiveauEnCours() { // affiche en temps réel le niveau en cours
+  fill(255);
+  textSize(30);
   text(niveauEnCours, 700, 50);
 }
 
-void afficherTexteBulle() {
-
+void afficherTexteBulle() { // en chantier
+  
 }
