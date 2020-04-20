@@ -19,7 +19,7 @@ void setup() {
   persoConfigo = loadImage("persoConfigo.png");
 
   // 3-1 QUESTIONS
-  vraiFauxQuestion1="Une carte mère ne peut contenir \nqu’un seul processeur.";
+  vraiFauxQuestion1="Une carte mère ne peut \ncontenir qu’un seul \nprocesseur.";
   vraiFauxQuestion2="Le nombre de barrettes de RAM \nest forcément pair.";
   vraiFauxQuestion3="C’est la carte mère qui \neffectue les calculs.";
   vraiFauxQuestion4="Il existe des processeurs qui ne \nnécessitent pas de carte graphique.";
@@ -29,6 +29,16 @@ void setup() {
   vraiFauxQuestion8="Les disques durs permettent le \nstockage des données.";
   vraiFauxQuestion9="La mémoire vive permet le stockage \nde données plus rapides.";
   vraiFauxQuestion10="Un PC peut ne pas contenir de boîtier.";
+  vraiFauxCorrection1="correction du 1";
+  vraiFauxCorrection2="correction du 2";
+  vraiFauxCorrection3="correction du 3";
+  vraiFauxCorrection4="correction du 4";
+  vraiFauxCorrection5="correction du 5";
+  vraiFauxCorrection6="correction du 6";
+  vraiFauxCorrection7="correction du 7";
+  vraiFauxCorrection8="correction du 8";
+  vraiFauxCorrection9="correction du 9";
+  vraiFauxCorrection10="correction du 10";
 }
 
 void draw() {
