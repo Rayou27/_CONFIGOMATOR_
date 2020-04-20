@@ -1,4 +1,5 @@
 int capital = 27;
+int compteurGlobalNiveaux = 1;
 String niveauEnCours = "1-1";
 
 void setup() {
@@ -18,9 +19,9 @@ void setup() {
   rect(0, 470, 800, 130);
 
   // bouton jouer
-  fill(255,0,0);
+  fill(255, 0, 0);
   smooth(8);
-  rect(330,370, 350,80);
+  rect(330, 370, 350, 80);
 
   // contours
   noFill();
@@ -40,15 +41,15 @@ void setup() {
 
   // bordure droite
   line(796, 72, 796, 470);
-  
+
   // contour pour rouge
-  rect(330,370, 350,80);
-  
+  rect(330, 370, 350, 80);
+
   // nom du jeu
   fill(255);
   textSize(30);
   text("_CONFIGOMATOR_", 270, 47);
-  
+
   // texte jouer
   textSize(50);
   text("JOUER", 430, 427);
@@ -58,8 +59,6 @@ void draw() {
   afficherNiveauEnCours();
   afficherTexteBulle(); // encore à faire
 }
-
-
 
 void afficherCapital() {    // affiche en temps réel l'argent possédé
   fill(255);
@@ -74,5 +73,28 @@ void afficherNiveauEnCours() { // affiche en temps réel le niveau en cours
 }
 
 void afficherTexteBulle() { // en chantier
-  
+}
+
+void prochainNiveau() {
+  if (compteurGlobalNiveaux == 2) { 
+    niveauEnCours = "1-2";
+  }
+  if (compteurGlobalNiveaux == 3) { 
+    niveauEnCours = "2-1";
+  }
+  if (compteurGlobalNiveaux == 4) { 
+    niveauEnCours = "2-2";
+  }
+  if (compteurGlobalNiveaux == 5) { 
+    niveauEnCours = "3-1";
+  }
+  if (compteurGlobalNiveaux == 6) { 
+    niveauEnCours = "3-2";
+  }
+  if (compteurGlobalNiveaux == 7) { 
+    niveauEnCours = "4-1";
+  }
+  if (compteurGlobalNiveaux == 8) { 
+    niveauEnCours = "4-2";
+  }
 }
