@@ -73,6 +73,8 @@ void afficherNiveauEnCours() { // affiche en temps réel le niveau en cours
 }
 
 void afficherTexteBulle() { // en chantier
+  fill(0);
+  text("texteBulle[i]", 70, 545);
 }
 
 void prochainNiveau() {
