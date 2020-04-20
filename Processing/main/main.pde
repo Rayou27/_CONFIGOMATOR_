@@ -1,9 +1,14 @@
-int capital = 27;
-int compteurGlobalNiveaux = 2;
+int compteurGlobalNiveaux = 1;
+float capital = 27;
+float capitalAffiche = 27;
 String niveauEnCours = "1-1";
+String uniteMonnaie = "";
 boolean affichageEcranPrincipal = true;
 boolean partieLancee = false;
-boolean affichageEcran31 = false;
+boolean affichageEcran11 = false, affichageEcran12 = false, 
+  affichageEcran21 = false, affichageEcran22 = false, 
+  affichageEcran31 = false, affichageEcran32 = false, 
+  affichageEcran41 = false, affichageEcran42 = false;
 PImage persoConfigo;
 
 void setup() {
@@ -11,78 +16,80 @@ void setup() {
   size(800, 600);
   persoConfigo = loadImage("persoConfigo.png");
 }
+
 void draw() {
-  if (affichageEcranPrincipal == true) {
-    afficherEcranPrincipal();
-  }
+  afficherEcranPrincipal();
+  affichageEcranNiveaux();
+  
   prochainNiveau();
-  if (compteurGlobalNiveaux == 2 && partieLancee == true) {
-    affichageEcranPrincipal = false;
-    affichageEcran31 = true;
-  }
+  
+  uniteMonnaie();
 }
 
 void afficherEcranPrincipal() {
-  // barre bleue haut
-  fill(0, 70, 200);
-  rect(0, 0, 800, 70);
+  if (affichageEcranPrincipal == true) {
 
-  // barre jaune gauche
-  fill(250, 200, 0);
-  rect(0, 70, 230, 400);
+    // barre bleue haut
+    fill(0, 70, 200);
+    rect(0, 0, 800, 70);
 
-  // barre blanche bas
-  fill(255);
-  rect(0, 470, 800, 130);
+    // barre jaune gauche
+    fill(250, 200, 0);
+    rect(0, 70, 230, 400);
 
-  // bouton jouer
-  fill(255, 0, 0);
-  rect(330, 370, 350, 80);
+    // barre blanche bas
+    fill(255);
+    rect(0, 470, 800, 130);
 
-  // CONTOURS
-  noFill();
-  stroke(0);
-  strokeWeight(7);
+    // bouton jouer
+    fill(255, 0, 0);
+    rect(330, 370, 350, 80);
 
-  // contours pour bleu
-  rect(2, 2, 138, 70);
-  rect(140, 2, 520, 70);
-  rect(660, 2, 136, 70);
+    // CONTOURS
+    noFill();
+    stroke(0);
+    strokeWeight(7);
 
-  // contour pour jaune
-  rect(2, 72, 230, 400);
+    // contours pour bleu
+    rect(2, 2, 178, 70); // gauche
+    rect(180, 2, 480, 70); // milieu
+    rect(660, 2, 136, 70); // droite
 
-  // contour pour blanc
-  rect(2, 472, 794, 124);
+    // contour pour jaune
+    rect(2, 72, 230, 400);
 
-  // bordure droite
-  line(796, 72, 796, 470);
+    // contour pour blanc
+    rect(2, 472, 794, 124);
 
-  // contour pour rouge
-  rect(330, 370, 350, 80);
+    // bordure droite
+    line(796, 72, 796, 470); // compléter la bordure
 
-  // nom du jeu
-  fill(255);
-  textSize(30);
-  text("_CONFIGOMATOR_", 270, 47);
+    // contour pour rouge
+    rect(330, 370, 350, 80);
 
-  // texte jouer
-  textSize(50);
-  text("JOUER", 430, 427);
+    // nom du jeu
+    fill(255);
+    textSize(30);
+    text("_CONFIGOMATOR_", 284, 47);
 
-  // AFFICHAGE INFOS
-  afficherCapital();
-  afficherNiveauEnCours();
-  afficherTexteBulle(); // encore à faire
-  
-  // IMAGES
-  image(persoConfigo, 30,440);
+    // texte jouer
+    textSize(50);
+    text("JOUER", 430, 427);
+
+    // AFFICHAGE INFOS
+    afficherCapital();
+    afficherNiveauEnCours();
+    afficherTexteBulle(); // encore à faire
+
+    // IMAGES
+    image(persoConfigo, 30, 440);
+  }
 }
 
 void afficherCapital() {    // affiche en temps réel l'argent possédé
   fill(255);
   textSize(30);
-  text(capital + " $", 30, 50);
+  text(nf(capitalAffiche, 0, 1) + " " + uniteMonnaie + "$", 30, 50);
 }
 
 void afficherNiveauEnCours() { // affiche en temps réel le niveau en cours
