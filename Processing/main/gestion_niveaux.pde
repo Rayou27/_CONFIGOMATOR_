@@ -54,5 +54,53 @@ void affichageEcranNiveaux() {
   if (compteurGlobalNiveaux == 8 && partieLancee == true) {
     affichageEcranPrincipal = false;
     affichageEcran42 = true;
-  }  
+  }
+}
+
+void affichageEcran11() {
+  if (affichageEcran11==true) {
+    miniJeu11();
+  }
+}
+
+void affichageEcran12() {
+  if (affichageEcran12==true) {
+    miniJeu12();
+  }
+}
+
+void affichageEcran21() {
+  if (affichageEcran21==true) {
+    miniJeu21();
+  }
+}
+
+void affichageEcran22() {
+  if (affichageEcran22==true) {
+    miniJeu22();
+  }
+}
+
+void affichageEcran31() {
+  if (affichageEcran31==true) {
+    miniJeu31();
+  }
+}
+
+void affichageEcran32() {
+  if (affichageEcran32==true) {
+    miniJeu32();
+  }
+}
+
+void affichageEcran41(){
+    if (affichageEcran41==true) {
+    miniJeu41();
+  }
+}
+
+void affichageEcran42(){
+    if (affichageEcran42==true) {
+    miniJeu42();
+  }
 }

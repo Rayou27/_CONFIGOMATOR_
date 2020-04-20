@@ -1,4 +1,4 @@
-int compteurGlobalNiveaux = 1;
+int compteurGlobalNiveaux = 5;
 float capital = 27;
 float capitalAffiche = 27;
 String niveauEnCours = "1-1";
@@ -14,19 +14,36 @@ PImage persoConfigo;
 void setup() {
   // taille fenêtre
   size(800, 600);
+
+  // CHARGER IMAGES
   persoConfigo = loadImage("persoConfigo.png");
+
+  // 3-1 QUESTIONS
+  vraiFauxQuestion1="Une carte mère ne peut contenir \nqu’un seul processeur.";
+  vraiFauxQuestion2="Le nombre de barrettes de RAM \nest forcément pair.";
+  vraiFauxQuestion3="C’est la carte mère qui \neffectue les calculs.";
+  vraiFauxQuestion4="Il existe des processeurs qui ne \nnécessitent pas de carte graphique.";
+  vraiFauxQuestion5="La carte graphique permet de produire \nl’image affichée sur l’écran.";
+  vraiFauxQuestion6="Le processeur refroidit tellement en \neffectuant les calculs qu’il lui\n faut un radiateur pour le chauffer.";
+  vraiFauxQuestion7="Un PC peut fonctionner sans processeur.";
+  vraiFauxQuestion8="Les disques durs permettent le \nstockage des données.";
+  vraiFauxQuestion9="La mémoire vive permet le stockage \nde données plus rapides.";
+  vraiFauxQuestion10="Un PC peut ne pas contenir de boîtier.";
 }
 
 void draw() {
-  afficherEcranPrincipal();
+  affichageEcranPrincipal();
   affichageEcranNiveaux();
-  
+  testPartieLancee();
+
   prochainNiveau();
-  
+
   uniteMonnaie();
+
+  affichageEcran31();
 }
 
-void afficherEcranPrincipal() {
+void affichageEcranPrincipal() {
   if (affichageEcranPrincipal == true) {
 
     // barre bleue haut
@@ -101,11 +118,14 @@ void afficherNiveauEnCours() { // affiche en temps réel le niveau en cours
 void afficherTexteBulle() { // en chantier
   fill(0);
   textSize(20);
-  text("Bienvenue sur le jeu _CONFIGOMATOR_ ! \nClique sur le  bouton jouer pour relever le premier défi :)", 185, 527);
+  text("Bienvenue sur le jeu _CONFIGOMATOR_ ! \nClique sur le  bouton jouer pour relever le premier défi :)", 
+    185, 527);
 }
 
 void testPartieLancee() {
-  if (mouseX > 330 && mouseX < 670 && mouseY > 370 && mouseY < 450 && affichageEcranPrincipal == true && mousePressed == true) {
+  if (mouseX >= 330 && mouseX <= 680 && mouseY >= 370 && mouseY <= 450 
+    && affichageEcranPrincipal == true && mousePressed==true) {
     partieLancee = true ;
+    print(25);
   }
 }
