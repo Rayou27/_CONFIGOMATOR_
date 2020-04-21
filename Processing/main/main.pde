@@ -20,15 +20,15 @@ void setup() {
 
   // 3-1 QUESTIONS
   vraiFauxQuestion1="Une carte mère ne peut \ncontenir qu’un seul \nprocesseur.";
-  vraiFauxQuestion2="Le nombre de barrettes de RAM \nest forcément pair.";
+  vraiFauxQuestion2="Le nombre de barrettes de \nRAM est forcément pair.";
   vraiFauxQuestion3="C’est la carte mère qui \neffectue les calculs.";
-  vraiFauxQuestion4="Il existe des processeurs qui ne \nnécessitent pas de carte graphique.";
-  vraiFauxQuestion5="La carte graphique permet de produire \nl’image affichée sur l’écran.";
-  vraiFauxQuestion6="Le processeur refroidit tellement en \neffectuant les calculs qu’il lui\n faut un radiateur pour le chauffer.";
-  vraiFauxQuestion7="Un PC peut fonctionner sans processeur.";
-  vraiFauxQuestion8="Les disques durs permettent le \nstockage des données.";
-  vraiFauxQuestion9="La mémoire vive permet le stockage \nde données plus rapides.";
-  vraiFauxQuestion10="Un PC peut ne pas contenir de boîtier.";
+  vraiFauxQuestion4="Il existe des processeurs \nqui ne nécessitent pas de \ncarte graphique.";
+  vraiFauxQuestion5="La carte graphique permet \nde produire l’image \naffichée sur l’écran.";
+  vraiFauxQuestion6="Le processeur refroidit \ntellement en effectuant les \ncalculs qu’il lui faut un \nradiateur pour le chauffer.";
+  vraiFauxQuestion7="Un PC peut fonctionner \nsans processeur.";
+  vraiFauxQuestion8="Les disques durs \npermettent le stockage \ndes données.";
+  vraiFauxQuestion9="La mémoire vive permet le \nstockage de données plus \nrapides.";
+  vraiFauxQuestion10="Un PC peut ne pas \ncontenir de boîtier.";
   vraiFauxCorrection1="correction du 1";
   vraiFauxCorrection2="correction du 2";
   vraiFauxCorrection3="correction du 3";
