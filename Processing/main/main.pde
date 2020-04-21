@@ -9,7 +9,7 @@ boolean affichageEcran11 = false, affichageEcran12 = false,
   affichageEcran21 = false, affichageEcran22 = false, 
   affichageEcran31 = false, affichageEcran32 = false, 
   affichageEcran41 = false, affichageEcran42 = false;
-boolean niveauTermine31;
+boolean niveauTermine31 = false;
 PImage persoConfigo;
 
 void setup() {

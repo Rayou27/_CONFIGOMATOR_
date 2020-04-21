@@ -118,6 +118,7 @@ void afficherJeuVraiFaux() {
 
   // PAGE ACCUEIL MINI JEU
   if (vraiFauxCompteurQuestion == 0) {
+    niveauTermine31 = false;
     textSize(32);
     fill(0);
     text(niveauEnCours, 360, 70);
@@ -323,8 +324,7 @@ void vraiFauxQuestionSuivanteOK() {
     reponseVraiCouleur = reponseViergeCouleur;
     reponseFauxCouleur = reponseViergeCouleur;
     bonneReponse = false;
-    mauvaiseReponse = false;
-    print(vraiFauxCompteurQuestion);
+    mauvaiseReponse = false;  
   }
   if (vraiFauxCompteurQuestion == 0) {
     vraiFauxQuestionSuivanteOK = false;
@@ -347,15 +347,15 @@ void vraiFauxEcranFin() {
     fill(0);
     textSize(27);
     text("Tu t'es débrouillé tant bien que mal pour \nterminer ce Vrai/Faux, bravo ! \nVoici tes statistiques", 124, 220);
-    text("TA NOTE \n" +vraiFauxScore+"/10", 150,420);
-    text("ARGENT GAGNÉ \n" +argentGagne31 +"$", 480,420);
+    text("TA NOTE \n" +vraiFauxScore+"/10", 150, 420);
+    text("ARGENT GAGNÉ \n" +argentGagne31 +"$", 480, 420);
     fill(reponseViergeCouleur);
     rect(570, 520, 170, 50);
     fill(0);
     textSize(27);
     text(" → Garage", 590, 555);
   }
-  if (niveauTermine31==true);
+  if (vraiFauxCompteurQuestion==11 && niveauTermine31==true);
   affichageEcran31=false;
   affichageEcranPrincipal=true;
 }

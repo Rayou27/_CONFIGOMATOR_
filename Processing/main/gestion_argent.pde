@@ -10,7 +10,7 @@ void uniteMonnaie() {
     uniteMonnaie = "M";
     capitalAffiche = capital/1000000;
   }
-  if (capital >=1000000000) { // passage au billion $ (milliard)
+  if (capital >=1000000000) { // passage au billion $ (milliard), pour l'instant trop long, à voir
     uniteMonnaie = "B";
     capitalAffiche = capital/1000000000;
   }

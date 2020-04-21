@@ -57,6 +57,8 @@ void affichageEcranNiveaux() {
   }
 }
 
+// /!\ penser à regrouper toutes ces void dans une seule : affichageEcranMiniJeu()
+
 void affichageEcran11() {
   if (affichageEcran11==true) {
     miniJeu11();
