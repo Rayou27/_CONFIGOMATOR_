@@ -9,6 +9,7 @@ boolean affichageEcran11 = false, affichageEcran12 = false,
   affichageEcran21 = false, affichageEcran22 = false, 
   affichageEcran31 = false, affichageEcran32 = false, 
   affichageEcran41 = false, affichageEcran42 = false;
+boolean niveauTermine31;
 PImage persoConfigo;
 
 void setup() {
@@ -136,6 +137,5 @@ void testPartieLancee() {
   if (mouseX >= 330 && mouseX <= 680 && mouseY >= 370 && mouseY <= 450 
     && affichageEcranPrincipal == true && mousePressed==true) {
     partieLancee = true ;
-    print(25);
   }
 }
