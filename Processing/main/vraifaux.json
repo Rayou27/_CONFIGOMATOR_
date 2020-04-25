@@ -1,0 +1,55 @@
+[
+    [
+        {
+            "question": "",
+            "correction": ""
+         },
+        {
+            "question": "Une carte mère ne peut \ncontenir qu’un seul \nprocesseur.",
+            "correction": "correction 1"
+         },
+        {
+            "question": "Le nombre de barrettes de \nRAM est forcément pair.",
+            "correction": "correction 2"
+         },
+        {
+            "question": "C’est la carte mère qui \neffectue les calculs.",
+            "correction": "correction 3"
+         },
+        {
+            "question": "Il existe des processeurs \nqui ne nécessitent pas de \ncarte graphique.",
+            "correction": "correction 4"
+         },
+        {
+            "question": "La carte graphique permet \nde produire l’image \naffichée sur l’écran.",
+            "correction": "correction 5"
+         },
+        {
+            "question": "Le processeur refroidit \ntellement en effectuant les \ncalculs qu’il lui faut un \nradiateur pour le chauffer.",
+            "correction": "correction 6"
+         },
+        {
+            "question": "Un PC peut fonctionner \nsans processeur.",
+            "correction": "correction 7"
+         },
+        {
+            "question": "Les disques durs \npermettent le stockage \ndes données.",
+            "correction": "correction 8"
+         },
+        {
+            "question": "La mémoire vive permet le \nstockage de données plus \nrapides.",
+            "correction": "correction 9"
+         },
+        {
+            "question": "Un PC peut ne pas \ncontenir de boîtier.",
+            "correction": "correction 10"
+         },
+        {
+            "question": "",
+            "correction": ""
+         }
+   ],
+    [],
+    [],
+    []
+]

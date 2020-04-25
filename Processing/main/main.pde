@@ -1,5 +1,5 @@
 int compteurGlobalNiveaux = 5;
-float capital = 27;
+float capital = 277000000;
 float capitalAffiche = 27;
 String niveauEnCours = "1-1";
 String uniteMonnaie = "";
@@ -18,28 +18,6 @@ void setup() {
 
   // CHARGER IMAGES
   persoConfigo = loadImage("persoConfigo.png");
-
-  // 3-1 QUESTIONS
-  vraiFauxQuestion1="Une carte mère ne peut \ncontenir qu’un seul \nprocesseur.";
-  vraiFauxQuestion2="Le nombre de barrettes de \nRAM est forcément pair.";
-  vraiFauxQuestion3="C’est la carte mère qui \neffectue les calculs.";
-  vraiFauxQuestion4="Il existe des processeurs \nqui ne nécessitent pas de \ncarte graphique.";
-  vraiFauxQuestion5="La carte graphique permet \nde produire l’image \naffichée sur l’écran.";
-  vraiFauxQuestion6="Le processeur refroidit \ntellement en effectuant les \ncalculs qu’il lui faut un \nradiateur pour le chauffer.";
-  vraiFauxQuestion7="Un PC peut fonctionner \nsans processeur.";
-  vraiFauxQuestion8="Les disques durs \npermettent le stockage \ndes données.";
-  vraiFauxQuestion9="La mémoire vive permet le \nstockage de données plus \nrapides.";
-  vraiFauxQuestion10="Un PC peut ne pas \ncontenir de boîtier.";
-  vraiFauxCorrection1="correction du 1";
-  vraiFauxCorrection2="correction du 2";
-  vraiFauxCorrection3="correction du 3";
-  vraiFauxCorrection4="correction du 4";
-  vraiFauxCorrection5="correction du 5";
-  vraiFauxCorrection6="correction du 6";
-  vraiFauxCorrection7="correction du 7";
-  vraiFauxCorrection8="correction du 8";
-  vraiFauxCorrection9="correction du 9";
-  vraiFauxCorrection10="correction du 10";
 }
 
 void draw() {

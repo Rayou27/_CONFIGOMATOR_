@@ -1,121 +1,79 @@
 int vraiFauxScore=0;
 int vraiFauxCompteurQuestion = 0;
 float argentGagne31 =0;
-
-color reponseVraiCouleur;
-color reponseFauxCouleur;
+color reponseVraiCouleur, reponseFauxCouleur;
 color reponseViergeCouleur = color(252, 243, 204);
 color reponseJusteCouleur = color(62, 207, 62);
 color reponseMauvaisCouleur = color(255, 48, 100);
-
-String vraiFauxQuestion1, vraiFauxQuestion2, vraiFauxQuestion3, 
-  vraiFauxQuestion4, vraiFauxQuestion5, vraiFauxQuestion6, 
-  vraiFauxQuestion7, vraiFauxQuestion8, vraiFauxQuestion9, 
-  vraiFauxQuestion10;
-String vraiFauxCorrection1, vraiFauxCorrection2, vraiFauxCorrection3, 
-  vraiFauxCorrection4, vraiFauxCorrection5, vraiFauxCorrection6, 
-  vraiFauxCorrection7, vraiFauxCorrection8, vraiFauxCorrection9, 
-  vraiFauxCorrection10;
-
+String vraiFauxQuestion, vraiFauxCorrection;
 boolean bonneReponse = false;
 boolean mauvaiseReponse = false;
 boolean questionRepondue = false;
 boolean vraiFauxQuestionSuivanteOK = false;
-
+JSONArray vraifauxJSON;
 
 void miniJeu31() {
+  vraiFauxJSON();
   afficherJeuVraiFaux();
-  afficherQuestionVraiFaux();
+  afficherQuestionCorrectionVraiFaux();
   vraiFauxQuestionSuivanteOK();
   couleurCorrection();
-  vraiFauxAffichageCorrection();
   vraiFauxEcranFin();
 }
 
 void mousePressed() {
-
-  if (vraiFauxCompteurQuestion==1 && mouseX > 150 && mouseX < 350 &&  mouseY > 400 && mouseY < 500 && questionRepondue == false ) {
+  // CLIC VRAI JUSTE
+  if ((vraiFauxCompteurQuestion==1 || vraiFauxCompteurQuestion==4 
+    ||vraiFauxCompteurQuestion==5 ||vraiFauxCompteurQuestion==8 ||vraiFauxCompteurQuestion==10)
+    && mouseX > 150 && mouseX < 350 &&  mouseY > 400 && mouseY < 500 && questionRepondue == false ) {
+    bonneReponse = true;
     vraiFauxScore+=1;
     questionRepondue = true;
-    bonneReponse = true;
-  } else if ( vraiFauxCompteurQuestion==1 && mouseX > 450 && mouseX < 650 &&  mouseY >  400 && mouseY < 500&& questionRepondue == false) {
-    questionRepondue = true;
-    mauvaiseReponse=true;
-  } else if ( vraiFauxCompteurQuestion==2 && mouseX > 150 && mouseX < 350 &&  mouseY > 400 && mouseY < 500 && questionRepondue == false ) {
-    questionRepondue = true;
-    mauvaiseReponse=true;
-  } else if ( vraiFauxCompteurQuestion==2 && mouseX > 450 && mouseX < 650 &&  mouseY >  400 && mouseY < 500&& questionRepondue == false) {
-    vraiFauxScore+=1;
-    questionRepondue = true;
-    bonneReponse = true;
-  } else if ( vraiFauxCompteurQuestion==3 && mouseX > 150 && mouseX < 350 &&  mouseY > 400 && mouseY < 500 && questionRepondue == false ) {
-    questionRepondue = true;
-    mauvaiseReponse=true;
-  } else if ( vraiFauxCompteurQuestion==3 && mouseX > 450 && mouseX < 650 &&  mouseY >  400 && mouseY < 500&& questionRepondue == false) {
-    vraiFauxScore+=1;
-    questionRepondue = true;
-    bonneReponse = true;
-  } else if ( vraiFauxCompteurQuestion==4 && mouseX > 150 && mouseX < 350 &&  mouseY > 400 && mouseY < 500 && questionRepondue == false ) {
-    vraiFauxScore+=1;
-    questionRepondue = true;
-    bonneReponse = true;
-  } else if ( vraiFauxCompteurQuestion==4 && mouseX > 450 && mouseX < 650 &&  mouseY >  400 && mouseY < 500&& questionRepondue == false) {
-    questionRepondue = true;
-    mauvaiseReponse=true;
-  } else if ( vraiFauxCompteurQuestion==5 && mouseX > 150 && mouseX < 350 &&  mouseY > 400 && mouseY < 500 && questionRepondue == false ) {
-    vraiFauxScore+=1;
-    questionRepondue = true;
-    bonneReponse = true;
-  } else if ( vraiFauxCompteurQuestion==5 && mouseX > 450 && mouseX < 650 &&  mouseY >  400 && mouseY < 500&& questionRepondue == false) {
-    questionRepondue = true;
-    mauvaiseReponse=true;
-  } else if ( vraiFauxCompteurQuestion==6 && mouseX > 150 && mouseX < 350 &&  mouseY > 400 && mouseY < 500 && questionRepondue == false ) {
-    questionRepondue = true;
-    mauvaiseReponse=true;
-  } else if ( vraiFauxCompteurQuestion==6 && mouseX > 450 && mouseX < 650 &&  mouseY >  400 && mouseY < 500&& questionRepondue == false) {
-    vraiFauxScore+=1;
-    questionRepondue = true;
-    bonneReponse = true;
-  } else if ( vraiFauxCompteurQuestion==7 && mouseX > 150 && mouseX < 350 &&  mouseY > 400 && mouseY < 500 && questionRepondue == false ) {
-    questionRepondue = true;
-    mauvaiseReponse=true;
-  } else if ( vraiFauxCompteurQuestion==7 && mouseX > 450 && mouseX < 650 &&  mouseY >  400 && mouseY < 500&& questionRepondue == false) {
-    vraiFauxScore+=1;
-    questionRepondue = true;
-    bonneReponse = true;
-  } else if ( vraiFauxCompteurQuestion==8 && mouseX > 150 && mouseX < 350 &&  mouseY > 400 && mouseY < 500 && questionRepondue == false ) {
-    vraiFauxScore+=1;
-    questionRepondue = true;
-    bonneReponse = true;
-  } else if (vraiFauxCompteurQuestion==8 && mouseX > 450 && mouseX < 650 &&  mouseY >  400 && mouseY < 500&& questionRepondue == false) {
-    questionRepondue = true;
-    mauvaiseReponse=true;
-  } else if ( vraiFauxCompteurQuestion==9 && mouseX > 150 && mouseX < 350 &&  mouseY > 400 && mouseY < 500 && questionRepondue == false ) {
-    questionRepondue = true;
-    mauvaiseReponse=true;
-  } else if ( vraiFauxCompteurQuestion==9 && mouseX > 450 && mouseX < 650 &&  mouseY >  400 && mouseY < 500&& questionRepondue == false) {
-    vraiFauxScore+=1;
-    questionRepondue = true;
-    bonneReponse = true;
-  } else if ( vraiFauxCompteurQuestion==10 && mouseX > 150 && mouseX < 350 &&  mouseY > 400 && mouseY < 500 && questionRepondue == false ) {
-    vraiFauxScore+=1;
-    questionRepondue = true;
-    bonneReponse = true;
-  } else if ( vraiFauxCompteurQuestion==10 && mouseX > 450 && mouseX < 650 &&  mouseY >  400 && mouseY < 500&& questionRepondue == false) {
+  }
+  // CLIC FAUX MAUVAIS
+  if ((vraiFauxCompteurQuestion==1 || vraiFauxCompteurQuestion==4 
+    ||vraiFauxCompteurQuestion==5 ||vraiFauxCompteurQuestion==8 ||vraiFauxCompteurQuestion==10)
+    && mouseX > 450 && mouseX < 650 &&  mouseY >  400 && mouseY < 500&& questionRepondue == false) {
     questionRepondue = true;
     mauvaiseReponse=true;
   }
-  if (vraiFauxCompteurQuestion!=11 && (questionRepondue==true || vraiFauxCompteurQuestion==0) && mouseX > 570 && mouseX < 740 && mouseY > 520 && mouseY < 570) {
+  // CLIC FAUX JUSTE
+  if ((vraiFauxCompteurQuestion==2 || vraiFauxCompteurQuestion==3 
+    ||vraiFauxCompteurQuestion==6 || vraiFauxCompteurQuestion==7 ||vraiFauxCompteurQuestion==9) 
+    && mouseX > 450 && mouseX < 650 &&  mouseY >  400 && mouseY < 500&& questionRepondue == false) {
+    vraiFauxScore+=1;
+    questionRepondue = true;
+    bonneReponse = true;
+  }
+  // CLIC VRAI MAUVAIS
+  if ((vraiFauxCompteurQuestion==2 || vraiFauxCompteurQuestion==3 
+    ||vraiFauxCompteurQuestion==6 || vraiFauxCompteurQuestion==7 ||vraiFauxCompteurQuestion==9) 
+    && mouseX > 150 && mouseX < 350 &&  mouseY > 400 && mouseY < 500 && questionRepondue == false ) {
+    questionRepondue = true;
+    mauvaiseReponse=true;
+  }
+  // TEST BOUTON SUIVANT
+  if (vraiFauxCompteurQuestion!=11 && (questionRepondue==true || vraiFauxCompteurQuestion==0) 
+    && mouseX > 570 && mouseX < 740 && mouseY > 520 && mouseY < 570) {
     vraiFauxQuestionSuivanteOK=true;
   }
+  // TEST BOUTON GARAGE
   if (vraiFauxCompteurQuestion==11 && mouseX > 570 && mouseX < 740 && mouseY > 520 && mouseY < 570) {
     niveauTermine31=true;
   }
 }
 
+void vraiFauxJSON() {
+  vraifauxJSON= loadJSONArray("vraifaux.json"); // On charge le JSON
+  JSONArray donnees = vraifauxJSON.getJSONArray(0); // On récupère toutes les données du premier Array
+  JSONObject objet = donnees.getJSONObject(vraiFauxCompteurQuestion); // On récupère les données de l'objet
+  // portant le numéro de la question en cours
+  vraiFauxQuestion = objet.getString("question"); // On récupère ainsi les questions avec la méthode getString()
+  vraiFauxCorrection = objet.getString("correction"); // idem
+}
+
 void afficherJeuVraiFaux() {
   background(251, 210, 71);
-
   // PAGE ACCUEIL MINI JEU
   if (vraiFauxCompteurQuestion == 0) {
     niveauTermine31 = false;
@@ -135,7 +93,6 @@ void afficherJeuVraiFaux() {
     textSize(27);
     text("Let's Go~", 600, 555);
   }
-
   // PAGE QUESTIONS
   if (vraiFauxCompteurQuestion >= 1 && vraiFauxCompteurQuestion <= 10) {
     fill(255);
@@ -148,7 +105,7 @@ void afficherJeuVraiFaux() {
     textSize(40);
     text("VRAI", 200, 465);
     text("FAUX", 500, 465);
-    if (questionRepondue==true) {
+    if (questionRepondue==true) { // afficher le bouton suivant
       fill(reponseViergeCouleur);
       rect(570, 520, 170, 50);
       fill(0);
@@ -156,163 +113,42 @@ void afficherJeuVraiFaux() {
       text("Suivant !", 600, 555);
     }
     textSize(27);
-    text(vraiFauxScore +"/10", 690, 70);
-    text("Q°" + vraiFauxCompteurQuestion, 30, 70);
+    text(vraiFauxScore +"/10", 690, 70); // afficher le score
+    text("Q°" + vraiFauxCompteurQuestion, 30, 70); // afficher le numéro de question
   }
 }
 
-void afficherQuestionVraiFaux() {
+void afficherQuestionCorrectionVraiFaux() {
   textSize(27);
-  if (vraiFauxCompteurQuestion==1) {
-    text(vraiFauxQuestion1, 230, 190);
-  }
-  if (vraiFauxCompteurQuestion==2) {
-    text(vraiFauxQuestion2, 230, 180);
-  }
-  if (vraiFauxCompteurQuestion==3) {
-    text(vraiFauxQuestion3, 230, 180);
-  }
-  if (vraiFauxCompteurQuestion==4) {
-    text(vraiFauxQuestion4, 230, 180);
-  }
-  if (vraiFauxCompteurQuestion==5) {
-    text(vraiFauxQuestion5, 230, 180);
-  }
-  if (vraiFauxCompteurQuestion==6) {
-    text(vraiFauxQuestion6, 230, 180);
-  }
-  if (vraiFauxCompteurQuestion==7) {
-    text(vraiFauxQuestion7, 230, 180);
-  }
-  if (vraiFauxCompteurQuestion==8) {
-    text(vraiFauxQuestion8, 230, 180);
-  }
-  if (vraiFauxCompteurQuestion==9) {
-    text(vraiFauxQuestion9, 230, 180);
-  }
-  if (vraiFauxCompteurQuestion==10) {
-    text(vraiFauxQuestion10, 230, 180);
-  }
-}
-
-void couleurCorrection() {
-
-  // QUESTION 1
-  if (bonneReponse == true && vraiFauxCompteurQuestion==1) {
-    reponseVraiCouleur=reponseJusteCouleur;
-  } 
-  if (mauvaiseReponse == true && vraiFauxCompteurQuestion==1) { 
-    reponseFauxCouleur=reponseMauvaisCouleur;
-  }
-
-  // QUESTION 2
-  if (bonneReponse == true && vraiFauxCompteurQuestion==2) {
-    reponseFauxCouleur=reponseJusteCouleur;
-  } 
-  if (mauvaiseReponse == true && vraiFauxCompteurQuestion==2) { 
-    reponseVraiCouleur=reponseMauvaisCouleur;
-  }
-
-  // QUESTION 3
-  if (bonneReponse == true && vraiFauxCompteurQuestion==3) {
-    reponseFauxCouleur=reponseJusteCouleur;
-  } 
-  if (mauvaiseReponse == true && vraiFauxCompteurQuestion==3) { 
-    reponseVraiCouleur=reponseMauvaisCouleur;
-  }
-
-  // QUESTION 4
-  if (bonneReponse == true && vraiFauxCompteurQuestion==4) {
-    reponseVraiCouleur=reponseJusteCouleur;
-  } 
-  if (mauvaiseReponse == true && vraiFauxCompteurQuestion == 4) { 
-    reponseFauxCouleur=reponseMauvaisCouleur;
-  }
-
-  // QUESTION 5
-  if (bonneReponse == true && vraiFauxCompteurQuestion==5) {
-    reponseVraiCouleur=reponseJusteCouleur;
-  } 
-  if (mauvaiseReponse == true && vraiFauxCompteurQuestion==5) { 
-    reponseFauxCouleur=reponseMauvaisCouleur;
-  }
-
-  // QUESTION 6
-  if (bonneReponse == true && vraiFauxCompteurQuestion==6) {
-    reponseFauxCouleur=reponseJusteCouleur;
-  } 
-  if (mauvaiseReponse == true && vraiFauxCompteurQuestion==6) { 
-    reponseVraiCouleur=reponseMauvaisCouleur;
-  }
-
-  // QUESTION 7 
-  if (bonneReponse == true && vraiFauxCompteurQuestion==7) {
-    reponseFauxCouleur=reponseJusteCouleur;
-  } 
-  if (mauvaiseReponse == true && vraiFauxCompteurQuestion==7) { 
-    reponseVraiCouleur=reponseMauvaisCouleur;
-  }
-
-  // QUESTION 8
-  if (bonneReponse == true && vraiFauxCompteurQuestion==8) {
-    reponseVraiCouleur=reponseJusteCouleur;
-  } 
-  if (mauvaiseReponse == true && vraiFauxCompteurQuestion==8) { 
-    reponseFauxCouleur=reponseMauvaisCouleur;
-  }
-
-  // QUESTION 9
-  if (bonneReponse == true && vraiFauxCompteurQuestion==9) {
-    reponseFauxCouleur=reponseJusteCouleur;
-  } 
-  if (mauvaiseReponse == true && vraiFauxCompteurQuestion==9) { 
-    reponseVraiCouleur=reponseMauvaisCouleur;
-  }
-
-  // QUESTION 10
-  if (bonneReponse == true && vraiFauxCompteurQuestion==10) {
-    reponseVraiCouleur=reponseJusteCouleur;
-  } 
-  if (mauvaiseReponse == true && vraiFauxCompteurQuestion==10) { 
-    reponseFauxCouleur=reponseMauvaisCouleur;
-  }
-}
-
-void vraiFauxAffichageCorrection() {
+  text(vraiFauxQuestion, 230, 190);
   textSize(20);
   if (bonneReponse==true) {
     text("Bien joué c'était ça !", 50, 547);
   } else if (mauvaiseReponse==true) {
-    if (vraiFauxCompteurQuestion==1) {
-      text(vraiFauxCorrection1, 50, 547);
-    }
-    if (vraiFauxCompteurQuestion==2) {
-      text(vraiFauxCorrection2, 50, 547);
-    }
-    if (vraiFauxCompteurQuestion==3) {
-      text(vraiFauxCorrection3, 50, 547);
-    }
-    if (vraiFauxCompteurQuestion==4) {
-      text(vraiFauxCorrection4, 50, 547);
-    }
-    if (vraiFauxCompteurQuestion==5) {
-      text(vraiFauxCorrection5, 50, 547);
-    }
-    if (vraiFauxCompteurQuestion==6) {
-      text(vraiFauxCorrection6, 50, 547);
-    }
-    if (vraiFauxCompteurQuestion==7) {
-      text(vraiFauxCorrection7, 50, 547);
-    }
-    if (vraiFauxCompteurQuestion==8) {
-      text(vraiFauxCorrection8, 50, 547);
-    }
-    if (vraiFauxCompteurQuestion==9) {
-      text(vraiFauxCorrection9, 50, 547);
-    }
-    if (vraiFauxCompteurQuestion==10) {
-      text(vraiFauxCorrection10, 50, 547);
-    }
+    text(vraiFauxCorrection, 50, 547);
+  }
+}
+
+void couleurCorrection() {
+  // REPONSES VRAI JUSTES
+  if (bonneReponse == true && (vraiFauxCompteurQuestion==1 || vraiFauxCompteurQuestion==4 
+    ||vraiFauxCompteurQuestion==5 ||vraiFauxCompteurQuestion==8 ||vraiFauxCompteurQuestion==10)) {
+    reponseVraiCouleur=reponseJusteCouleur;
+  } 
+  // REPONSES VRAI MAUVAISES
+  if (mauvaiseReponse == true && (vraiFauxCompteurQuestion==1 || vraiFauxCompteurQuestion==4 
+    ||vraiFauxCompteurQuestion==5 ||vraiFauxCompteurQuestion==8 ||vraiFauxCompteurQuestion==10)) { 
+    reponseFauxCouleur=reponseMauvaisCouleur;
+  }
+  // REPONSES FAUX JUSTES
+  if (bonneReponse == true && (vraiFauxCompteurQuestion==2 || vraiFauxCompteurQuestion==3 
+    ||vraiFauxCompteurQuestion==6 || vraiFauxCompteurQuestion==7 ||vraiFauxCompteurQuestion==9)) {
+    reponseFauxCouleur=reponseJusteCouleur;
+  } 
+  // REPONSES FAUX MAUVAISES
+  if (mauvaiseReponse == true && (vraiFauxCompteurQuestion==2 || vraiFauxCompteurQuestion==3 
+    ||vraiFauxCompteurQuestion==6 || vraiFauxCompteurQuestion==7 ||vraiFauxCompteurQuestion==9)) { 
+    reponseVraiCouleur=reponseMauvaisCouleur;
   }
 }
 
@@ -324,7 +160,7 @@ void vraiFauxQuestionSuivanteOK() {
     reponseVraiCouleur = reponseViergeCouleur;
     reponseFauxCouleur = reponseViergeCouleur;
     bonneReponse = false;
-    mauvaiseReponse = false;  
+    mauvaiseReponse = false;
   }
   if (vraiFauxCompteurQuestion == 0) {
     vraiFauxQuestionSuivanteOK = false;
