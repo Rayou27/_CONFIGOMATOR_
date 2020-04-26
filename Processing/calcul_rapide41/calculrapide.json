@@ -1,0 +1,48 @@
+[
+    [
+        { // calcul zero
+            "enonce": "",
+            "solution": ""
+        },
+        { // calcul 1, lvl1
+            "enonce": "6*9",
+            "solution": "54"
+        },
+        { // calcul 2, lvl1
+            "enonce": "|36-89|",
+            "solution": "53"
+        },
+        { // calcul 3, lvl1
+            "enonce": "132+564",
+            "solution": "696"
+        },
+        { // calcul 4, lvl1
+            "enonce": "cos(pi/2)*58^-1",
+            "solution": "0"
+        },
+        { // calcul 5, lvl2
+            "enonce": "639/3",
+            "solution": "213"
+        },
+        { // calcul 6, lvl2
+            "enonce": "2^5",
+            "solution": "32"
+        },
+        { // calcul 7, lvl2
+            "enonce": "20-70%",
+            "solution": "6"
+        },
+        { // calcul 8, lvl2
+            "enonce": "7!/5!",
+            "solution": "30"
+        },
+        { // calcul 9, lvl3
+            "enonce": "(12*8-6)/3",
+            "solution": "30"
+        },
+        { //calcul 10, lvl3
+            "enonce": "(-1+sqrt(64)*2)*3/5",
+            "solution": "9"
+        }
+    ]
+]
