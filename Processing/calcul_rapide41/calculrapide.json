@@ -1,8 +1,8 @@
 [
     [
         { // calcul zero
-            "enonce": "",
-            "solution": ""
+            "enonce": "0",
+            "solution": "0"
         },
         { // calcul 1, lvl1
             "enonce": "6*9",
@@ -43,6 +43,99 @@
         { //calcul 10, lvl3
             "enonce": "(-1+sqrt(64)*2)*3/5",
             "solution": "9"
+        }
+    ],
+    [ // BORNES CASES
+        { // case vide (case zero)
+            "infx":"0",
+            "supx":"0",
+            "infy":"0",
+            "supy":"0",
+            "id":"cvide"
+        },
+        { // case 1
+            "infx":"445",
+            "supx":"510",
+            "infy":"185",
+            "supy":"250",
+            "id":"c1"
+        },
+        { // case 2
+            "infx":"545",
+            "supx":"610",
+            "infy":"185",
+            "supy":"250",
+            "id":"c2"
+        },
+        { // case 3
+            "infx":"645",
+            "supx":"710",
+            "infy":"185",
+            "supy":"250",
+            "id":"c3"
+        },
+        { // case 4
+            "infx":"445",
+            "supx":"510",
+            "infy":"275",
+            "supy":"340",
+            "id":"c4"
+        },
+        { // case 5
+            "infx":"545",
+            "supx":"610",
+            "infy":"275",
+            "supy":"340",
+            "id":"c5"
+        },
+        { // case 6
+            "infx":"645",
+            "supx":"710",
+            "infy":"275",
+            "supy":"340",
+            "id":"c6"
+        },
+        { // case 7
+            "infx":"445",
+            "supx":"510",
+            "infy":"365",
+            "supy":"430",
+            "id":"c7"
+        },
+        { // case 8
+            "infx":"545",
+            "supx":"610",
+            "infy":"365",
+            "supy":"430",
+            "id":"c8"
+        },
+        { // case 9
+            "infx":"645",
+            "supx":"710",
+            "infy":"365",
+            "supy":"430",
+            "id":"c9"
+        },
+        { // case 10
+            "infx":"445",
+            "supx":"510",
+            "infy":"455",
+            "supy":"520",
+            "id":"c10"
+        },
+        { // case 11
+            "infx":"545",
+            "supx":"610",
+            "infy":"455",
+            "supy":"520",
+            "id":"c11"
+        },
+        { // case 12
+            "infx":"645",
+            "supx":"710",
+            "infy":"455",
+            "supy":"520",
+            "id":"c12"
         }
     ]
 ]
