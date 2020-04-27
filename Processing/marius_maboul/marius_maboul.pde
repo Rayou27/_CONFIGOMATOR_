@@ -6,6 +6,7 @@ color colorPicker;
 
 boolean bordureTouchee=false;
 boolean partiePerdue=true;
+boolean debutPartie=true;
 
 PImage premiereMap;
 
@@ -20,20 +21,21 @@ void setup() {
 
 void draw() {
   afficher41();
-  recupPixel();
-  testBordure();
-  etatNiveau();
-  bille();
 }
 
 void afficher41() {
   background(155, 155, 0);
   image(premiereMap, 400, 0);
+  recupPixel();
+  testBordure();
+  etatNiveau();
+  bille();
+  setDepart();
 }
 
 void bille() {
   noCursor();
-  if (bordureTouchee!=true) {
+  if (bordureTouchee==false) {
     if (mouseX>400&&mouseX<760) {
       mx=mouseX;
       my=mouseY;
@@ -50,6 +52,10 @@ void testBordure() {
   if (colorPicker==bordure) {
     bordureTouchee=true;
   }
+}
+
+void setDepart() {
+  
 }
 
 void etatNiveau() {
