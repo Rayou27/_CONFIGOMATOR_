@@ -1,4 +1,4 @@
-int calculCompteurQuestion = 0;
+int calculCompteurQuestion = 4;
 int calculScore=0;
 int numeroCase = 5;
 
@@ -19,11 +19,15 @@ color reponseMauvaisCouleur = color(255, 48, 100); // couleur rouge
 
 String niveauEnCours = "4-1";
 String calculEnonce, calculSolution;
+String reponseEntree="7.";
 
 boolean niveauTermine41 = false;
-boolean reponseSaisie = false;
+boolean testReponseSaisie = false;
 boolean calculBon, calculMauvais;
 boolean calculSuivantOK;
+
+boolean[] currentCase = new boolean[13];
+boolean[] boutonSelect = new boolean[12];
 
 JSONArray calculrapideJSON;
 
@@ -43,6 +47,8 @@ void mousePressed() {
 void miniJeu41() {
   afficherJeuCalculRapide();
   calculSuivantOK();
+  boutonDELOK();
+  conversionBouton();
   //calculrapideJSON(); QUAND çA REMARCHERA...
 }
 
@@ -52,9 +58,69 @@ void mousePressed41() {
     calculSuivantOK=true;
   }
   // TEST BOUTON SUIVANT
-  if (calculCompteurQuestion!=11 && reponseSaisie==true 
+  if (calculCompteurQuestion!=11 && testReponseSaisie==true 
     && mouseX > 0 && mouseX < 0 && mouseY > 0 && mouseY < 0) {
     calculSuivantOK=true;
+  }
+  // TEST CASE 1
+  if (mouseX>445 && mouseX<510 && mouseY>185 && mouseY<250) {
+    currentCase[1]=true;
+    println("case 1 cliquée");
+  }
+  // TEST CASE 2
+  if (mouseX>545 && mouseX<610 && mouseY>185 && mouseY<250) {
+    currentCase[2]=true;
+    println("case 2 cliquée");
+  }
+  // TEST CASE 3
+  if (mouseX>645 && mouseX<710 && mouseY>185 && mouseY<250) {
+    currentCase[3]=true;
+    println("case 3 cliquée");
+  }
+  // TEST CASE 4
+  if (mouseX>445 && mouseX<510 && mouseY>275 && mouseY<340) {
+    currentCase[4]=true;
+    println("case 4 cliquée");
+  }
+  // TEST CASE 5
+  if (mouseX>545 && mouseX<610 && mouseY>275 && mouseY<340) {
+    currentCase[5]=true;
+    println("case 5 cliquée");
+  }
+  // TEST CASE 6
+  if (mouseX>645 && mouseX<710 && mouseY>275 && mouseY<340) {
+    currentCase[6]=true;
+    println("case 6 cliquée");
+  }
+  // TEST CASE 7
+  if (mouseX>445 && mouseX<510 && mouseY>365 && mouseY<430) {
+    currentCase[7]=true;
+    println("case 7 cliquée");
+  }
+  // TEST CASE 8
+  if (mouseX>545 && mouseX<610 && mouseY>365 && mouseY<430) {
+    currentCase[8]=true;
+    println("case 8 cliquée");
+  }
+  // TEST CASE 9
+  if (mouseX>645 && mouseX<710 && mouseY>365 && mouseY<430) {
+    currentCase[9]=true;
+    println("case 9 cliquée");
+  }
+  // TEST CASE 10
+  if (mouseX>445 && mouseX<510 && mouseY>455 && mouseY<520) {
+    currentCase[10]=true;
+    println("case 10 cliquée");
+  }
+  // TEST CASE 11
+  if (mouseX>545 && mouseX<610 && mouseY>455 && mouseY<520) {
+    currentCase[11]=true;
+    println("case 11 cliquée");
+  }
+  // TEST CASE 12
+  if (mouseX>645 && mouseX<710 && mouseY>455 && mouseY<520) {
+    currentCase[12]=true;
+    println("case 12 cliquée");
   }
 }
 
@@ -107,7 +173,7 @@ void afficherJeuCalculRapide() {
           if (calculCompteurQuestion<=3 ) {
             text(pave123[compteurCarreBorne-1], x+20, y+45);
           } 
-          if (calculCompteurQuestion>=4 && calculCompteurQuestion<=5) {
+          if (calculCompteurQuestion==4 || calculCompteurQuestion==5) {
             text(compteurCarre, x+20, y+45);
           } 
 
@@ -140,7 +206,7 @@ void afficherJeuCalculRapide() {
           if (calculCompteurQuestion<10) {
             textSize(25);
             text("OK", x+15, y+45);
-          } 
+          }
         }
       }
     }
@@ -154,13 +220,59 @@ void afficherJeuCalculRapide() {
     text("Q°" + calculCompteurQuestion, 30, height-40); // afficher le numéro de question
     text("Résoudre :", 45, 190);
     text("calculEnonce", 65, 270); // quand le JSON remarchera, enlever les ""
+    textSize(50);
+    text(reponseEntree, 670, 145);
+  }
+}
+
+void verifCalculBon() {
+  if (reponseEntree==calculSolution && testReponseSaisie==true) {
+    ;
+  }
+}
+
+void conversionBouton() {
+  // NIV 1 2 3
+  if (calculCompteurQuestion<=3) {
+    for (int i=1; i<10; i++) {
+      boutonSelect[i]=currentCase[pave123[i-1]];
+    }
+    boutonSelect[10]=currentCase[10];
+    boutonSelect[0]=currentCase[11];
+    boutonSelect[11]=currentCase[12];
+  }
+  // NIV 4 5
+  if (calculCompteurQuestion==4 || calculCompteurQuestion==5) {
+    for (int i=0; i<10; i++) {
+      boutonSelect[i]=currentCase[i];
+    }
+    boutonSelect[10]=currentCase[10];
+    boutonSelect[0]=currentCase[11];
+    boutonSelect[11]=currentCase[12];
+  }
+
+  // NIV 6 7
+
+  // NIV 8
+
+  // NIV 9
+
+  // NIV 10 omagad comment ça va être compliqué
+}
+
+void boutonDELOK() {
+  if (boutonSelect[10]==true) {
+    reponseEntree="0.";
+  }
+  if (boutonSelect[11]==true) {
+    testReponseSaisie=true;
   }
 }
 
 void calculSuivantOK() { // FONCTIONNEL OK
   if (calculSuivantOK==true ) {
     calculSuivantOK = false;
-    reponseSaisie = false;
+    testReponseSaisie = false;
     calculCompteurQuestion+=1;
     ecranCalculCouleur = reponseViergeCouleur;
     calculBon = false;
@@ -168,7 +280,7 @@ void calculSuivantOK() { // FONCTIONNEL OK
   }
   if (calculCompteurQuestion == 0) {
     calculSuivantOK = false;
-    reponseSaisie = false;
+    testReponseSaisie = false;
     ecranCalculCouleur = reponseViergeCouleur;
     calculBon = false;
     calculMauvais = false;
