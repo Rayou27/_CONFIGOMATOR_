@@ -6,43 +6,43 @@
          },
         {
             "question": "Une carte mère ne peut \ncontenir qu’un seul \nprocesseur.",
-            "correction": "correction 1"
+            "correction": "Un corps ne peut contenir qu'un seul cerveau, \nde même pour une carte mère."
          },
         {
             "question": "Le nombre de barrettes de \nRAM est forcément pair.",
-            "correction": "correction 2"
+            "correction": "Contre-exemple : une barrette, cependant à partir \nde 2 il est conseillé de les avoir par paires."
          },
         {
             "question": "C’est la carte mère qui \neffectue les calculs.",
-            "correction": "correction 3"
+            "correction": "C’est le processeur qui effectue tous les calculs, \nc’est une sorte de cerveau du PC."
          },
         {
             "question": "Il existe des processeurs \nqui ne nécessitent pas de \ncarte graphique.",
-            "correction": "correction 4"
+            "correction": "Il existe des processeurs avec une puce graphique. \nPratique mais moins bien qu'une carte graphique"
          },
         {
             "question": "La carte graphique permet \nde produire l’image \naffichée sur l’écran.",
-            "correction": "correction 5"
+            "correction": "C'est la carte graphique qui effectue les calculs de \nrendus et permet l’affichage d’images sur un écran."
          },
         {
             "question": "Le processeur refroidit \ntellement en effectuant les \ncalculs qu’il lui faut un \nradiateur pour le chauffer.",
-            "correction": "correction 6"
+            "correction": "C’est tout l’inverse, il est indispensable d’avoir un \nsystème de refroidissement pour éviter la surchauffe."
          },
         {
             "question": "Un PC peut fonctionner \nsans processeur.",
-            "correction": "correction 7"
+            "correction": "Un Homme ne peut vivre sans cerveau, de même \npour un PC."
          },
         {
             "question": "Les disques durs \npermettent le stockage \ndes données.",
-            "correction": "correction 8"
+            "correction": "Les disques durs permettent le stockage de \ndonnées brutes, on appelle cela la mémoire morte."
          },
         {
             "question": "La mémoire vive permet le \nstockage de données plus \nrapides.",
-            "correction": "correction 9"
+            "correction": "La RAM est une mémoire vive, elle stocke entre \nautres les variables et se vide une fois le PC éteint."
          },
         {
             "question": "Un PC peut ne pas \ncontenir de boîtier.",
-            "correction": "correction 10"
+            "correction": "Le boîtier n’apporte rien d’autre qu’un toit à vos \ncomposants, pas obligatoire mais conseillé."
          },
         {
             "question": "",
