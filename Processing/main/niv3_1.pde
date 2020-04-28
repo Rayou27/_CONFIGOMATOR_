@@ -91,7 +91,7 @@ void afficherJeuVraiFaux() {
     rect(570, 520, 170, 50);
     fill(0);
     textSize(27);
-    text("Let's Go~", 600, 555);
+    text("Let's Go !", 600, 555);
   }
   // PAGE QUESTIONS
   if (vraiFauxCompteurQuestion >= 1 && vraiFauxCompteurQuestion <= 10) {
