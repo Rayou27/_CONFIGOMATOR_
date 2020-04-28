@@ -1,6 +1,7 @@
-int calculCompteurQuestion = 9;
+int calculCompteurQuestion = 1;
 int calculScore=0;
 int numeroCase = 5;
+int touche;
 
 int[] borneInfX, borneSupX, borneInfY, borneSupY;
 int[] pave123 = {7, 8, 9, 4, 5, 6, 1, 2, 3};
@@ -20,22 +21,29 @@ color calculMauvaisCouleur = color(255, 48, 100); // couleur rouge
 String niveauEnCours = "4-1";
 String calculEnonce, calculSolution;
 String reponseEntreeAffichee="";
+String resultat ="0";
+String deuxieme="";
+String troisieme="";
 
-String[] reponseEntree = new String[3];
+String[] borneID;
+String[] currentChiffre = {"0"};
 
 boolean niveauTermine41 = false;
 boolean testReponseSaisie = false;
 boolean calculBon, calculMauvais;
 boolean calculSuivantOK;
 
+
 boolean[] currentCase = new boolean[13];
 boolean[] boutonSelect = new boolean[12];
+boolean[] chiffreSaisi = {false, false, false};
 
 JSONArray calculrapideJSON;
 
 void setup() {
   size(800, 600);
   background(237, 136, 59);
+  calculrapideJSON = loadJSONArray("calculrapide.json");
 }
 
 void draw() {
@@ -51,7 +59,8 @@ void miniJeu41() {
   calculSuivantOK();
   boutonDELOK();
   conversionBouton();
-  //calculrapideJSON(); QUAND çA REMARCHERA...
+  calculrapideJSON();
+  reponseEntree();
 }
 
 void mousePressed41() {
@@ -64,7 +73,7 @@ void mousePressed41() {
     && mouseX > 0 && mouseX < 0 && mouseY > 0 && mouseY < 0&& testReponseSaisie==false) {
     calculSuivantOK=true; // A FAIRE
   }
-  // TEST CASE 1
+  // TEST CASE 1 // on peut encore simplifier avec le json et un for je pense
   if (mouseX>445 && mouseX<510 && mouseY>185 && mouseY<250 && testReponseSaisie==false) {
     currentCase[1]=true;
     println("case 1 cliquée");
@@ -171,7 +180,6 @@ void afficherJeuCalculRapide() {
         compteurCarre=constrain(compteurCarre, 0, 12);
         compteurCarre+=1;
         compteurCarreBorne=compteurCarre;
-        //print(compteurCarre);
         if (compteurCarre<=9) {
           if (calculCompteurQuestion<=3 ) {
             text(pave123[compteurCarreBorne-1], x+20, y+45);
@@ -224,8 +232,8 @@ void afficherJeuCalculRapide() {
     text("Résoudre :", 45, 190);
     text("calculEnonce", 65, 270); // quand le JSON remarchera, enlever les ""
     textSize(50);
-    text(reponseEntreeAffichee, 470, 145);
-    
+    text(resultat, 470, 145);
+
     // BOUTON SUIVANT
     if (testReponseSaisie==true) { // afficher le bouton suivant
       fill(boutonCouleur);
@@ -239,10 +247,10 @@ void afficherJeuCalculRapide() {
 
 void verifCalculBon() {
   if (testReponseSaisie==true) {
-    if(calculBon==true){
+    if (calculBon==true) {
       ecranCalculCouleur=calculBonCouleur;
     }
-    if(calculMauvais==true){
+    if (calculMauvais==true) {
       ecranCalculCouleur=calculMauvaisCouleur;
     }
   }
@@ -279,15 +287,15 @@ void conversionBouton() {
   // NIV 8
   if (calculCompteurQuestion==8) {
     boutonSelect[0]=currentCase[9];
-    boutonSelect[1]=currentCase[9];
-    boutonSelect[2]=currentCase[9];
-    boutonSelect[3]=currentCase[9];
-    boutonSelect[4]=currentCase[9];
-    boutonSelect[5]=currentCase[9];
-    boutonSelect[6]=currentCase[9];
-    boutonSelect[7]=currentCase[9];
-    boutonSelect[8]=currentCase[11];
-    boutonSelect[9]=currentCase[9];
+    boutonSelect[1]=currentCase[3];
+    boutonSelect[2]=currentCase[5];
+    boutonSelect[3]=currentCase[2];
+    boutonSelect[4]=currentCase[6];
+    boutonSelect[5]=currentCase[4];
+    boutonSelect[6]=currentCase[1];
+    boutonSelect[7]=currentCase[7];
+    boutonSelect[8]=currentCase[8];
+    boutonSelect[9]=currentCase[11];
     boutonSelect[10]=currentCase[10];
     boutonSelect[11]=currentCase[12];
   }
@@ -310,33 +318,57 @@ void conversionBouton() {
 }
 
 void reponseEntree() {
-  // AJOUT REPONSE
-  reponseEntreeAffichee="";
-  reponseEntree[0]="";
-  reponseEntree[1]="";
-  reponseEntree[2]="";
-  for (int i=0; i<10; i++) {
-    if (boutonSelect[i]==true) {
-      for (int j=0; j<3; j++) {
-        if (reponseEntreeAffichee.length()==j) {
-          reponseEntree[j]=str(i);
-          reponseEntreeAffichee=reponseEntree[j];
-        }
+  if (currentChiffre.length==1&&currentChiffre[0]!="0") {
+    chiffreSaisi[0]=true;
+    print(chiffreSaisi[0]);
+    currentChiffre=append(currentChiffre, deuxieme);
+  }
+  if (currentChiffre.length==2) {
+    chiffreSaisi[1]=true;
+    currentChiffre=append(currentChiffre, troisieme);
+  }
+  if (currentChiffre.length==3) {
+    chiffreSaisi[2]=true;
+  }
+  for (touche=0; touche<10; touche++) {
+    if (boutonSelect[touche]==true) {
+      if (currentChiffre[0]=="0"&&chiffreSaisi[0]==false) {
+        currentChiffre[0]=str(touche);
+        resultat=currentChiffre[0];
       }
-      boutonSelect[i]=false;
+      if (chiffreSaisi[0]==true) {
+        currentChiffre[1]=str(touche);
+        deuxieme = currentChiffre[1];
+        resultat=currentChiffre[0]+currentChiffre[1];
+      }
+      if (chiffreSaisi[1]==true) {
+        currentChiffre[2]=str(touche);
+        deuxieme = currentChiffre[2];
+        resultat=currentChiffre[0]+currentChiffre[1]+currentChiffre[2];
+      }
     }
+  }
+  if (boutonSelect[10]==true) {
+    boutonDELOK();
   }
 }
 
+
 void boutonDELOK() {
   if (boutonSelect[10]==true) {
-    reponseEntreeAffichee="";
+    currentChiffre[0]="0";
+    currentChiffre[1]="";
+    currentChiffre[2]="";
+    resultat="0";
+    chiffreSaisi[0]=false;
+    chiffreSaisi[1]=false;
+    chiffreSaisi[2]=false;
     boutonSelect[10]=false;
   }
   //print(boutonSelect[10]);
   if (boutonSelect[11]==true) {
     testReponseSaisie=true;
-    println(reponseEntreeAffichee);
+    println(resultat);
     boutonSelect[11]=false;
   }
 }
@@ -360,17 +392,18 @@ void calculSuivantOK() { // FONCTIONNEL OK
 }
 
 void calculrapideJSON() {
-  calculrapideJSON = loadJSONArray("calculrapide.json");
+
   JSONArray donneesEnonce = calculrapideJSON.getJSONArray(0);
   JSONObject objetEnonce = donneesEnonce.getJSONObject(calculCompteurQuestion);
   calculEnonce= objetEnonce.getString("enonce");
   calculSolution= objetEnonce.getString("solution");
 
-  JSONArray donneesCase = calculrapideJSON.getJSONArray(1); // utile ?
-  JSONObject objetCase = donneesCase.getJSONObject(numeroCase);
-  borneInfX[numeroCase-1] = objetCase.getInt("infx"); 
-  borneSupX[numeroCase-1] = objetCase.getInt("supx");
-  borneInfY[numeroCase-1] = objetCase.getInt("infy");
-  borneSupY[numeroCase-1] = objetCase.getInt("supy");
-  println(borneInfX[numeroCase-1]);
+   /*JSONArray donneesCase = calculrapideJSON.getJSONArray(1);
+   JSONObject objetCase = donneesCase.getJSONObject(numeroCase);
+   borneInfX[numeroCase] = objetCase.getInt("infx"); 
+   borneSupX[numeroCase] = objetCase.getInt("supx");
+   borneInfY[numeroCase] = objetCase.getInt("infy");
+   borneSupY[numeroCase] = objetCase.getInt("supy");
+   borneID[numeroCase] = objetCase.getString("id");
+   println(borneID[numeroCase]);*/
 }

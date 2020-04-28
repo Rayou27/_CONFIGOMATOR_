@@ -3,10 +3,12 @@ int mx, my;
 color bordure = color(0);
 color chemin = color(255);
 color colorPicker;
+color zoneDebut, zoneFin;
 
 boolean bordureTouchee=false;
 boolean partiePerdue=true;
 boolean debutPartie=true;
+boolean setDepart = false;
 
 PImage premiereMap;
 
@@ -29,17 +31,16 @@ void afficher41() {
   recupPixel();
   testBordure();
   etatNiveau();
-  bille();
   setDepart();
+  bille();
 }
 
 void bille() {
-  noCursor();
-  if (bordureTouchee==false) {
-    if (mouseX>400&&mouseX<760) {
-      mx=mouseX;
-      my=mouseY;
-    }
+  //translate(mx, my); ?
+  if (bordureTouchee==false && setDepart==true
+  && mouseX>400 && mouseX<760) {
+    mx=mouseX;
+    my=mouseY;
     fill(255, 0, 0);
     ellipse(mx, my, 5, 5);
   }
@@ -55,7 +56,17 @@ void testBordure() {
 }
 
 void setDepart() {
-  
+  mx=400;
+  my=20;
+  if (mouseX>400 && mouseX<410 && mouseY<40) {
+    setDepart=true;
+  }
+  if (mouseX>400&&mouseX<760) {
+    noCursor();
+    ;
+  } else {
+    cursor();
+  }
 }
 
 void etatNiveau() {
