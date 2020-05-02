@@ -6,6 +6,7 @@ color reponseViergeCouleur = color(252, 243, 204);
 color reponseJusteCouleur = color(62, 207, 62);
 color reponseMauvaisCouleur = color(255, 48, 100);
 String vraiFauxQuestion, vraiFauxCorrection;
+String messageBravo;
 boolean bonneReponse = false;
 boolean mauvaiseReponse = false;
 boolean questionRepondue = false;
@@ -70,6 +71,9 @@ void vraiFauxJSON() {
   // portant le numéro de la question en cours
   vraiFauxQuestion = objet.getString("question"); // On récupère ainsi les questions avec la méthode getString()
   vraiFauxCorrection = objet.getString("correction"); // idem
+  JSONArray donneesBravo = vraifauxJSON.getJSONArray(1);
+  JSONObject objetBravo = donneesBravo.getJSONObject((int)random(0,5));
+  messageBravo = objetBravo.getString("bravo");
 }
 
 void afficherJeuVraiFaux() {
@@ -123,7 +127,8 @@ void afficherQuestionCorrectionVraiFaux() {
   text(vraiFauxQuestion, 230, 190);
   textSize(20);
   if (bonneReponse==true) {
-    text("Bien joué c'était ça !", 50, 547);
+    
+    text(messageBravo, 50, 547);
   } else if (mauvaiseReponse==true) {
     text(vraiFauxCorrection, 50, 547);
   }

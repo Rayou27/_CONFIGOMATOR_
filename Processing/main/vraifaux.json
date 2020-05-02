@@ -49,7 +49,24 @@
             "correction": ""
          }
    ],
-    [],
-    [],
-    []
+    [
+        {
+            "bravo":"Bien joué c'était ça !"
+        },
+        {
+            "bravo":"Trop fort *clap clap*"
+        },
+        {
+            "bravo":"Un génie incomrpis..."
+        },
+        {
+            "bravo":"Harvard wants to know your position\nAllow - Deny"
+        },
+        {
+            "bravo":"Comment as tu accédé aux fichiers \ndu jeu pour tricher ainsi ?"
+        },
+        {
+            "bravo":"Elle était simple celle là..."
+        }
+    ]
 ]
