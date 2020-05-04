@@ -1,7 +1,7 @@
 int mx, my;
 
 color bordure = color(0);
-color frontiere = color(196, 196, 196);
+color frontiere = color(196);
 color gagne = color(158, 246, 156);
 color chemin = color(255);
 color colorPicker;
