@@ -12,6 +12,7 @@ boolean mauvaiseReponse = false;
 boolean questionRepondue = false;
 boolean vraiFauxQuestionSuivanteOK = false;
 JSONArray vraifauxJSON;
+JSONArray donneesBravo;
 
 void miniJeu31() {
   vraiFauxJSON();
@@ -30,6 +31,8 @@ void mousePressed() {
     bonneReponse = true;
     vraiFauxScore+=1;
     questionRepondue = true;
+    JSONObject objetBravo = donneesBravo.getJSONObject((int)random(0,5));
+  messageBravo = objetBravo.getString("bravo");
   }
   // CLIC FAUX MAUVAIS
   if ((vraiFauxCompteurQuestion==1 || vraiFauxCompteurQuestion==4 
@@ -45,6 +48,8 @@ void mousePressed() {
     vraiFauxScore+=1;
     questionRepondue = true;
     bonneReponse = true;
+    JSONObject objetBravo = donneesBravo.getJSONObject((int)random(0,5));
+  messageBravo = objetBravo.getString("bravo");
   }
   // CLIC VRAI MAUVAIS
   if ((vraiFauxCompteurQuestion==2 || vraiFauxCompteurQuestion==3 
@@ -71,9 +76,7 @@ void vraiFauxJSON() {
   // portant le numéro de la question en cours
   vraiFauxQuestion = objet.getString("question"); // On récupère ainsi les questions avec la méthode getString()
   vraiFauxCorrection = objet.getString("correction"); // idem
-  JSONArray donneesBravo = vraifauxJSON.getJSONArray(1);
-  JSONObject objetBravo = donneesBravo.getJSONObject((int)random(0,5));
-  messageBravo = objetBravo.getString("bravo");
+  donneesBravo = vraifauxJSON.getJSONArray(1);
 }
 
 void afficherJeuVraiFaux() {

@@ -1,4 +1,4 @@
-int calculCompteurQuestion = 2;
+int calculCompteurQuestion = 8;
 int calculScore=0;
 int numeroCase = 5;
 int touche;
