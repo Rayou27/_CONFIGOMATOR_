@@ -346,6 +346,7 @@ void verificationPoint() {
       rougeDepart=false;
       vertDepart=true;
       couleurTrait=vert;
+      
     }
     if (xCentreCarre==560&&yCentreCarre==460&&couleurTrait==vert) {
       vertArrivee=true;
@@ -513,12 +514,23 @@ void rejoins() {
   fill(0);
   textSize(20);
   if (couleurTrait==rouge) {
-    fill(rouge);
-    text("rejoins le rouge", 40, 400);
+    
+    
+    fill(0,200,205);
+    strokeWeight(5);
+    stroke(0);
+    rect(40,3,190,55);
+    fill(0);
+    textSize(35);
+    text("Niveau 1", 60,43);
+    textSize(19);
+    text("Consigne: relie le gros point rouge au petit à l'aide des flèches directionnelles.",40,85);
+    strokeWeight(3);
+    line(40,90,130,90);
   }
   if (couleurTrait==vert) {
     fill(vert);
-    text("rejoins le vert", 40, 400);
+    text("rejoins le vert", 55,70);
   }
   if (couleurTrait==jaune) {
     fill(jaune);
