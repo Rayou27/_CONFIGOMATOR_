@@ -1,9 +1,12 @@
 int xCentreCarre, yCentreCarre;
 int compteurNiveau=0;
 int borneInfX, borneSupX, borneInfY, borneSupY;
+int combo;
+int xMoy, yMoy;
+int intTpCase;
 
-String currentID;
-String colID, liID, carreID;
+String colID, liID, caseID;
+String dernierMouvement;
 
 color couleurTrait = color(0, 0, 255), couleurEffacer=color(100, 0, 0);
 color rouge=color(255, 0, 0), vert=color(0, 255, 0), jaune=color(255, 220, 0), bleu=color(0, 0, 255);
@@ -13,12 +16,19 @@ boolean rougeDepart=false, vertDepart=false, jauneDepart=false, bleuDepart=false
 boolean rougeArrivee=false, vertArrivee=false, jauneArrivee=false, bleuArrivee=false;
 
 boolean[] caseOccupee = new boolean[26];
+boolean[] caseInterdite = new boolean[26];
 
 JSONArray linedotJSON;
+JSONArray donneesColonnes;
+JSONArray donneesLignes;
+JSONArray donneesCombo;
+JSONObject objetColonnes;
+JSONObject objetLignes;
+JSONObject objetCombo;
 
 void setup() {
   size(800, 600);
-  background(155,155,0);
+  background(155, 155, 0);
   if (compteurNiveau>0&&compteurNiveau<6) {
     setup22();
   }
@@ -58,27 +68,27 @@ void draw22() {
   }
 }
 
-void afficherEcranDebut21(){
+void afficherEcranDebut21() {
   background(155, 155, 0);
   fill(0);
   textSize(40);
   textAlign(CENTER);
-  text("2-1",width/2,100);
+  text("2-1", width/2, 100);
   textSize(60);
-  text("Line Dot",width/2,170);
+  text("Line Dot", width/2, 170);
   stroke(0);
   strokeWeight(6);
   fill(255);
-  rect(100,200,600,250);
+  rect(100, 200, 600, 250);
   fill(0);
   textSize(27);
   textAlign(LEFT);
-  text("Ici, tu dois relier des points de couleurs\nprésents sur le quadrillage. Interdit \nde repasser sur un trait déjà fait.\nUtilise les 4 flèches directionnelles du\nclavier pour te déplacer. ",140,250);
+  text("Ici, tu dois relier des points de couleurs\nprésents sur le quadrillage. Interdit \nde repasser sur un trait déjà fait.\nUtilise les 4 flèches directionnelles du\nclavier pour te déplacer. ", 140, 250);
   fill(200, 200, 255);
   rect(620, 510, 160, 60);
   fill(0);
-  text("Let's Go~",640,549);
-  if(mousePressed&&mouseX>620&&mouseX<780&&mouseY>510&&mouseY<570){
+  text("Let's Go~", 640, 549);
+  if (mousePressed&&mouseX>620&&mouseX<780&&mouseY>510&&mouseY<570) {
     compteurNiveau=1;
   }
 }
@@ -98,11 +108,7 @@ void afficherQuadrillage() {
 
 void afficherPoints() {
   if (compteurNiveau>0&&compteurNiveau<6) {
-
     // NIVEAU 1
-
-
-
     if (compteurNiveau==1) {
       // POINTS DE DEPART
       if (rougeDepart==true) {
@@ -205,13 +211,7 @@ void afficherPoints() {
         ellipse(240, 460, d, d);
       }
     }
-
-
-
     // NIVEAU 2
-
-
-
     if (compteurNiveau==2) {
       // POINTS DE DEPART
       if (rougeDepart==true) {
@@ -336,19 +336,16 @@ void departNiveau() {
 }
 
 void verificationPoint() {
-
-
   if (compteurNiveau==1) {
-    if (xCentreCarre==400&&yCentreCarre==380&&couleurTrait==rouge) {
+    if (caseOccupee[18]==true&&couleurTrait==rouge) {
       rougeArrivee=true;
       xCentreCarre=320;
       yCentreCarre=140;
       rougeDepart=false;
       vertDepart=true;
       couleurTrait=vert;
-      
     }
-    if (xCentreCarre==560&&yCentreCarre==460&&couleurTrait==vert) {
+    if (caseOccupee[25]==true&&couleurTrait==vert) {
       vertArrivee=true;
       xCentreCarre=400;
       yCentreCarre=140;
@@ -356,7 +353,7 @@ void verificationPoint() {
       jauneDepart=true;
       couleurTrait=jaune;
     }
-    if (xCentreCarre==560&&yCentreCarre==140&&couleurTrait==jaune) {
+    if (caseOccupee[5]==true&&couleurTrait==jaune) {
       jauneArrivee=true;
       xCentreCarre=320;
       yCentreCarre=300;
@@ -364,15 +361,12 @@ void verificationPoint() {
       bleuDepart=true;
       couleurTrait=bleu;
     }
-    if (xCentreCarre==240&&yCentreCarre==460&&couleurTrait==bleu) {
+    if (caseOccupee[21]==true&&couleurTrait==bleu) {
       bleuDepart=false;
       bleuArrivee=true;
       couleurTrait=color(0);
     }
   } 
-
-
-
   if (compteurNiveau==2) {
     if (xCentreCarre==400&&yCentreCarre==380&&couleurTrait==rouge) {
       rougeArrivee=true;
@@ -420,29 +414,37 @@ void tracerTrait() {
   if (key==CODED&&bleuArrivee==false) {
     strokeWeight(4);
     // TEST TRACER
-    if (keyCode==UP&&yCentreCarre>140) {
+    if (dernierMouvement!="DOWN"&&keyCode==UP&&yCentreCarre>140&&(get(xCentreCarre,yCentreCarre-80)==color(255)
+    ||get(xCentreCarre,yCentreCarre-71)==couleurTrait)) {
       stroke(couleurTrait);
       line(xCentreCarre, yCentreCarre, xCentreCarre, yCentreCarre-80);
       println("up");
       yCentreCarre=yCentreCarre-80;
+      dernierMouvement="UP";
     }
-    if (keyCode==DOWN&& yCentreCarre<=420) {
+    if (dernierMouvement!="UP"&&keyCode==DOWN&& yCentreCarre<=420&&(get(xCentreCarre,yCentreCarre+80)==color(255)
+    ||get(xCentreCarre,yCentreCarre+71)==couleurTrait)) {
       stroke(couleurTrait);
       line(xCentreCarre, yCentreCarre, xCentreCarre, yCentreCarre+80);
       println("down");
       yCentreCarre=yCentreCarre+80;
+      dernierMouvement="DOWN";
     }
-    if (keyCode==LEFT&&xCentreCarre>240) {
+    if (dernierMouvement!="RIGHT"&&keyCode==LEFT&&xCentreCarre>240&&(get(xCentreCarre-80,yCentreCarre)==color(255)
+    ||get(xCentreCarre-71,yCentreCarre)==couleurTrait)) {
       stroke(couleurTrait);
       line(xCentreCarre, yCentreCarre, xCentreCarre-80, yCentreCarre);
       println("left");
       xCentreCarre=xCentreCarre-80;
+      dernierMouvement="LEFT";
     }
-    if (keyCode==RIGHT&& xCentreCarre<=520) {
+    if (dernierMouvement!="LEFT"&&keyCode==RIGHT&& xCentreCarre<=520&&(get(xCentreCarre+80,yCentreCarre)==color(255)
+    ||get(xCentreCarre+71,yCentreCarre)==couleurTrait)) {
       stroke(couleurTrait);
       line(xCentreCarre, yCentreCarre, xCentreCarre+80, yCentreCarre);
       xCentreCarre=xCentreCarre+80;
       println("right");
+      dernierMouvement="RIGHT";
     }
   }
 }
@@ -453,7 +455,6 @@ void boutonEffacer() {
   strokeWeight(2);
   fill(200, 200, 255);
   rect(620, 510, 160, 60);
-
   // TEXTE
   textSize(30);
   fill(0);
@@ -462,12 +463,12 @@ void boutonEffacer() {
   } else {
     text("Suivant !", 640, 550);
   }
-
   // TEST
   if (mousePressed==true&&mouseX>620&&mouseX<780&&mouseY>510&&mouseY<570) {
+    dernierMouvement="";
     if (bleuArrivee==false) {
       print("Niveau reset ");
-      background(155,155,0);
+      background(155, 155, 0);
       afficherQuadrillage();
       afficherPoints();
       // POINT DE DEPART
@@ -501,36 +502,19 @@ void allDepartFalse() {
   bleuDepart=false;
 }
 
-void allCaseOccupeeFalse() {
-  for (int i =1; i<=25; i++) {
-    caseOccupee[i]=false;
-  }
-}
-
 void rejoins() {
   fill(189, 227, 64);
   noStroke();
-  rect(30, 367, 165,55);
+  rect(30, 367, 165, 55);
   fill(0);
   textSize(20);
   if (couleurTrait==rouge) {
-    
-    
-    fill(0,200,205);
-    strokeWeight(5);
-    stroke(0);
-    rect(40,3,190,55);
-    fill(0);
-    textSize(35);
-    text("Niveau 1", 60,43);
-    textSize(19);
-    text("Consigne: relie le gros point rouge au petit à l'aide des flèches directionnelles.",40,85);
-    strokeWeight(3);
-    line(40,90,130,90);
+    fill(rouge);
+    text("rejoins le rouge", 40, 400);
   }
   if (couleurTrait==vert) {
     fill(vert);
-    text("rejoins le vert", 55,70);
+    text("rejoins le vert", 40, 400);
   }
   if (couleurTrait==jaune) {
     fill(jaune);
@@ -547,25 +531,29 @@ void rejoins() {
 }
 
 void testFil() {
-  JSONArray donneesColonnes = linedotJSON.getJSONArray(0);
-  JSONArray donneesLignes = linedotJSON.getJSONArray(1);
-  JSONArray donneesCombo = linedotJSON.getJSONArray(2);
-  JSONObject objetColonnes = donneesColonnes.getJSONObject(1);
-  JSONObject objetLignes = donneesLignes.getJSONObject(1);
-  JSONObject objetCombo = donneesCombo.getJSONObject(0);
-  borneInfX=objetColonnes.getInt("x1");
-  borneSupX=objetColonnes.getInt("x2");
-  colID= objetColonnes.getString("id");
-  borneInfY=objetLignes.getInt("y1");
-  borneSupY=objetLignes.getInt("y2");
-  liID= objetLignes.getString("id");
-  String caseID = colID+ " " + liID;
-  int combo = objetCombo.getInt(caseID);
-  int xMoy=(borneInfX+borneSupX)/2;
-  int yMoy=(borneInfY+borneSupY)/2;
-  if (xMoy==xCentreCarre&&yMoy==yCentreCarre) {
-    caseOccupee[1]=true;
-    print("case " +combo + " ");
-    println(caseOccupee[combo]);
+  donneesColonnes = linedotJSON.getJSONArray(0);
+  donneesLignes = linedotJSON.getJSONArray(1);
+  donneesCombo = linedotJSON.getJSONArray(2);
+  for (int i=1; i<=5; i++) {
+    for (int j=1; j<=5; j++) {
+      objetColonnes = donneesColonnes.getJSONObject(j);
+      objetLignes = donneesLignes.getJSONObject(i);
+      objetCombo = donneesCombo.getJSONObject(0);
+      borneInfX=objetColonnes.getInt("x1");
+      borneSupX=objetColonnes.getInt("x2");
+      colID= objetColonnes.getString("id");
+      borneInfY=objetLignes.getInt("y1");
+      borneSupY=objetLignes.getInt("y2");
+      liID= objetLignes.getString("id");
+      caseID = colID+ " " + liID;
+      combo = objetCombo.getInt(caseID);
+      xMoy=(borneInfX+borneSupX)/2;
+      yMoy=(borneInfY+borneSupY)/2;
+      if (xMoy==xCentreCarre&&yMoy==yCentreCarre) {
+        caseOccupee[combo]=true;
+        print("case " +combo + " ");
+        println(caseOccupee[combo]);
+      }
+    }
   }
 }
