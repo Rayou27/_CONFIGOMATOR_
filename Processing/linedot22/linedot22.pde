@@ -314,8 +314,111 @@ void afficherPoints() {
         ellipse(480, 220, d, d);
       }
     } 
+    
+    
+    // NIVEAU 3
+    
     if (compteurNiveau==3) {
-      ;
+      if (rougeDepart==true) {
+        stroke(0);
+        strokeWeight(3);
+        fill(rouge);
+        ellipse(400, 380, 40, 40);
+      } else {
+        noStroke();
+        fill(rouge);
+        ellipse(400, 380, 40, 40);
+      }
+      if (vertDepart==true) {
+        stroke(0);
+        strokeWeight(3);
+        fill(vert);
+        ellipse(480, 140, 40, 40);
+      } else {
+        noStroke();
+        fill(vert);
+        ellipse(480, 140, 40, 40);
+      }
+      if (jauneDepart==true) {
+        stroke(0);
+        strokeWeight(3);
+        fill(jaune);
+        ellipse(480, 220, 40, 40);
+      } else {
+        noStroke();
+        fill(jaune);
+        ellipse(480, 220, 40, 40);
+      }
+      if (bleuDepart==true) {
+        stroke(0);
+        strokeWeight(3);
+        fill(bleu);
+        ellipse(560, 140, 40, 40);
+      } else {
+        noStroke();
+        fill(bleu);
+        ellipse(560, 140, 40, 40);
+      }
+      // POINTS D'ARRIVEE
+      int d;
+      noStroke();
+      if (rougeArrivee==true) {
+        d=40;
+        fill(rouge);
+        noStroke();
+        ellipse(560, 460, d, d);
+        stroke(150);
+        strokeWeight(4);
+        ellipse(400, 380, 40, 40);
+      } else {
+        d=20;
+        fill(rouge);
+        noStroke();
+        ellipse(560, 460, d, d);
+      }
+      if (vertArrivee==true) {
+        d=40;
+        fill(vert);
+        noStroke();
+        ellipse(240, 460, d, d);
+        stroke(150);
+        strokeWeight(4);
+        ellipse(480, 140, 40, 40);
+      } else {
+        d=20;
+        fill(vert);
+        noStroke();
+        ellipse(240, 460, d, d);
+      }
+      if (jauneArrivee==true) {
+        d=40;
+        fill(jaune);
+        noStroke();
+        ellipse(320, 220, d, d);
+        stroke(150);
+        strokeWeight(4);
+        ellipse(480, 220, 40, 40);
+      } else {
+        d=20;
+        fill(jaune);
+        noStroke();
+        ellipse(320, 220, d, d);
+      }
+      if (bleuArrivee==true) {
+        d=40;
+        fill(bleu);
+        noStroke();
+        ellipse(480, 460, d, d);
+        stroke(150);
+        strokeWeight(4);
+        ellipse(560, 140, 40, 40);
+      } else {
+        d=20;
+        fill(bleu);
+        noStroke();
+        ellipse(480, 460, d, d);
+      }
+    }
     } 
     if (compteurNiveau==4) {
       ;
@@ -324,7 +427,7 @@ void afficherPoints() {
       ;
     }
   }
-}
+
 
 void departNiveau() {
   couleurTrait=rouge;
@@ -401,13 +504,41 @@ void verificationPoint() {
     if (xCentreCarre==480&&yCentreCarre==220&&couleurTrait==bleu) {
       bleuArrivee=true;
       bleuDepart=false;
-      bleuArrivee=true;
       couleurTrait=color(0);
     }
   } 
   if (compteurNiveau==3) {
+    if (xCentreCarre==400&&yCentreCarre==380&&couleurTrait==rouge) {
+      rougeArrivee=true;
+      xCentreCarre=480;
+      yCentreCarre=140;
+      rougeDepart=false;
+      vertDepart=true;
+      couleurTrait=vert;
+    }
+    if (xCentreCarre==560&&yCentreCarre==460&&couleurTrait==vert) {
+      vertArrivee=true;
+      xCentreCarre=240;
+      yCentreCarre=220;
+      vertDepart=false;
+      jauneDepart=true;
+      couleurTrait=jaune;
+    }
+    if (xCentreCarre==240&&yCentreCarre==460&&couleurTrait==jaune) {
+      jauneArrivee=true;
+      xCentreCarre=320;
+      yCentreCarre=220;
+      jauneDepart=false;
+      bleuDepart=true;
+      couleurTrait=bleu;
+    }
+    if (xCentreCarre==480&&yCentreCarre==220&&couleurTrait==bleu) {
+      bleuArrivee=true;
+      bleuDepart=false;
+      couleurTrait=color(0);
     ;
   } 
+  }
   if (compteurNiveau==4) {
     ;
   } 
@@ -510,39 +641,28 @@ void allCaseOccupeeFalse() {
 void rejoins() {
   fill(189, 227, 64);
   noStroke();
-  rect(30, 367, 165,55);
+  rect(20, 367, 170,55);
   fill(0);
   textSize(20);
   if (couleurTrait==rouge) {
-    
-    
-    fill(0,200,205);
-    strokeWeight(5);
-    stroke(0);
-    rect(40,3,190,55);
     fill(0);
-    textSize(35);
-    text("Niveau 1", 60,43);
-    textSize(19);
-    text("Consigne: relie le gros point rouge au petit à l'aide des flèches directionnelles.",40,85);
-    strokeWeight(3);
-    line(40,90,130,90);
+    text("Rejoins le rouge", 27,400);
   }
   if (couleurTrait==vert) {
-    fill(vert);
-    text("rejoins le vert", 55,70);
+    fill(0);
+    text("Rejoins le vert", 27,400);
   }
   if (couleurTrait==jaune) {
-    fill(jaune);
-    text("rejoins le jaune", 40, 400);
+    fill(0);
+    text("Rejoins le jaune", 27, 400);
   }
   if (couleurTrait==bleu) {
-    fill(bleu);
-    text("rejoins le bleu", 40, 400);
+    fill(0);
+    text("Rejoins le bleu", 27, 400);
   }
   if (bleuArrivee==true) {
     fill(0);
-    text("finiiii", 60, 400);
+    text("Finiiii", 70, 400);
   }
 }
 
