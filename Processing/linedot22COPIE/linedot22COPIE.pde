@@ -115,11 +115,11 @@ void afficherPoints() {
         stroke(0);
         strokeWeight(3);
         fill(rouge);
-        ellipse(240, 140, 40, 40);
+        ellipse(240, 140, 40, 40); // départ rouge
       } else {
         noStroke();
         fill(rouge);
-        ellipse(240, 140, 40, 40);
+        ellipse(240, 140, 40, 40); // départ rouge
       }
       if (vertDepart==true) {
         stroke(0);
@@ -158,15 +158,15 @@ void afficherPoints() {
         d=40;
         fill(rouge);
         noStroke();
-        ellipse(400, 380, d, d);
+        ellipse(400, 380, d, d); // arrivée rouge
         stroke(150);
         strokeWeight(4);
-        ellipse(240, 140, 40, 40);
+        ellipse(240, 140, 40, 40); // départ rouge
       } else {
         d=20;
         fill(rouge);
         noStroke();
-        ellipse(400, 380, d, d);
+        ellipse(400, 380, d, d); // arrivée rouge
       }
       if (vertArrivee==true) {
         d=40;
@@ -212,7 +212,7 @@ void afficherPoints() {
       }
     }
     // NIVEAU 2
-    if (compteurNiveau==2) {
+if (compteurNiveau==2) {
       // POINTS DE DEPART
       if (rougeDepart==true) {
         stroke(0);
@@ -314,50 +314,46 @@ void afficherPoints() {
         ellipse(480, 220, d, d);
       }
     } 
-    
-    
-    // NIVEAU 3
-    
     if (compteurNiveau==3) {
       if (rougeDepart==true) {
         stroke(0);
         strokeWeight(3);
         fill(rouge);
-        ellipse(400, 380, 40, 40);
+        ellipse(480, 140, 40, 40); // départ
       } else {
         noStroke();
         fill(rouge);
-        ellipse(400, 380, 40, 40);
+        ellipse(480, 140, 40, 40); // départ
       }
       if (vertDepart==true) {
         stroke(0);
         strokeWeight(3);
         fill(vert);
-        ellipse(480, 140, 40, 40);
+        ellipse(560, 140, 40, 40);
       } else {
         noStroke();
         fill(vert);
-        ellipse(480, 140, 40, 40);
+        ellipse(560, 140, 40, 40);
       }
       if (jauneDepart==true) {
         stroke(0);
         strokeWeight(3);
         fill(jaune);
-        ellipse(480, 220, 40, 40);
+        ellipse(320, 220, 40, 40);
       } else {
         noStroke();
         fill(jaune);
-        ellipse(480, 220, 40, 40);
+        ellipse(320, 220, 40, 40);
       }
       if (bleuDepart==true) {
         stroke(0);
         strokeWeight(3);
         fill(bleu);
-        ellipse(560, 140, 40, 40);
+        ellipse(400, 380, 40, 40);
       } else {
         noStroke();
         fill(bleu);
-        ellipse(560, 140, 40, 40);
+        ellipse(400, 380, 40, 40);
       }
       // POINTS D'ARRIVEE
       int d;
@@ -366,47 +362,19 @@ void afficherPoints() {
         d=40;
         fill(rouge);
         noStroke();
-        ellipse(560, 460, d, d);
+        ellipse(240, 460, d, d); // arrivée
         stroke(150);
         strokeWeight(4);
-        ellipse(400, 380, 40, 40);
+        ellipse(480, 140, 40, 40); // départ
       } else {
         d=20;
         fill(rouge);
         noStroke();
-        ellipse(560, 460, d, d);
+        ellipse(240, 460, d, d); // arrivée
       }
       if (vertArrivee==true) {
         d=40;
         fill(vert);
-        noStroke();
-        ellipse(240, 460, d, d);
-        stroke(150);
-        strokeWeight(4);
-        ellipse(480, 140, 40, 40);
-      } else {
-        d=20;
-        fill(vert);
-        noStroke();
-        ellipse(240, 460, d, d);
-      }
-      if (jauneArrivee==true) {
-        d=40;
-        fill(jaune);
-        noStroke();
-        ellipse(320, 220, d, d);
-        stroke(150);
-        strokeWeight(4);
-        ellipse(480, 220, 40, 40);
-      } else {
-        d=20;
-        fill(jaune);
-        noStroke();
-        ellipse(320, 220, d, d);
-      }
-      if (bleuArrivee==true) {
-        d=40;
-        fill(bleu);
         noStroke();
         ellipse(480, 460, d, d);
         stroke(150);
@@ -414,20 +382,47 @@ void afficherPoints() {
         ellipse(560, 140, 40, 40);
       } else {
         d=20;
-        fill(bleu);
+        fill(vert);
         noStroke();
         ellipse(480, 460, d, d);
       }
+      if (jauneArrivee==true) {
+        d=40;
+        fill(jaune);
+        noStroke();
+        ellipse(480, 220, d, d);
+        stroke(150);
+        strokeWeight(4);
+        ellipse(320, 220, 40, 40);
+      } else {
+        d=20;
+        fill(jaune);
+        noStroke();
+        ellipse(480, 220, d, d);
+      }
+      if (bleuArrivee==true) {
+        d=40;
+        fill(bleu);
+        noStroke();
+        ellipse(560, 460, d, d);
+        stroke(150);
+        strokeWeight(4);
+        ellipse(400, 380, 40, 40);
+      } else {
+        d=20;
+        fill(bleu);
+        noStroke();
+        ellipse(560, 460, d, d);
+      }
     }
-    } 
-    if (compteurNiveau==4) {
-      ;
-    } 
-    if (compteurNiveau==5) {
-      ;
-    }
+  }  
+  if (compteurNiveau==4) {
+    ;
+  } 
+  if (compteurNiveau==5) {
+    ;
   }
-
+}
 
 void departNiveau() {
   couleurTrait=rouge;
@@ -436,6 +431,11 @@ void departNiveau() {
     xCentreCarre=240;
     yCentreCarre=140;
   }
+  if (compteurNiveau==3) {
+    xCentreCarre=480;
+    yCentreCarre=140;
+  }
+  
 }
 
 void verificationPoint() {
@@ -471,15 +471,15 @@ void verificationPoint() {
     }
   } 
   if (compteurNiveau==2) {
-    if (xCentreCarre==400&&yCentreCarre==380&&couleurTrait==rouge) {
+    if (caseOccupee[18]==true&&couleurTrait==rouge) { // si arrivée rouge
       rougeArrivee=true;
-      xCentreCarre=480;
+      xCentreCarre=480; // départ vert
       yCentreCarre=140;
       rougeDepart=false;
       vertDepart=true;
       couleurTrait=vert;
     }
-    if (xCentreCarre==560&&yCentreCarre==460&&couleurTrait==vert) {
+    if (caseOccupee[25]==true&&couleurTrait==vert) {
       vertArrivee=true;
       xCentreCarre=240;
       yCentreCarre=220;
@@ -487,7 +487,7 @@ void verificationPoint() {
       jauneDepart=true;
       couleurTrait=jaune;
     }
-    if (xCentreCarre==240&&yCentreCarre==460&&couleurTrait==jaune) {
+    if (caseOccupee[21]==true&&couleurTrait==jaune) {
       jauneArrivee=true;
       xCentreCarre=320;
       yCentreCarre=220;
@@ -495,82 +495,82 @@ void verificationPoint() {
       bleuDepart=true;
       couleurTrait=bleu;
     }
-    if (xCentreCarre==480&&yCentreCarre==220&&couleurTrait==bleu) {
+    if (caseOccupee[9]==true&&couleurTrait==bleu) {
       bleuArrivee=true;
       bleuDepart=false;
+      bleuArrivee=true;
       couleurTrait=color(0);
     }
   } 
+
   if (compteurNiveau==3) {
-    if (xCentreCarre==400&&yCentreCarre==380&&couleurTrait==rouge) {
+    if (caseOccupee[21]==true&&couleurTrait==rouge) { // si arrivée rouge
       rougeArrivee=true;
-      xCentreCarre=480;
+      xCentreCarre=560; // départ vert
       yCentreCarre=140;
       rougeDepart=false;
       vertDepart=true;
       couleurTrait=vert;
     }
-    if (xCentreCarre==560&&yCentreCarre==460&&couleurTrait==vert) {
+    if (caseOccupee[24]==true&&couleurTrait==vert) {
       vertArrivee=true;
-      xCentreCarre=240;
+      xCentreCarre=320;
       yCentreCarre=220;
       vertDepart=false;
       jauneDepart=true;
       couleurTrait=jaune;
     }
-    if (xCentreCarre==240&&yCentreCarre==460&&couleurTrait==jaune) {
+    if (caseOccupee[9]==true&&couleurTrait==jaune) {
       jauneArrivee=true;
-      xCentreCarre=320;
-      yCentreCarre=220;
+      xCentreCarre=400;
+      yCentreCarre=380;
       jauneDepart=false;
       bleuDepart=true;
       couleurTrait=bleu;
     }
-    if (xCentreCarre==480&&yCentreCarre==220&&couleurTrait==bleu) {
+    if (caseOccupee[25]==true&&couleurTrait==bleu) {
       bleuArrivee=true;
       bleuDepart=false;
       couleurTrait=color(0);
-    ;
-  } 
-  }
-  if (compteurNiveau==4) {
-    ;
-  } 
-  if (compteurNiveau==5) {
-    ;
+    }  
+    if (compteurNiveau==4) {
+      ;
+    } 
+    if (compteurNiveau==5) {
+      ;
+    }
   }
 }
-
 void tracerTrait() {
   if (key==CODED&&bleuArrivee==false) {
     strokeWeight(4);
     // TEST TRACER
-    if (dernierMouvement!="DOWN"&&keyCode==UP&&yCentreCarre>140&&(get(xCentreCarre,yCentreCarre-80)==color(255)
-    ||get(xCentreCarre,yCentreCarre-71)==couleurTrait)) {
+    if (dernierMouvement!="DOWN"&&keyCode==UP&&yCentreCarre>140&&(get(xCentreCarre, yCentreCarre-80)==color(255)
+      ||get(xCentreCarre, yCentreCarre-71)==couleurTrait)) {
       stroke(couleurTrait);
       line(xCentreCarre, yCentreCarre, xCentreCarre, yCentreCarre-80);
       println("up");
       yCentreCarre=yCentreCarre-80;
       dernierMouvement="UP";
     }
-    if (dernierMouvement!="UP"&&keyCode==DOWN&& yCentreCarre<=420&&(get(xCentreCarre,yCentreCarre+80)==color(255)
-    ||get(xCentreCarre,yCentreCarre+71)==couleurTrait)) {
+    if (dernierMouvement!="UP"&&keyCode==DOWN&& yCentreCarre<=420&&(get(xCentreCarre, yCentreCarre+80)==color(255)
+      ||get(xCentreCarre, yCentreCarre+71)==couleurTrait)) {
       stroke(couleurTrait);
       line(xCentreCarre, yCentreCarre, xCentreCarre, yCentreCarre+80);
       println("down");
       yCentreCarre=yCentreCarre+80;
       dernierMouvement="DOWN";
     }
-    if (dernierMouvement!="RIGHT"&&keyCode==LEFT&&xCentreCarre>240&&(get(xCentreCarre-80,yCentreCarre)==color(255)
-    ||get(xCentreCarre-71,yCentreCarre)==couleurTrait)) {
+    if (dernierMouvement!="RIGHT"&&keyCode==LEFT&&xCentreCarre>240&&(get(xCentreCarre-80, yCentreCarre)==color(255)
+      ||get(xCentreCarre-71, yCentreCarre)==couleurTrait)) {
       stroke(couleurTrait);
       line(xCentreCarre, yCentreCarre, xCentreCarre-80, yCentreCarre);
       println("left");
       xCentreCarre=xCentreCarre-80;
       dernierMouvement="LEFT";
     }
-    if (dernierMouvement!="LEFT"&&keyCode==RIGHT&& xCentreCarre<=520&&(get(xCentreCarre+80,yCentreCarre)==color(255)
-    ||get(xCentreCarre+71,yCentreCarre)==couleurTrait)) {
+    if (dernierMouvement!="LEFT"&&keyCode==RIGHT&& xCentreCarre<=520&&(get(xCentreCarre+80, yCentreCarre)==color(255)
+      ||get(xCentreCarre+71, yCentreCarre)==couleurTrait)) {
       stroke(couleurTrait);
       line(xCentreCarre, yCentreCarre, xCentreCarre+80, yCentreCarre);
       xCentreCarre=xCentreCarre+80;
@@ -601,9 +601,11 @@ void boutonEffacer() {
       print("Niveau reset ");
       background(155, 155, 0);
       afficherQuadrillage();
+      allDepartFalse();
+      allArriveeFalse();
+      
       afficherPoints();
       // POINT DE DEPART
-      allDepartFalse();
       rougeDepart=true;
       departNiveau();
       // ARRIVEE
@@ -612,6 +614,7 @@ void boutonEffacer() {
       }
     } else {
       if (compteurNiveau==1) {
+        bleuArrivee=false;
         compteurNiveau=2;
         bleuArrivee=false;
       }
@@ -636,18 +639,6 @@ void allDepartFalse() {
 void rejoins() {
   fill(189, 227, 64);
   noStroke();
-<<<<<<< HEAD
-  rect(20, 367, 170,55);
-  fill(0);
-  textSize(20);
-  if (couleurTrait==rouge) {
-    fill(0);
-    text("Rejoins le rouge", 27,400);
-  }
-  if (couleurTrait==vert) {
-    fill(0);
-    text("Rejoins le vert", 27,400);
-=======
   rect(30, 367, 165, 55);
   fill(0);
   textSize(20);
@@ -658,19 +649,18 @@ void rejoins() {
   if (couleurTrait==vert) {
     fill(vert);
     text("rejoins le vert", 40, 400);
->>>>>>> e62990f4b2ad1877ac2ca7eee60fd195adbbd1cb
   }
   if (couleurTrait==jaune) {
-    fill(0);
-    text("Rejoins le jaune", 27, 400);
+    fill(jaune);
+    text("rejoins le jaune", 40, 400);
   }
   if (couleurTrait==bleu) {
-    fill(0);
-    text("Rejoins le bleu", 27, 400);
+    fill(bleu);
+    text("rejoins le bleu", 40, 400);
   }
   if (bleuArrivee==true) {
     fill(0);
-    text("Finiiii", 70, 400);
+    text("finiiii", 60, 400);
   }
 }
 
@@ -700,3 +690,4 @@ void testFil() {
       }
     }
   }
+}

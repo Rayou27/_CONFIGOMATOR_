@@ -1,0 +1,26 @@
+if (keyCode==CONTROL) {
+     if (keyCode==CONTROL&&keyCode==UP) {
+     stroke(couleurEffacer);
+     println("delup");
+     line(xCentreCarre, yCentreCarre, xCentreCarre, yCentreCarre-80);
+     yCentreCarre=yCentreCarre-80;
+     }
+     if (keyCode==CONTROL&&keyCode==DOWN) {
+     stroke(couleurEffacer);
+     line(xCentreCarre, yCentreCarre, xCentreCarre, yCentreCarre+80);
+     println("deldown");
+     yCentreCarre=yCentreCarre+80;
+     }
+     if (keyCode==CONTROL&&keyCode==LEFT) {
+     stroke(couleurEffacer);
+     line(xCentreCarre, yCentreCarre, xCentreCarre-80, yCentreCarre);
+     println("delleft");
+     xCentreCarre=xCentreCarre-80;
+     }
+     if (keyCode==CONTROL&&keyCode==RIGHT) {
+     stroke(couleurEffacer);
+     line(xCentreCarre, yCentreCarre, xCentreCarre+80, yCentreCarre);
+     xCentreCarre=xCentreCarre+80;
+     println("delright");
+     }
+     }
