@@ -417,10 +417,206 @@ if (compteurNiveau==2) {
     }
   }  
   if (compteurNiveau==4) {
-    ;
+    if (rougeDepart==true) {
+        stroke(0);
+        strokeWeight(3);
+        fill(rouge);
+        ellipse(240, 140, 40, 40); // départ rouge
+      } else {
+        noStroke();
+        fill(rouge);
+        ellipse(240, 140, 40, 40); // départ rouge
+      }
+      if (vertDepart==true) {
+        stroke(0);
+        strokeWeight(3);
+        fill(vert);
+        ellipse(240, 220, 40, 40);
+      } else {
+        noStroke();
+        fill(vert);
+        ellipse(240, 220, 40, 40);
+      }
+      if (jauneDepart==true) {
+        stroke(0);
+        strokeWeight(3);
+        fill(jaune);
+        ellipse(480, 220, 40, 40);
+      } else {
+        noStroke();
+        fill(jaune);
+        ellipse(480, 220, 40, 40);
+      }
+      if (bleuDepart==true) {
+        stroke(0);
+        strokeWeight(3);
+        fill(bleu);
+        ellipse(400, 300, 40, 40);
+      } else {
+        noStroke();
+        fill(bleu);
+        ellipse(400, 300, 40, 40);
+      }
+      // POINTS D'ARRIVEE
+      int d;
+      noStroke();
+      if (rougeArrivee==true) {
+        d=40;
+        fill(rouge);
+        noStroke();
+        ellipse(320, 300, d, d); // arrivée rouge
+        stroke(150);
+        strokeWeight(4);
+        ellipse(240, 140, 40, 40); // départ rouge
+      } else {
+        d=20;
+        fill(rouge);
+        noStroke();
+        ellipse(320, 300, d, d); // arrivée rouge
+      }
+      if (vertArrivee==true) {
+        d=40;
+        fill(vert);
+        noStroke();
+        ellipse(400, 460, d, d);
+        stroke(150);
+        strokeWeight(4);
+        ellipse(240, 220, 40, 40);
+      } else {
+        d=20;
+        fill(vert);
+        noStroke();
+        ellipse(400, 460, d, d);
+      }
+      if (jauneArrivee==true) {
+        d=40;
+        fill(jaune);
+        noStroke();
+        ellipse(320, 380, d, d);
+        stroke(150);
+        strokeWeight(4);
+        ellipse(480, 220, 40, 40);
+      } else {
+        d=20;
+        fill(jaune);
+        noStroke();
+        ellipse(320, 380, d, d);
+      }
+      if (bleuArrivee==true) {
+        d=40;
+        fill(bleu);
+        noStroke();
+        ellipse(480, 460, d, d);
+        stroke(150);
+        strokeWeight(4);
+        ellipse(400, 300, 40, 40);
+      } else {
+        d=20;
+        fill(bleu);
+        noStroke();
+        ellipse(480, 460, d, d);
+      }
   } 
   if (compteurNiveau==5) {
-    ;
+    if (rougeDepart==true) {
+        stroke(0);
+        strokeWeight(3);
+        fill(rouge);
+        ellipse(240, 140, 40, 40); // départ rouge
+      } else {
+        noStroke();
+        fill(rouge);
+        ellipse(240, 140, 40, 40); // départ rouge
+      }
+      if (vertDepart==true) {
+        stroke(0);
+        strokeWeight(3);
+        fill(vert);
+        ellipse(240, 220, 40, 40);
+      } else {
+        noStroke();
+        fill(vert);
+        ellipse(240, 220, 40, 40);
+      }
+      if (jauneDepart==true) {
+        stroke(0);
+        strokeWeight(3);
+        fill(jaune);
+        ellipse(320, 220, 40, 40);
+      } else {
+        noStroke();
+        fill(jaune);
+        ellipse(320, 220, 40, 40);
+      }
+      if (bleuDepart==true) {
+        stroke(0);
+        strokeWeight(3);
+        fill(bleu);
+        ellipse(240, 300, 40, 40);
+      } else {
+        noStroke();
+        fill(bleu);
+        ellipse(380, 300, 40, 40);
+      }
+      // POINTS D'ARRIVEE
+      int d;
+      noStroke();
+      if (rougeArrivee==true) {
+        d=40;
+        fill(rouge);
+        noStroke();
+        ellipse(480, 380, d, d); // arrivée rouge
+        stroke(150);
+        strokeWeight(4);
+        ellipse(240, 140, 40, 40); // départ rouge
+      } else {
+        d=20;
+        fill(rouge);
+        noStroke();
+        ellipse(480, 380, d, d); // arrivée rouge
+      }
+      if (vertArrivee==true) {
+        d=40;
+        fill(vert);
+        noStroke();
+        ellipse(320, 380, d, d);
+        stroke(150);
+        strokeWeight(4);
+        ellipse(240, 220, 40, 40);
+      } else {
+        d=20;
+        fill(vert);
+        noStroke();
+        ellipse(320, 380, d, d);
+      }
+      if (jauneArrivee==true) {
+        d=40;
+        fill(jaune);
+        noStroke();
+        ellipse(560, 460, d, d);
+        stroke(150);
+        strokeWeight(4);
+        ellipse(320, 220, 40, 40);
+      } else {
+        d=20;
+        fill(jaune);
+        noStroke();
+        ellipse(560, 460, d, d);
+      }
+      if (bleuArrivee==true) {
+        d=40;
+        fill(bleu);
+        noStroke();
+        ellipse(320, 460, d, d);
+        stroke(150);
+        strokeWeight(4);
+        ellipse(240, 380, 40, 40);
+      } else {
+        d=20;
+        fill(bleu);
+        noStroke();
+        ellipse(320, 460, d, d);
+      }
   }
 }
 
@@ -533,11 +729,70 @@ void verificationPoint() {
       bleuDepart=false;
       couleurTrait=color(0);
     }  
+    
+    
     if (compteurNiveau==4) {
-      ;
+      if (caseOccupee[12]==true&&couleurTrait==rouge) { // si arrivée rouge
+      rougeArrivee=true;
+      xCentreCarre=240; // départ vert
+      yCentreCarre=220;
+      rougeDepart=false;
+      vertDepart=true;
+      couleurTrait=vert;
+    }
+    if (caseOccupee[23]==true&&couleurTrait==vert) {
+      vertArrivee=true;
+      xCentreCarre=480;
+      yCentreCarre=220;
+      vertDepart=false;
+      jauneDepart=true;
+      couleurTrait=jaune;
+    }
+    if (caseOccupee[17]==true&&couleurTrait==jaune) {
+      jauneArrivee=true;
+      xCentreCarre=400;
+      yCentreCarre=300;
+      jauneDepart=false;
+      bleuDepart=true;
+      couleurTrait=bleu;
+    }
+    if (caseOccupee[24]==true&&couleurTrait==bleu) {
+      bleuArrivee=true;
+      bleuDepart=false;
+      couleurTrait=color(0);
+    }  
     } 
     if (compteurNiveau==5) {
-      ;
+      if (caseOccupee[19]==true&&couleurTrait==rouge) { // si arrivée rouge
+      rougeArrivee=true;
+      xCentreCarre=240; // départ vert
+      yCentreCarre=220;
+      rougeDepart=false;
+      vertDepart=true;
+      couleurTrait=vert;
+    }
+    if (caseOccupee[17]==true&&couleurTrait==vert) {
+      vertArrivee=true;
+      xCentreCarre=320;
+      yCentreCarre=220;
+      vertDepart=false;
+      jauneDepart=true;
+      couleurTrait=jaune;
+    }
+    if (caseOccupee[25]==true&&couleurTrait==jaune) {
+      jauneArrivee=true;
+      xCentreCarre=240;
+      yCentreCarre=380;
+      jauneDepart=false;
+      bleuDepart=true;
+      couleurTrait=bleu;
+    }
+    if (caseOccupee[22]==true&&couleurTrait==bleu) {
+      bleuArrivee=true;
+      bleuDepart=false;
+      couleurTrait=color(0);
+    }  
+    
     }
   }
 }
