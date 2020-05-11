@@ -69,7 +69,7 @@ void afficherEcranDebut21() {
   fill(0);
   textSize(40);
   textAlign(CENTER);
-  text("2-2", width/2, 100);
+  text(niveauEnCours, width/2, 100);
   textSize(60);
   text("Pr Barjo", width/2, 170);
   stroke(0);

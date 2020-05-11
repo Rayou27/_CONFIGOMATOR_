@@ -15,7 +15,3 @@ void uniteMonnaie() {
     capitalAffiche = capital/1000000000;
   }
 }
-
-void passageBillion () {
-  ;
-}
