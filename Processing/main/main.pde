@@ -1,15 +1,12 @@
-int compteurGlobalNiveaux = 5;
+int compteurGlobalNiveaux = 3;
 float capital = 277000000;
 float capitalAffiche = 27;
 String niveauEnCours = "1-1";
 String uniteMonnaie = "";
 boolean affichageEcranPrincipal = true;
 boolean partieLancee = false;
-boolean affichageEcran11 = false, affichageEcran12 = false, 
-  affichageEcran21 = false, affichageEcran22 = false, 
-  affichageEcran31 = false, affichageEcran32 = false, 
-  affichageEcran41 = false, affichageEcran42 = false;
-boolean niveauTermine31 = false;
+boolean[] affichageEcran = new boolean[9];
+boolean[] niveauTermine = new boolean[9];
 PImage persoConfigo;
 
 void setup() {
@@ -18,18 +15,15 @@ void setup() {
 
   // CHARGER IMAGES
   persoConfigo = loadImage("persoConfigo.png");
+  setup21();
 }
 
 void draw() {
   affichageEcranPrincipal();
   affichageEcranNiveaux();
   testPartieLancee();
-
   prochainNiveau();
-
   uniteMonnaie();
-
-  affichageEcran31();
 }
 
 void affichageEcranPrincipal() {

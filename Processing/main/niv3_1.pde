@@ -65,7 +65,7 @@ void mousePressed() {
   }
   // TEST BOUTON GARAGE
   if (vraiFauxCompteurQuestion==11 && mouseX > 570 && mouseX < 740 && mouseY > 520 && mouseY < 570) {
-    niveauTermine31=true;
+    niveauTermine[5]=true;
   }
 }
 
@@ -83,7 +83,7 @@ void afficherJeuVraiFaux() {
   background(251, 210, 71);
   // PAGE ACCUEIL MINI JEU
   if (vraiFauxCompteurQuestion == 0) {
-    niveauTermine31 = false;
+    niveauTermine[5] = false;
     textSize(32);
     fill(0);
     text(niveauEnCours, 360, 70);
@@ -199,7 +199,7 @@ void vraiFauxEcranFin() {
     textSize(27);
     text(" → Garage", 590, 555);
   }
-  if (vraiFauxCompteurQuestion==11 && niveauTermine31==true);
-  affichageEcran31=false;
+  if (vraiFauxCompteurQuestion==11 && niveauTermine[5]==true);
+  affichageEcran[5]=false;
   affichageEcranPrincipal=true;
 }
