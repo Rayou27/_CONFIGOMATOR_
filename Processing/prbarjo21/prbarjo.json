@@ -1,0 +1,80 @@
+[
+        [
+        {
+
+            "r": "0",
+            "g": "0",
+            "b": "0"
+            },
+        {
+            "r": "49",
+            "g": "102",
+            "b": "107"
+            },
+        {
+            "r": "244",
+            "g": "198",
+            "b": "84"
+            },
+        {
+            "r": "244",
+            "g": "54",
+            "b": "42"
+            },
+        {
+            "r": "155",
+            "g": "22",
+            "b": "23"
+            },
+        {
+            "r": "128",
+            "g": "93",
+            "b": "147"
+            },
+        {
+            "r": "244",
+            "g": "159",
+            "b": "188"
+            },
+        {
+            "r": "158",
+            "g": "189",
+            "b": "110"
+            },
+        {
+            "r": "22",
+            "g": "152",
+            "b": "115"
+            }
+        ],
+    [
+        {
+            "0": "Ici, tu joues une petite bille de couleur\nqui doit traverser un labyrinthe sans \ntoucher les bords ! Des bonus t'attendent \n un peu partout... bonne chance !",
+            "1": "Choisis la couleur de ta\nbille et commence le\nniveau en passant\npar tout en haut !",
+            "2": "OH UNE CLEF !!\nva la chercher pour\ndébloquer la suite du niveau\nLe mur bleu tue...",
+            "3": "Ce bon vieux Minotaure...\nÉchappe toi à tout prix\nde ce labyrinthe..Indice :\npasse par la gauche ;)",
+            "4": "La zone bleue grossit ta\nbille... qui est maintenant\nun cube :((",
+            "5": "Désirez vous un thé ?",
+            "6": "Une ? Deux !? Nonnn 3 clés\nà récupérer. A toi de\ndéterminer l'ordre hehe",
+            "7": "Calomnie !! Maintenant les\nmurs se mettent à bouger???\nPas le choix, esquive les...",
+            "8": "xxx",
+            "9": "xxx",
+            "10": "Le voilà notre boss de fin...\nUne chose à dire : GLHF",
+            "11": "Fiouu, les 10 niveaux sont complets,\nvoyons voir l'argent que tu as gagné\ngrâce à ça..."
+        }, 
+        {
+            "0": "Pas de chance :(",
+            "1": "T'as parkinson ?",
+            "2": "Change de souris",
+            "3": "Pas facile hein ?",
+            "4": "Des mains de bûcherons"
+        },
+        {
+            "0": "Point faible : TROP FORT",
+            "1": "T'as un aimbot c'est ça ?",
+            "2": "Un pro du sniper",
+            "3": "T'es chirurgien toi",
+            "4": "C'était pas très dur..."
+        }
+    ]
+]
