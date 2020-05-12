@@ -287,10 +287,6 @@ void etatNiveau21() {
   }
 }
 
-void mouseClicked() {
-  skipNiveau21();
-}
-
 void skipNiveau21() {
   randomEnt = (int)random(0, 5);
   if (compteurNiveau21==0&&mouseX>620&&mouseX<780&&mouseY>510&&mouseY<570) {

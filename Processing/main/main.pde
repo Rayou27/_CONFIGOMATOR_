@@ -26,6 +26,10 @@ void draw() {
   uniteMonnaie();
 }
 
+void mouseClicked() {
+  skipNiveau21();
+}
+
 void affichageEcranPrincipal() {
   if (affichageEcranPrincipal == true) {
 
