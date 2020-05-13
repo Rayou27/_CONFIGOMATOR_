@@ -1,4 +1,4 @@
-int compteurGlobalNiveaux = 3;
+int compteurGlobalNiveaux = 5;
 float capital = 27;
 float capitalAffiche = 27;
 String niveauEnCours = "1-1";

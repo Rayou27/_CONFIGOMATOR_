@@ -14,8 +14,8 @@ boolean rougeDepart=false, vertDepart=false, jauneDepart=false, bleuDepart=false
 boolean rougeArrivee=false, vertArrivee=false, jauneArrivee=false, bleuArrivee=false, mouseClicked=false;
 boolean[] caseOccupee = new boolean[26];
 boolean[] caseInterdite = new boolean[26];
-JSONArray linedotJSON, donneesColonnes, donneesLignes, donneesCombo, donneesTP;
-JSONObject objetColonnes, objetLignes, objetCombo, objetTP;
+JSONArray linedotJSON, donneesColonnes, donneesLignes, donneesCombo, donneesTP, donneesDepart, donneesArrivee;
+JSONObject objetColonnes, objetLignes, objetCombo, objetTP, objetDepart,objetArrivee;
 
 void setup() {
   size(800, 600);
@@ -41,6 +41,7 @@ void setup22() {
   donneesCombo = linedotJSON.getJSONArray(2);
   donneesTP= linedotJSON.getJSONArray(3);
   pointTP();
+  ordrePoint();
 }
 
 void draw22() {
@@ -63,17 +64,17 @@ void draw22() {
 }
 
 void allArriveeFalse() {
-  rougeArrivee=false;
-  vertArrivee=false;
-  jauneArrivee=false;
-  bleuArrivee=false;
+  arrivee[0]=false;
+  arrivee[1]=false;
+  arrivee[2]=false;
+  arrivee[3]=false;
 }
 
 void allDepartFalse() {
-  rougeDepart=true;
-  vertDepart=false;
-  jauneDepart=false;
-  bleuDepart=false;
+  depart[0]=true;
+  depart[1]=false;
+  depart[2]=false;
+  depart[3]=false;
 }
 
 void afficherEcranDebut21() {
@@ -115,8 +116,8 @@ void afficherQuadrillage() {
 }
 
 void departNiveau() {
-  couleurTrait=rouge;
-  rougeDepart=true;
+  couleurTrait=couleur[0];
+  depart[0]=true;
   allDepartFalse();
   allArriveeFalse();
   if (compteurNiveau!=3) {
@@ -151,10 +152,11 @@ void boutonEffacer() {
   // TEST
   if (mouseClicked==true) {
     if (mouseX>620&&mouseX<780&&mouseY>510&&mouseY<570) {
+      afficherQuadrillage();
       dernierMouvement="";
       allDepartFalse();
       allArriveeFalse();
-      if (bleuArrivee==false) {
+      if (arrivee[3]==false) {
         //print("Niveau reset ");
         background(155, 155, 0);
         afficherQuadrillage();
@@ -169,10 +171,7 @@ void boutonEffacer() {
   }
 }
 
-
-
 // MESSAGE REJOINS
-
 void rejoins() {
   fill(189, 227, 64);
   noStroke();

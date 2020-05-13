@@ -31,3 +31,13 @@ void pointTP() {
     //println("Carré "+i+"\t x: "+xJSON[i]+"\t y :"+yJSON[i]);
   }
 }
+
+int[] ordreDepart=new int[5];
+int[] ordreArrivee=new int[5];
+
+void ordrePoint() {
+  donneesDepart=linedotJSON.getJSONArray(4);
+  donneesArrivee=linedotJSON.getJSONArray(5);
+  
+  
+}
