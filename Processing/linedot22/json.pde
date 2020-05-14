@@ -24,6 +24,7 @@ void testFil() {
 }
 
 void pointTP() {
+  donneesTP= linedotJSON.getJSONArray(3);
   for (int i=1; i<=25; i++) {
     objetTP=donneesTP.getJSONObject(i);
     xJSON[i]=objetTP.getInt("xCentre");
@@ -32,12 +33,17 @@ void pointTP() {
   }
 }
 
-int[] ordreDepart=new int[5];
-int[] ordreArrivee=new int[5];
-
 void ordrePoint() {
   donneesDepart=linedotJSON.getJSONArray(4);
   donneesArrivee=linedotJSON.getJSONArray(5);
-  
-  
+  for (int g=1; g<=5; g++) {
+    //println("niveau "+g);
+    for (int i=0; i<=3; i++) {
+      objetDepart=donneesDepart.getJSONObject(g);
+      compteurDepart[g][i]=objetDepart.getInt(str(i));
+      objetArrivee=donneesArrivee.getJSONObject(g);
+      compteurArrivee[g][i]=objetArrivee.getInt(str(i));
+      //print(" depart : "+compteurDepart[g][i]+" arrivée : "+compteurArrivee[g][i]+"\n");
+    }
+  }
 }

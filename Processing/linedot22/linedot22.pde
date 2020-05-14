@@ -1,19 +1,21 @@
 int xCentreCarre, yCentreCarre;
-int compteurNiveau=0;
+int compteurNiveau=5;
 int borneInfX, borneSupX, borneInfY, borneSupY;
 int combo;
 int xMoy, yMoy;
 int intTpCase;
 int[]  xJSON = new int[26],yJSON= new int[26];
+int[][] compteurDepart = new int[6][4], compteurArrivee=new int[6][4];
 String colID, liID, caseID;
 String dernierMouvement;
-color couleurTrait = color(0, 0, 255), couleurEffacer=color(100, 0, 0);
-color rouge=color(255, 0, 0), vert=color(0, 255, 0), jaune=color(255, 220, 0), bleu=color(0, 0, 255);
+color couleurTrait = color(255, 0, 0);
+color[] couleur = {color(255, 0, 0), color(0, 255, 0), color(255, 255, 0), color(0, 0, 255)};
 boolean colSelect=false, liSelect=false, carreSelect=false;
-boolean rougeDepart=false, vertDepart=false, jauneDepart=false, bleuDepart=false;
-boolean rougeArrivee=false, vertArrivee=false, jauneArrivee=false, bleuArrivee=false, mouseClicked=false;
+boolean mouseClicked=false;
 boolean[] caseOccupee = new boolean[26];
 boolean[] caseInterdite = new boolean[26];
+boolean[] depart = new boolean[5];
+boolean[] arrivee = new boolean[5];
 JSONArray linedotJSON, donneesColonnes, donneesLignes, donneesCombo, donneesTP, donneesDepart, donneesArrivee;
 JSONObject objetColonnes, objetLignes, objetCombo, objetTP, objetDepart,objetArrivee;
 
@@ -32,14 +34,17 @@ void draw() {
 void keyPressed() {
   tracerTrait();
 }
+
+void mouseClicked() {
+  mouseClicked=true;
+}
+
 void setup22() {
-  
-  background(155, 155, 0);
+  background(45, 132, 138);
   linedotJSON = loadJSONArray("linedot.json");
   donneesColonnes = linedotJSON.getJSONArray(0);
   donneesLignes = linedotJSON.getJSONArray(1);
   donneesCombo = linedotJSON.getJSONArray(2);
-  donneesTP= linedotJSON.getJSONArray(3);
   pointTP();
   ordrePoint();
 }
@@ -75,10 +80,12 @@ void allDepartFalse() {
   depart[1]=false;
   depart[2]=false;
   depart[3]=false;
+  xCentreCarre=xJSON[compteurDepart[compteurNiveau][0]];
+  yCentreCarre=yJSON[compteurDepart[compteurNiveau][0]];
 }
 
 void afficherEcranDebut21() {
-  background(155, 155, 0);
+  background(45, 132, 138);
   fill(0);
   textSize(40);
   textAlign(CENTER);
@@ -104,13 +111,13 @@ void afficherEcranDebut21() {
 
 void afficherQuadrillage() {
   fill(255);
-  rect(200, 100, 400, 400);
   stroke(0);
-  strokeWeight(2);
-  for (int i=100; i<570; i=i+80) {
+  strokeWeight(3);
+  rect(200, 100, 400, 400);
+  for (int i=180; i<421; i=i+80) {
     line(200, i, 600, i);
   }
-  for (int i=200; i<650; i=i+80) {
+  for (int i=280; i<521; i=i+80) {
     line(i, 100, i, 500);
   }
 }
@@ -129,10 +136,6 @@ void departNiveau() {
   }
 }
 
-void mouseClicked() {
-  mouseClicked=true;
-}
-
 void boutonEffacer() {
   // BOX
   stroke(0);
@@ -142,7 +145,7 @@ void boutonEffacer() {
   // TEXTE
   textSize(30);
   fill(0);
-  if (bleuArrivee==false) {
+  if (arrivee[3]==false) {
     text("Rejouer..", 640, 550);
   } else {
     text("Suivant !", 640, 550);
@@ -178,23 +181,23 @@ void rejoins() {
   rect(30, 367, 165, 55);
   fill(0);
   textSize(20);
-  if (couleurTrait==rouge) {
-    fill(rouge);
+  if (couleurTrait==couleur[0]) {
+    fill(couleur[0]);
     text("rejoins le rouge", 40, 400);
   }
-  if (couleurTrait==vert) {
-    fill(vert);
+  if (couleurTrait==couleur[1]) {
+    fill(couleur[1]);
     text("rejoins le vert", 40, 400);
   }
-  if (couleurTrait==jaune) {
-    fill(jaune);
+  if (couleurTrait==couleur[2]) {
+    fill(couleur[2]);
     text("rejoins le jaune", 40, 400);
   }
-  if (couleurTrait==bleu) {
-    fill(bleu);
+  if (couleurTrait==couleur[3]) {
+    fill(couleur[3]);
     text("rejoins le bleu", 40, 400);
   }
-  if (bleuArrivee==true) {
+  if (arrivee[3]==true) {
     fill(0);
     text("finiiii", 60, 400);
   }

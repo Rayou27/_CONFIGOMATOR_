@@ -1,12 +1,8 @@
 void tracerTrait() {
-  if (key==CODED&&bleuArrivee==false) {
-    strokeWeight(4);
-    
+  if (key==CODED&&arrivee[3]==false) {
+    strokeWeight(6);
     // TEST TRACER
-    
-    
-    // HAUT
-    
+      // HAUT
     if (dernierMouvement!="DOWN"&&keyCode==UP&&yCentreCarre>140&&(get(xCentreCarre, yCentreCarre-80)==color(255)
       ||get(xCentreCarre, yCentreCarre-71)==couleurTrait)) {
       stroke(couleurTrait);
@@ -15,10 +11,7 @@ void tracerTrait() {
       yCentreCarre=yCentreCarre-80;
       dernierMouvement="UP";
     }
-    
-    
-    // BAS
-    
+      // BAS
     if (dernierMouvement!="UP"&&keyCode==DOWN&& yCentreCarre<=420&&(get(xCentreCarre, yCentreCarre+80)==color(255)
       ||get(xCentreCarre, yCentreCarre+71)==couleurTrait)) {
       stroke(couleurTrait);
@@ -26,12 +19,8 @@ void tracerTrait() {
       println("down");
       yCentreCarre=yCentreCarre+80;
       dernierMouvement="DOWN";
-    }
-    
-    
-    
-    // GAUCHE
-    
+    } 
+      // GAUCHE
     if (dernierMouvement!="RIGHT"&&keyCode==LEFT&&xCentreCarre>240&&(get(xCentreCarre-80, yCentreCarre)==color(255)
       ||get(xCentreCarre-71, yCentreCarre)==couleurTrait)) {
       stroke(couleurTrait);
@@ -39,12 +28,8 @@ void tracerTrait() {
       println("left");
       xCentreCarre=xCentreCarre-80;
       dernierMouvement="LEFT";
-    }
-    
-    
-    
-   // DROITE 
-   
+    }   
+      // DROITE  
     if (dernierMouvement!="LEFT"&&keyCode==RIGHT&& xCentreCarre<=520&&(get(xCentreCarre+80, yCentreCarre)==color(255)
       ||get(xCentreCarre+71, yCentreCarre)==couleurTrait)) {
       stroke(couleurTrait);
