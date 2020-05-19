@@ -32,6 +32,9 @@ void affichageEcranNiveaux() {
   if (affichageEcran[3]==true) {
     draw21();
   }
+  if (affichageEcran[4]==true) {
+    draw22();
+  }
   if (affichageEcran[5]==true) {
     miniJeu31();
   }

@@ -4,7 +4,6 @@ int compteurNiveau21=0, compteurPerdu21=0, compteurFrontiere21=0, argent21=0;
 int randomEnt, yBloc1=335, vMob=1;
 color terrainOut = color(0), frontiere = color(196), gagne = color(158, 246, 156), big = color(119, 198, 255), clef = color(255, 201, 14), mobColor=color(109, 76, 65), murClef=color(8, 9, 99);
 color colorPicker, zoneDebut, zoneFin, couleurBille;
-char fleche ='→';
 String rainbowFinal="Oui";
 String[] texteBulle = new String[12], textePerdu =new String[5], texteGagne = new String[5];
 color[] couleurChoixBille = new color[9];

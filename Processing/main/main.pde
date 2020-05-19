@@ -1,4 +1,4 @@
-int compteurGlobalNiveaux = 3;
+int compteurGlobalNiveaux = 4;
 float capital = 27;
 float capitalAffiche = 27;
 String niveauEnCours = "1-1";
@@ -16,6 +16,7 @@ void setup() {
   // CHARGER IMAGES
   persoConfigo = loadImage("persoConfigo.png");
   setup21();
+  setup22();
 }
 
 void draw() {
@@ -26,8 +27,13 @@ void draw() {
   uniteMonnaie();
 }
 
+void keyPressed() {
+  keyPressed22();
+}
+
 void mouseClicked() {
   skipNiveau21();
+  mouseClicked22();
 }
 
 void affichageEcranPrincipal() {
