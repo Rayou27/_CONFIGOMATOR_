@@ -1,6 +1,6 @@
 int mx, my, dBille=5;
 int xValide, yValide;
-int compteurNiveau21=0, compteurPerdu21=0, compteurFrontiere21=0, argent21=0;
+int compteurNiveau21=8, compteurPerdu21=0, compteurFrontiere21=0, argent21=0;
 int randomEnt, yBloc1=335, vMob=1;
 color terrainOut = color(0), frontiere = color(196), gagne = color(158, 246, 156), big = color(119, 198, 255), clef = color(255, 201, 14), mobColor=color(109, 76, 65), murClef=color(8, 9, 99);
 color colorPicker, zoneDebut, zoneFin, couleurBille;
@@ -316,6 +316,41 @@ void skipNiveau21() {
 
 void entiteMobile() {
   if (compteurNiveau21==7) { 
+    // moissonneuse batteuse 1
+    stroke(mobColor);
+    pushMatrix();
+    translate(746, 65);
+    rotate(radians(frameCount*2.5));
+    strokeWeight(7);
+    line(0, 0, 30, 0);
+    popMatrix();
+    // moissonneuse batteuse 2
+    pushMatrix();
+    translate(670, 463);
+    rotate(radians(frameCount*2.5));
+    strokeWeight(4);
+    line(0, 0, 20, 0);
+    popMatrix();
+    // bloc 1
+    if (frameCount%1==0) { // pour ralentir il faut augmenter le nombre derrière le %
+      yBloc1+=vMob;
+      if (yBloc1>390) {
+        yBloc1=390;
+        vMob*=-1;
+      }
+    }
+    if (yBloc1<345) {
+      yBloc1=345;
+      vMob*=-1;
+    }
+    stroke(mobColor);
+    strokeWeight(4);
+    fill(mobColor);
+    rect(580, yBloc1, 15, 10);
+    rect(620, yBloc1, 15, 10);
+    mobTouche();
+  }
+  if (compteurNiveau21==8) { 
     // moissonneuse batteuse 1
     stroke(mobColor);
     pushMatrix();
