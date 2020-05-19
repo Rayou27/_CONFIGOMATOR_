@@ -1,6 +1,6 @@
 int mx, my, dBille=5;
 int xValide, yValide;
-int compteurNiveau21=11, compteurPerdu21=56, compteurFrontiere21=4, argent21=0;
+int compteurNiveau21=0, compteurPerdu21=0, compteurFrontiere21=0, argent21=0;
 int randomEnt, yBloc1=335, vMob=1;
 color terrainOut = color(0), frontiere = color(196), gagne = color(158, 246, 156), big = color(119, 198, 255), clef = color(255, 201, 14), mobColor=color(109, 76, 65), murClef=color(8, 9, 99);
 color colorPicker, zoneDebut, zoneFin, couleurBille;
