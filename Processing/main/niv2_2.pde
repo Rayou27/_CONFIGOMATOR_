@@ -1,7 +1,7 @@
 int compteurNiveau=0;
 int compteurReplay22=0, argent22=0;
 int xCentreCarre, yCentreCarre;
-int borneInfX, borneSupX, borneInfY, borneSupY;
+int borneInfX22, borneSupX22, borneInfY22, borneSupY22;
 int combo, xMoy, yMoy;
 int[]  xJSON = new int[26], yJSON= new int[26];
 int[] nombreMurHorizontal = new int[12], nombreMurVertical = new int[12];
@@ -27,7 +27,7 @@ JSONObject objetColonnes, objetLignes, objetCombo,
   
 void setup22() {
   background(45, 132, 138);
-  linedotJSON = loadJSONArray("linedot.json");
+  linedotJSON = loadJSONArray("data22/linedot.json");
   pointTP();
   ordrePoint();
   ordreMur();
@@ -346,16 +346,16 @@ void testFil() {
       objetColonnes = donneesColonnes.getJSONObject(j);
       objetLignes = donneesLignes.getJSONObject(i);
       objetCombo = donneesCombo.getJSONObject(0);
-      borneInfX=objetColonnes.getInt("x1");
-      borneSupX=objetColonnes.getInt("x2");
+      borneInfX22=objetColonnes.getInt("x1");
+      borneSupX22=objetColonnes.getInt("x2");
       colID= objetColonnes.getString("id");
-      borneInfY=objetLignes.getInt("y1");
-      borneSupY=objetLignes.getInt("y2");
+      borneInfY22=objetLignes.getInt("y1");
+      borneSupY22=objetLignes.getInt("y2");
       liID= objetLignes.getString("id");
       caseID = colID+ " " + liID;
       combo = objetCombo.getInt(caseID);
-      xMoy=(borneInfX+borneSupX)/2;
-      yMoy=(borneInfY+borneSupY)/2;
+      xMoy=(borneInfX22+borneSupX22)/2;
+      yMoy=(borneInfY22+borneSupY22)/2;
       if (xMoy==xCentreCarre&&yMoy==yCentreCarre) {
         caseOccupee[combo]=true;
         /*print("case " +combo + " ");

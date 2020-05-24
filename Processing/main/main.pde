@@ -1,7 +1,7 @@
-int compteurGlobalNiveaux = 3;
+int compteurGlobalNiveaux = 2;
 float capital = 27;
 float capitalAffiche = 27;
-String niveauEnCours = "1-1";
+String niveauEnCours;
 String uniteMonnaie = "";
 boolean affichageEcranPrincipal = true;
 boolean partieLancee = false;
@@ -14,16 +14,17 @@ void setup() {
   size(800, 600);
 
   // CHARGER IMAGES
-  persoConfigo = loadImage("persoConfigo.png");
+  persoConfigo = loadImage("dataPrincipal/persoConfigo.png");
+  setup12();
   setup21();
   setup22();
 }
 
 void draw() {
+  prochainNiveau();
   affichageEcranPrincipal();
   affichageEcranNiveaux();
   testPartieLancee();
-  prochainNiveau();
   uniteMonnaie();
 }
 
@@ -32,6 +33,7 @@ void keyPressed() {
 }
 
 void mouseClicked() {
+  mouseClicked12();
   skipNiveau21();
   mouseClicked22();
 }
