@@ -12,9 +12,6 @@ void prochainNiveau() {
   case 4:
     niveauEnCours = "2-2";
     break;
-  default:
-    niveauEnCours="1-1";
-    break;
   }
 }
 
