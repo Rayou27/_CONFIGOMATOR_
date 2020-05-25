@@ -58,10 +58,10 @@ void mouseClicked12() {
     }
   }
   if (mouseX>210&&mouseX<380&&mouseY>450&&mouseY<500) {
-    calculSuivantOK();
+    calculSuivantOKFonction();
   }
   if (compteurNiveau==11&&onlyOne==false) {
-    argent32();
+    argent12Fonction();
     onlyOne=true;
   }
   reponseEntree();
@@ -272,7 +272,7 @@ void boutonDELOK() {
   }
 }
 
-void calculSuivantOK() {
+void calculSuivantOKFonction() {
   testReponseSaisie = false;
   compteurNiveau++;
   ecranCalculCouleur = color(200);
@@ -280,7 +280,7 @@ void calculSuivantOK() {
   memoireChronoQuestion=millis();
 }
 
-void argent32() {
+void argent12Fonction() {
   // BONUS UNDER-SEVEN
   for (int i=1; i<=10; i++) {
     if (answer[i]==good&&chronoReponse[i]<=7) {

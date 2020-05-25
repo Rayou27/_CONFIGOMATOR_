@@ -1,4 +1,4 @@
-int compteurGlobalNiveaux = 1;
+int compteurGlobalNiveaux = 2;
 float capital = 355000000;
 float capitalAffiche = 27;
 String niveauEnCours;
@@ -8,7 +8,7 @@ boolean partieLancee = false;
 boolean[] affichageEcran = new boolean[9];
 boolean[] niveauTermine = new boolean[9];
 PImage[] scene = new PImage[5];
-PFont pixel;
+PFont pixel, moon;
 
 void setup() {
   // taille fenêtre
@@ -19,6 +19,7 @@ void setup() {
   for (int i=1; i<=4; i++) {
     scene[i]=loadImage("dataPrincipal/Ecran Garage "+i+".png");
   }
+  setup11();
   setup12();
   setup21();
   setup22();
@@ -28,7 +29,6 @@ void draw() {
   prochainNiveau();
   affichageEcranPrincipal();
   affichageEcranNiveaux();
-  testPartieLancee();
   uniteMonnaie();
 }
 
@@ -47,14 +47,25 @@ void affichageEcranPrincipal() {
     image(scene[compteurGlobalNiveaux], 0, 0);
     // bouton jouer
     strokeWeight(4);
-    fill(255, 0, 0);
-    rect(400, 350, 300, 80);
-    // texte jouer
-
-    fill(0);
     textAlign(CENTER);
     textSize(80);
-    text("JOUER", 550, 410);
+
+    if (mouseX > 400 && mouseX < 700 && mouseY > 350 && mouseY < 430 
+      && affichageEcranPrincipal == true) {
+      // hover bouton jouer
+      fill(255, 50, 50);
+      rect(400, 350, 300, 80); // bouton jouer;
+      fill(255, 215, 0);
+      text("JOUER", 550, 410); // texte jouer;
+      if (mousePressed==true) {
+        partieLancee = true ;
+      }
+    } else {
+      fill(255, 0, 0);
+      rect(400, 350, 300, 80);
+      fill(0);
+      text("JOUER", 550, 410);
+    }
     // AFFICHAGE INFOS
     afficherCapital();
     afficherNiveauEnCours();
@@ -82,11 +93,4 @@ void afficherTexteBulle() { // en chantier
   textAlign(RIGHT);
   text("Bienvenue sur le jeu _CONFIGOMATOR_ ! Clique sur le  \n\nbouton jouer pour relever le premier defi :)", 
     770, 480);
-}
-
-void testPartieLancee() {
-  if (mouseX > 400 && mouseX < 700 && mouseY > 350 && mouseY < 430 
-    && affichageEcranPrincipal == true && mousePressed==true) {
-    partieLancee = true ;
-  }
 }

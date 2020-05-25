@@ -22,7 +22,7 @@ void draw11() {
   vraiFauxJSON();
   afficherJeuVraiFaux();
   afficherQuestionCorrectionVraiFaux();
-  vraiFauxQuestionSuivanteOK();
+  vraiFauxQuestionSuivanteOKFonction();
   couleurCorrection();
   vraiFauxEcranFin();
 }
@@ -69,7 +69,8 @@ void mousePressed() {
   }
   // TEST BOUTON GARAGE
   if (vraiFauxCompteurQuestion==11 && mouseX > 570 && mouseX < 740 && mouseY > 520 && mouseY < 570) {
-    niveauTermine[5]=true;
+    niveauTermine[1]=true;
+    print("babane");
   }
 }
 
@@ -86,7 +87,7 @@ void afficherJeuVraiFaux() {
   background(251, 210, 71);
   // PAGE ACCUEIL MINI JEU
   if (vraiFauxCompteurQuestion == 0) {
-    niveauTermine[5] = false;
+    niveauTermine[1] = false;
     textSize(32);
     fill(0);
     text(niveauEnCours, 360, 70);
@@ -163,7 +164,7 @@ void couleurCorrection() {
   }
 }
 
-void vraiFauxQuestionSuivanteOK() {
+void vraiFauxQuestionSuivanteOKFonction() {
   if (vraiFauxQuestionSuivanteOK==true ) {
     vraiFauxQuestionSuivanteOK = false;
     questionRepondue = false;
@@ -202,7 +203,8 @@ void vraiFauxEcranFin() {
     textSize(27);
     text(" → Garage", 590, 555);
   }
-  if (vraiFauxCompteurQuestion==11 && niveauTermine[5]==true);
-  affichageEcran[1]=false;
-  affichageEcranPrincipal=true;
+  if (vraiFauxCompteurQuestion==11 && niveauTermine[1]==true) {
+    affichageEcran[1]=false;
+    affichageEcranPrincipal=true;
+  }
 }
