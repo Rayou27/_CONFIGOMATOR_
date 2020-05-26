@@ -1,22 +1,19 @@
 int vraiFauxScore=0;
 int vraiFauxCompteurQuestion =0;
-float argentGagne31 =0;
+int argentGagne31 =0;
 color reponseVraiCouleur, reponseFauxCouleur;
-color reponseJusteCouleur = color(8, 120, 38);
-color reponseMauvaisCouleur = color(204, 31, 31);
-color neutre = color(234, 226, 183), hover=color(220, 220, 200);
-String vraiFauxQuestion, vraiFauxCorrection;
-String messageBravo;
-boolean bonneReponse = false;
-boolean mauvaiseReponse = false;
-boolean questionRepondue = false;
-boolean vraiFauxQuestionSuivanteOK = false;
-JSONArray vraifauxJSON;
-JSONArray donneesBravo;
-PImage vraifauxNiveau;
+color reponseJusteCouleur = color(8, 120, 38), reponseMauvaisCouleur = color(204, 31, 31), 
+  neutre = color(234, 226, 183), hover=color(220, 220, 200);
+String vraiFauxQuestion, vraiFauxCorrection,messageBravo;
+boolean bonneReponse = false,mauvaiseReponse = false,
+questionRepondue = false,bonusHarvard=false,vraiFauxQuestionSuivanteOK = false;
+JSONArray vraifauxJSON,donneesBravo;
+JSONObject objetBravo;
 
 void setup11() {
-  vraifauxNiveau= loadImage("data11/Vrai ou Faux level.png");
+  reglesImg[1]= loadImage("data11/regles11.png");
+  niveauImg[1]= loadImage("data11/level11.png");
+  finImg[1]= loadImage("data11/fin11.png");
   vraifauxJSON= loadJSONArray("data11/vraifaux.json"); // On charge le JSON
 }
 
@@ -38,7 +35,7 @@ void mouseClicked11() {
     bonneReponse = true;
     vraiFauxScore+=1;
     questionRepondue = true;
-    JSONObject objetBravo = donneesBravo.getJSONObject((int)random(0, 5));
+    objetBravo = donneesBravo.getJSONObject((int)random(0, 5));
     messageBravo = objetBravo.getString("bravo");
   }
   // CLIC FAUX MAUVAIS
@@ -55,7 +52,7 @@ void mouseClicked11() {
     vraiFauxScore+=1;
     questionRepondue = true;
     bonneReponse = true;
-    JSONObject objetBravo = donneesBravo.getJSONObject((int)random(0, 5));
+    objetBravo = donneesBravo.getJSONObject((int)random(0, 5));
     messageBravo = objetBravo.getString("bravo");
   }
   // CLIC VRAI MAUVAIS
@@ -66,12 +63,13 @@ void mouseClicked11() {
     mauvaiseReponse=true;
   }
   // TEST BOUTON SUIVANT
-  if (vraiFauxCompteurQuestion!=11 && (questionRepondue==true || vraiFauxCompteurQuestion==0) 
-    &&mouseX>674&&mouseX<774&&mouseY>400&&mouseY<500) {
+  if (vraiFauxCompteurQuestion!=11&& (questionRepondue==true
+    &&mouseX>674&&mouseX<774&&mouseY>400&&mouseY<500) || 
+    (vraiFauxCompteurQuestion==0&&mouseX>430&&mouseX<680&&mouseY>450&&mouseY<530)) {
     vraiFauxQuestionSuivanteOK=true;
   }
   // TEST BOUTON GARAGE
-  if (vraiFauxCompteurQuestion==11 && mouseX > 570 && mouseX < 740 && mouseY > 520 && mouseY < 570) {
+  if (vraiFauxCompteurQuestion==11 &&mouseX>588&&mouseX<676&&mouseY>438&&mouseY<520) {
     niveauTermine[1]=true;
     print("banane");
   }
@@ -91,24 +89,27 @@ void afficherJeuVraiFaux() {
   // PAGE ACCUEIL MINI JEU
   if (vraiFauxCompteurQuestion == 0) {
     niveauTermine[1] = false;
-    textSize(32);
-    fill(0);
-    text(niveauEnCours, 360, 70);
-    textSize(40);
-    text("LE VRAI OU FAUX \n INFORMATIQUE", 230, 140);
-    fill(255);
-    rect(100, 230, 600, 200);
-    fill(0);
+    image(reglesImg[1], 0, 0);
     textSize(27);
-    text("10 affirmations, à toi de trouver si elles \nsont vraies ou fausses ! Plus tu as de \nréponses justes et plus tu gagnes d'argent.", 124, 296);
-    rect(570, 520, 170, 50);
-    fill(0);
-    textSize(27);
-    text("Let's Go !", 600, 555);
+    textAlign(CENTER);
+    text("Dix affirmations, à toi de trouver si \nelles sont vraies ou fausses ! Plus \ntu as de réponses justes et plus \ntu gagnes d'argent.", width/2, 250);
+    int letsgoHover=0;
+    if (mouseX>430&&mouseX<680&&mouseY>450&&mouseY<530) {
+      letsgoHover=10;
+      fill(hover);
+    } else {
+      letsgoHover=30;
+      fill(neutre);
+    }
+    rect(430, 450, 250, 80, letsgoHover);
+    fill(0); // fill le texte en hover aussi /!\
+    textAlign(CENTER);
+    textSize(35);
+    text("Let's Go !!", 557, 503);
   }
   // PAGE QUESTIONS
   if (vraiFauxCompteurQuestion >= 1 && vraiFauxCompteurQuestion <= 10) {
-    image(vraifauxNiveau, 0, 0);
+    image(niveauImg[1], 0, 0);
     stroke(91, 35, 51);
     strokeWeight(6);
     int vraiCorner=0, fauxCorner=0;
@@ -151,7 +152,7 @@ void afficherJeuVraiFaux() {
       }
       rect(674, 400, 100, 100, suivHover);
       fill(0);
-      
+
       String suiv;
       if (vraiFauxCompteurQuestion==10) {
         suiv="Fin";
@@ -168,6 +169,10 @@ void afficherJeuVraiFaux() {
     text(vraiFauxScore +"/10", 727, 300); // afficher le score
     textSize(47);
     text(vraiFauxCompteurQuestion, 82, 300); // afficher le numéro de question
+  }
+  if (bonneReponse==true&&messageBravo.equals("Harvard wants to know your position\nAllow - Deny")
+    &&mouseX>325&&mouseX<485&&mouseY>365&&mouseY<395&&mousePressed==true) {
+    bonusHarvard=true;
   }
 }
 
@@ -229,24 +234,52 @@ void vraiFauxQuestionSuivanteOKFonction() {
 void vraiFauxEcranFin() {
   // PAGE FIN
   if (vraiFauxCompteurQuestion == 11) {
-    argentGagne31=vraiFauxScore*50000;
-    fill(255);
-    rect(100, 150, 600, 200);
-    rect(100, 375, 240, 130);
-    rect(460, 375, 240, 130);
+    image(finImg[1], 0, 0);
+    argentGagne31=vraiFauxScore*5000;
+    textSize(25);
     fill(0);
+    text("Tu t'es débrouillé tant bien que mal pour \nterminer ce Vrai/Faux, bravo ! \nVoici tes statistiques", width/2, 195);
     textSize(27);
-    text("Tu t'es débrouillé tant bien que mal pour \nterminer ce Vrai/Faux, bravo ! \nVoici tes statistiques", 124, 220);
-    text("TA NOTE \n" +vraiFauxScore+"/10", 150, 420);
-    text("ARGENT GAGNÉ \n" +argentGagne31 +"$", 480, 420);
-    rect(570, 520, 170, 50);
+    textAlign(LEFT);
+    text("Ta note :", 120, 405);
+    textSize(15); 
+    text("*Avoir réagi à la\nproposition de Harvard B-)", 137, 477);
+    textSize(23);
+    text("Bonus Harvard* :", 120, 450);
+    if (bonusHarvard==true) {
+      fill(reponseJusteCouleur);
+      text("Oui", 334, 450);
+    } else {
+      fill(reponseMauvaisCouleur);
+      text("Non", 334, 450);
+    }
+    textAlign(CENTER);
+    textFont(pixel);
+    textSize(32);
+    fill(255, 215, 0);
+    text(vraiFauxScore+"/10", 300, 405);
+    textSize(50);
+    text(argentGagne31 +"$", 575, 400);
+
+    int homeHover=20;
+    if (mouseX>588&&mouseX<676&&mouseY>438&&mouseY<520) {
+      homeHover=20;
+      fill(hover);
+    } else {
+      homeHover=60;
+      fill(neutre);
+    }
+    rect(588, 438, 88, 82, homeHover);
     fill(0);
-    textSize(27);
-    text(" → Garage", 590, 555);
-  }
-  if (vraiFauxCompteurQuestion==11 && niveauTermine[1]==true) {
-    affichageEcran[1]=false;
-    affichageEcranPrincipal=true;
-    affichageEcranPrincipal();
+    textSize(60);
+    textFont(arial);
+    textAlign(CENTER);
+    text("⌂", 633, 490);
+    textFont(meteora);
+    if (vraiFauxCompteurQuestion==11 && niveauTermine[1]==true) {
+      affichageEcran[1]=false;
+      affichageEcranPrincipal=true;
+      affichageEcranPrincipal();
+    }
   }
 }

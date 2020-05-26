@@ -69,8 +69,6 @@ void mouseClicked12() {
 }
 
 void afficherJeuCalculRapide() {
-  background(237, 136, 59);
-
   // PAGE ACCUEIL MINI JEU
   if (compteurNiveau == 0) {
     textAlign(LEFT);

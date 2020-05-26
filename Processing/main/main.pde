@@ -7,8 +7,8 @@ boolean affichageEcranPrincipal = true;
 boolean partieLancee = false;
 boolean[] affichageEcran = new boolean[5];
 boolean[] niveauTermine = new boolean[5];
-PImage[] scene = new PImage[5];
-PFont pixel, moon, meteora;
+PImage[] scene = new PImage[5], reglesImg = new PImage[5], niveauImg = new PImage[5], finImg = new PImage[5];
+PFont pixel, moon, meteora,arial;
 
 void setup() {
   // taille fenêtre
@@ -16,6 +16,7 @@ void setup() {
   pixel = createFont("dataPrincipal/pixel.ttf", 50);
   moon = createFont("dataPrincipal/moon.ttf", 50);
   meteora = createFont("dataPrincipal/meteora.ttf", 50);
+  arial = createFont("Arial",50);
   textFont(pixel);
   // CHARGER IMAGES
   for (int i=1; i<=4; i++) {

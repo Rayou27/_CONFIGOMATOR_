@@ -24,7 +24,7 @@ JSONArray linedotJSON, donneesColonnes, donneesLignes, donneesCombo,
 JSONObject objetColonnes, objetLignes, objetCombo, 
   objetTP, objetDepart, objetArrivee, 
   objetHorizontal, objetVertical, objetNombreHorizontal, objetNombreVertical;
-  
+
 void setup22() {
   background(45, 132, 138);
   linedotJSON = loadJSONArray("data22/linedot.json");
@@ -58,10 +58,12 @@ void draw22() {
 }
 
 void keyPressed22() {
-  tracerTrait();
-  testFil();
-  if (key==' ') {
-    mouseClickedBoutonEffacer=true;
+  if (compteurGlobalNiveaux==4) {
+    tracerTrait();
+    testFil();
+    if (key==' ') {
+      mouseClickedBoutonEffacer=true;
+    }
   }
 }
 
@@ -186,7 +188,7 @@ void afficherMurs() {
   }
 }
 
-void afficherEcranFin22(){
+void afficherEcranFin22() {
   background(45, 132, 138);
   stroke(0);
   strokeWeight(6);
@@ -197,7 +199,7 @@ void afficherEcranFin22(){
   fill(0);
   textSize(27);
   textAlign(LEFT);
-  text("Bravo, tu en as enfin fini avec cette\nbouillabaisse de fils colorés !!!\nVoyons l'argent que tu as remporté\ngrâce à cette épreuve...",150,120);
+  text("Bravo, tu en as enfin fini avec cette\nbouillabaisse de fils colorés !!!\nVoyons l'argent que tu as remporté\ngrâce à cette épreuve...", 150, 120);
   fill(200, 200, 255);
   rect(620, 510, 160, 60);
   fill(0);
