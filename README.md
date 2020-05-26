@@ -1,6 +1,6 @@
 BAC ISN 2020
 
-COUCOU
+ceci est un readme
 
 # _CONFIGOMATOR_
 
