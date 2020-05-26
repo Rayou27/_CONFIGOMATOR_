@@ -1,6 +1,6 @@
 int mx, my, dBille=5;
 int xValide, yValide;
-int compteurNiveau21=8, compteurPerdu21=0, compteurFrontiere21=0, argent21=0;
+int compteurNiveau21=2, compteurPerdu21=0, compteurFrontiere21=0, argent21=0;
 int randomEnt, yBloc1=335, vMob=1;
 color terrainOut = color(0), frontiere = color(196), gagne = color(158, 246, 156), big = color(119, 198, 255), clef = color(255, 201, 14), mobColor=color(109, 76, 65), murClef=color(8, 9, 99);
 color colorPicker, zoneDebut, zoneFin, couleurBille;
@@ -37,6 +37,7 @@ void setup21() {
 }
 
 void draw21() {
+  textAlign(LEFT);
   if (compteurNiveau21==0) {
     afficherEcranDebut21();
   } 
@@ -287,7 +288,7 @@ void etatNiveau21() {
 }
 
 void skipNiveau21() {
-  randomEnt = (int)random(0, 5);
+  randomEnt = (int)random(0, 5); // ATTENTION MODIFIER
   if (compteurNiveau21==0&&mouseX>620&&mouseX<780&&mouseY>510&&mouseY<570) {
     compteurNiveau21=1;
   }

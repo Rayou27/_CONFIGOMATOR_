@@ -19,6 +19,7 @@ void setup11() {
 }
 
 void draw11() {
+  textAlign(LEFT);
   vraiFauxJSON();
   afficherJeuVraiFaux();
   afficherQuestionCorrectionVraiFaux();
@@ -70,7 +71,7 @@ void mousePressed() {
   // TEST BOUTON GARAGE
   if (vraiFauxCompteurQuestion==11 && mouseX > 570 && mouseX < 740 && mouseY > 520 && mouseY < 570) {
     niveauTermine[1]=true;
-    print("babane");
+    print("banane");
   }
 }
 
@@ -206,5 +207,6 @@ void vraiFauxEcranFin() {
   if (vraiFauxCompteurQuestion==11 && niveauTermine[1]==true) {
     affichageEcran[1]=false;
     affichageEcranPrincipal=true;
+    affichageEcranPrincipal();
   }
 }

@@ -10,7 +10,7 @@ int[] borneInfX12= new int[13], borneSupX12= new int[13], borneInfY12= new int[1
 int[][] paveFixe = new int[3][13], paveMobile = new int[3][13];
 color ecranCalculCouleur = color(200), boutonCouleur = color(252, 224, 129), 
   calculBonCouleur = color(0, 207, 0), calculMauvaisCouleur = color(255, 0, 0);
-char good='✓', bad='X';
+char good='V', bad='X';
 char[] answer = new char[12];
 String resultat="";
 String[] calculEnonce = new String[11], calculSolution = new String[11];
@@ -73,6 +73,7 @@ void afficherJeuCalculRapide() {
 
   // PAGE ACCUEIL MINI JEU
   if (compteurNiveau == 0) {
+    textAlign(LEFT);
     textSize(32);
     fill(0);
     text("Stage 1-2", 360, 70);
