@@ -5,15 +5,17 @@ String niveauEnCours;
 String uniteMonnaie = "";
 boolean affichageEcranPrincipal = true;
 boolean partieLancee = false;
-boolean[] affichageEcran = new boolean[9];
-boolean[] niveauTermine = new boolean[9];
+boolean[] affichageEcran = new boolean[5];
+boolean[] niveauTermine = new boolean[5];
 PImage[] scene = new PImage[5];
-PFont pixel, moon;
+PFont pixel, moon, meteora;
 
 void setup() {
   // taille fenêtre
   size(800, 600);
   pixel = createFont("dataPrincipal/pixel.ttf", 50);
+  moon = createFont("dataPrincipal/moon.ttf", 50);
+  meteora = createFont("dataPrincipal/meteora.ttf", 50);
   textFont(pixel);
   // CHARGER IMAGES
   for (int i=1; i<=4; i++) {
@@ -37,6 +39,7 @@ void keyPressed() {
 }
 
 void mouseClicked() {
+  mouseClicked11();
   mouseClicked12();
   skipNiveau21();
   mouseClicked22();
@@ -48,8 +51,8 @@ void affichageEcranPrincipal() {
     // bouton jouer
     strokeWeight(4);
     textAlign(CENTER);
+    textFont(pixel);
     textSize(80);
-
     if (mouseX > 400 && mouseX < 700 && mouseY > 350 && mouseY < 430 
       && affichageEcranPrincipal == true) {
       // hover bouton jouer

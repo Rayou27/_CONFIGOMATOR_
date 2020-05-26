@@ -216,6 +216,7 @@ public int argent22() {
 }
 
 void afficherPoints() {
+  smooth(8);
   if (compteurNiveau>0&&compteurNiveau<11) {
     // NIVEAU 1
     for (int i=0; i<4; i++) {
@@ -250,6 +251,7 @@ void afficherPoints() {
       }
     }
   }
+  noSmooth();
 }
 
 void verificationPoint() {
