@@ -85,11 +85,10 @@ void vraiFauxJSON() {
 }
 
 void afficherJeuVraiFaux() {
-  background(251, 210, 71);
   // PAGE ACCUEIL MINI JEU
   if (vraiFauxCompteurQuestion == 0) {
     niveauTermine[1] = false;
-    image(reglesImg[1], 0, 0);
+    image(reglesImg[compteurGlobalNiveaux], 0, 0);
     textSize(27);
     textAlign(CENTER);
     text("Dix affirmations, à toi de trouver si \nelles sont vraies ou fausses ! Plus \ntu as de réponses justes et plus \ntu gagnes d'argent.", width/2, 250);
@@ -234,7 +233,7 @@ void vraiFauxQuestionSuivanteOKFonction() {
 void vraiFauxEcranFin() {
   // PAGE FIN
   if (vraiFauxCompteurQuestion == 11) {
-    image(finImg[1], 0, 0);
+    image(finImg[compteurGlobalNiveaux], 0, 0);
     argentGagne31=vraiFauxScore*5000;
     textSize(25);
     fill(0);

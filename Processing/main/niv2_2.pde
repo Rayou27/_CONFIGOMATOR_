@@ -1,4 +1,4 @@
-int compteurNiveau=0;
+int compteurNiveau22=0;
 int compteurReplay22=0, argent22=0;
 int xCentreCarre, yCentreCarre;
 int borneInfX22, borneSupX22, borneInfY22, borneSupY22;
@@ -34,10 +34,10 @@ void setup22() {
 }
 
 void draw22() {
-  if (compteurNiveau==0) {
+  if (compteurNiveau22==0) {
     afficherEcranDebut22();
   }
-  if (compteurNiveau>0&&compteurNiveau<11) {
+  if (compteurNiveau22>0&&compteurNiveau22<11) {
     verificationPoint();
     afficherPoints();
     boutonEffacer();
@@ -48,10 +48,10 @@ void draw22() {
     rect(40, 20, 90, 45);
     fill(0);
     textSize(25);
-    text("Lvl."+compteurNiveau, 55, 50);
+    text("Lvl."+compteurNiveau22, 55, 50);
     rejoins();
   }
-  if (compteurNiveau==11) {
+  if (compteurNiveau22==11) {
     argent22();
     afficherEcranFin22();
   }
@@ -151,7 +151,7 @@ void afficherEcranDebut22() {
   fill(0);
   text("Let's Go~", 640, 549);
   if (mouseClickedBoutonEffacer==true) {
-    compteurNiveau=1;
+    compteurNiveau22=1;
   }
 }
 
@@ -171,20 +171,20 @@ void afficherQuadrillage() {
 void afficherMurs() {
   stroke(couleurMur);
   strokeWeight(10);
-  for (int i=1; i<=nombreMurHorizontal[compteurNiveau]; i++) {
+  for (int i=1; i<=nombreMurHorizontal[compteurNiveau22]; i++) {
 
     line(
-      xJSON[murHorizontal[compteurNiveau][i]]-40, 
-      yJSON[murHorizontal[compteurNiveau][i]]+40, 
-      xJSON[murHorizontal[compteurNiveau][i]]+40, 
-      yJSON[murHorizontal[compteurNiveau][i]]+40);
+      xJSON[murHorizontal[compteurNiveau22][i]]-40, 
+      yJSON[murHorizontal[compteurNiveau22][i]]+40, 
+      xJSON[murHorizontal[compteurNiveau22][i]]+40, 
+      yJSON[murHorizontal[compteurNiveau22][i]]+40);
   }
-  for (int i=1; i<=nombreMurVertical[compteurNiveau]; i++) {
+  for (int i=1; i<=nombreMurVertical[compteurNiveau22]; i++) {
     line(
-      xJSON[murVertical[compteurNiveau][i]]+40, 
-      yJSON[murVertical[compteurNiveau][i]]-40, 
-      xJSON[murVertical[compteurNiveau][i]]+40, 
-      yJSON[murVertical[compteurNiveau][i]]+40);
+      xJSON[murVertical[compteurNiveau22][i]]+40, 
+      yJSON[murVertical[compteurNiveau22][i]]-40, 
+      xJSON[murVertical[compteurNiveau22][i]]+40, 
+      yJSON[murVertical[compteurNiveau22][i]]+40);
   }
 }
 
@@ -219,7 +219,7 @@ public int argent22() {
 
 void afficherPoints() {
   smooth(8);
-  if (compteurNiveau>0&&compteurNiveau<11) {
+  if (compteurNiveau22>0&&compteurNiveau22<11) {
     // NIVEAU 1
     for (int i=0; i<4; i++) {
       // POINTS DE DEPART
@@ -227,11 +227,11 @@ void afficherPoints() {
         stroke(0);
         strokeWeight(3);
         fill(couleur[i]);
-        ellipse(xJSON[billeDepart[compteurNiveau][i]], yJSON[billeDepart[compteurNiveau][i]], 40, 40);
+        ellipse(xJSON[billeDepart[compteurNiveau22][i]], yJSON[billeDepart[compteurNiveau22][i]], 40, 40);
       } else {
         noStroke();
         fill(couleur[i]);
-        ellipse(xJSON[billeDepart[compteurNiveau][i]], yJSON[billeDepart[compteurNiveau][i]], 40, 40);
+        ellipse(xJSON[billeDepart[compteurNiveau22][i]], yJSON[billeDepart[compteurNiveau22][i]], 40, 40);
       }
       // POINTS D'ARRIVEE
       int d;
@@ -240,16 +240,16 @@ void afficherPoints() {
         d=40;
         fill(couleur[i]);
         noStroke();
-        ellipse(xJSON[billeArrivee[compteurNiveau][i]], yJSON[billeArrivee[compteurNiveau][i]], d, d);
+        ellipse(xJSON[billeArrivee[compteurNiveau22][i]], yJSON[billeArrivee[compteurNiveau22][i]], d, d);
         stroke(150);
         strokeWeight(4);
         noFill();
-        ellipse(xJSON[billeDepart[compteurNiveau][i]], yJSON[billeDepart[compteurNiveau][i]], 40, 40);
+        ellipse(xJSON[billeDepart[compteurNiveau22][i]], yJSON[billeDepart[compteurNiveau22][i]], 40, 40);
       } else {
         d=20;
         fill(couleur[i]);
         noStroke();
-        ellipse(xJSON[billeArrivee[compteurNiveau][i]], yJSON[billeArrivee[compteurNiveau][i]], d, d);
+        ellipse(xJSON[billeArrivee[compteurNiveau22][i]], yJSON[billeArrivee[compteurNiveau22][i]], d, d);
       }
     }
   }
@@ -258,16 +258,16 @@ void afficherPoints() {
 
 void verificationPoint() {
   for (int i=0; i<=3; i++) {
-    if (caseOccupee[billeArrivee[compteurNiveau][i]]==true&&couleurTrait==couleur[i]&&i<3) {
+    if (caseOccupee[billeArrivee[compteurNiveau22][i]]==true&&couleurTrait==couleur[i]&&i<3) {
       arrivee[i]=true;
-      xCentreCarre=xJSON[billeDepart[compteurNiveau][i+1]];
-      yCentreCarre=yJSON[billeDepart[compteurNiveau][i+1]];
+      xCentreCarre=xJSON[billeDepart[compteurNiveau22][i+1]];
+      yCentreCarre=yJSON[billeDepart[compteurNiveau22][i+1]];
       depart[i]=false;
       dernierMouvement="";
       depart[i+1]=true;
       couleurTrait=couleur[i+1];
     }
-    if (caseOccupee[billeArrivee[compteurNiveau][i]]==true&&couleurTrait==couleur[i]&&i==3) {
+    if (caseOccupee[billeArrivee[compteurNiveau22][i]]==true&&couleurTrait==couleur[i]&&i==3) {
       depart[i]=false;
       arrivee[i]=true;
       couleurTrait=color(0);
@@ -292,7 +292,7 @@ void boutonEffacer() {
   // FONCTIONNEL
   if (mouseClickedBoutonEffacer==true) {
     if (arrivee[3]==true) {
-      compteurNiveau++;
+      compteurNiveau22++;
     }
     background(45, 132, 138);
     for (int i=0; i<=3; i++) {
@@ -304,8 +304,8 @@ void boutonEffacer() {
     }
     couleurTrait=couleur[0];
     depart[0]=true;
-    xCentreCarre=xJSON[billeDepart[compteurNiveau][0]];
-    yCentreCarre=yJSON[billeDepart[compteurNiveau][0]];
+    xCentreCarre=xJSON[billeDepart[compteurNiveau22][0]];
+    yCentreCarre=yJSON[billeDepart[compteurNiveau22][0]];
     afficherQuadrillage();
     afficherMurs();
     afficherPoints();

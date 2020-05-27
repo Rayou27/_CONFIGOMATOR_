@@ -8,7 +8,7 @@ int[] paveCroissant=new int[13], paveDecroissant = new int[13];
 int[] currentPave = new int[13];
 int[] borneInfX12= new int[13], borneSupX12= new int[13], borneInfY12= new int[13], borneSupY12= new int[13];
 int[][] paveFixe = new int[3][13], paveMobile = new int[3][13];
-color ecranCalculCouleur = color(200), boutonCouleur = color(252, 224, 129), 
+color ecranCalculCouleur = color(255, 218, 169), boutonCouleur = color(252, 224, 129), 
   calculBonCouleur = color(0, 207, 0), calculMauvaisCouleur = color(255, 0, 0);
 char good='V', bad='X';
 char[] answer = new char[12];
@@ -17,19 +17,23 @@ String[] calculEnonce = new String[11], calculSolution = new String[11];
 String[] borneID = new String[13];
 boolean onlyOne=false;
 boolean testReponseSaisie = false;
-boolean calculSuivantOK;
 boolean[] currentCase = new boolean[13];
 JSONArray calculrapideJSON;
 
 void setup12() {
   background(237, 136, 59);
   calculrapideJSON = loadJSONArray("data12/calculrapide.json");
+  reglesImg[2]=loadImage("data12/regles12.png");
+  niveauImg[2]=loadImage("data12/level12.png");
+  finImg[2]=loadImage("data12/fin12.png");
   calculrapideJSON();
   paveJSON();
+  for (int i=1; i<=12; i++) {
+    currentCase[i]=false;
+  }
 }
 
 void draw12() {
-  strokeWeight(1);
   conversionPave(); 
   afficherJeuCalculRapide();
   if (testReponseSaisie==false) {
@@ -40,14 +44,14 @@ void draw12() {
 void mouseClicked12() {
   reponseEntree();
   // TEST LANCER NIVEAU
-  if (compteurNiveau==0&&mouseX>570&&mouseX<740&&mouseY>520&&mouseY<570) {
-    compteurNiveau=1;
+  if (compteurNiveau12==0&&mouseX>430&&mouseX<680&&mouseY>450&&mouseY<530) {
+    compteurNiveau12=1;
     memoireChronoQuestion=millis();
   }
-  // TEST BOUTON SUIVANT (à faire)
-  if (compteurNiveau!=11 && testReponseSaisie==true 
-    && mouseX > 210 && mouseX < 380 && mouseY > 450 && mouseY < 490&& testReponseSaisie==false) {
-    calculSuivantOK=true;
+  // TEST BOUTON SUIVANT
+  if (compteurNiveau12!=11 && testReponseSaisie==true 
+    &&mouseX>365&&mouseX<435&&mouseY>250&&mouseY<320) {
+    calculSuivantOKFonction();
   }
   for (int i=1; i<=12; i++) {
     if (mouseX>borneInfX12[i] && mouseX<borneSupX12[i] 
@@ -57,71 +61,79 @@ void mouseClicked12() {
       //println("case " +borneID[i]+ " cliquée");
     }
   }
-  if (mouseX>210&&mouseX<380&&mouseY>450&&mouseY<500) {
-    calculSuivantOKFonction();
-  }
-  if (compteurNiveau==11&&onlyOne==false) {
+  if (compteurNiveau12==11&&onlyOne==false) {
     argent12Fonction();
     onlyOne=true;
+  }
+  if(compteurNiveau12==11&&mouseX>588&&mouseX<676&&mouseY>438&&mouseY<520){
+    niveauTermine[2]=true;
   }
   reponseEntree();
   boutonDELOK();
 }
 
 void afficherJeuCalculRapide() {
+
+
+
+
+
   // PAGE ACCUEIL MINI JEU
-  if (compteurNiveau == 0) {
-    textAlign(LEFT);
-    textSize(32);
-    fill(0);
-    text("Stage 1-2", 360, 70);
-    textSize(40);
-    text("LE CALCUL RAPIDE \n   niveau Term.S", 220, 140);
-    fill(255);
-    rect(100, 230, 600, 200);
-    fill(0);
+  if (compteurNiveau12 == 0) {
+    image(reglesImg[compteurGlobalNiveaux], 0, 0);
+    textAlign(CENTER);
+    textFont(meteora);
     textSize(27);
-    text("10 énoncés de calcul, + ou - simples (lol) \nDonne ta réponse sur le pavé numérique \naffiché à l'écran et ce le plus vite posible !!", 124, 296);
-    fill(boutonCouleur);
-    rect(570, 520, 170, 50);
-    fill(0);
-    textSize(27);
-    text("Let's Go~", 600, 555);
-  }
+    text("Dix énoncés de calcul, + ou - simples \n(lol). Donne ta réponse sur le pavé \nnumérique affiché à l'écran et ce le \nplus vite posible !!", width/2, 250);
+    int letsgoHover=0;
+    if (mouseX>430&&mouseX<680&&mouseY>450&&mouseY<530) {
+      letsgoHover=10;
+      fill(hover);
+    } else {
+      letsgoHover=30;
+      fill(neutre);
+    }
+    stroke(0, 48, 73);
+    strokeWeight(4);
+    rect(430, 450, 250, 80, letsgoHover);
+    fill(0); // fill le texte en hover aussi /!\
+    textSize(35);
+    text("Let's Go !!", 557, 503);
+  }  
   // PAGE DE JEU - CALCULATOR
-  if (compteurNiveau>=1 && compteurNiveau<=10) {
-    // BOX (rectangles)
-    fill(255);
-    rect (400, 50, 350, 500); // fond calculatrice
-    fill(ecranCalculCouleur); // ajouter fill rouge vert
-    rect(430, 85, 290, 80); // ecran calculatrice
-    rect(40, 180, 330, 80); // rect enonce, dessous "résoudre"
+  if (compteurNiveau12>=1 && compteurNiveau12<=10) {
+    image(niveauImg[compteurGlobalNiveaux], 0, 0);
     // TABLEAU SCORE
     fill(0);
-    textSize(15);
+    textFont(pixel);
+    textSize(25);
     int i=1;
     i=constrain(i, 0, 8);
-    for (int x=20; x<336; x+=35) {
-      line(x, 320, x, 440);
-      text(i, 47+x, 350);
-      if (compteurNiveau>i) {
-        text(answer[i], 47+x, 390);
-        text(chronoReponse[i], 47+x, 430);
+    for (int x=20; x<336; x+=34) {
+      if (compteurNiveau12>i-1) {
+        text(answer[i], 60+x, 475);
+        if (chronoReponse[i]!=0) {
+          text(chronoReponse[i], 60+x, 522);
+        }
       }
       i++;
     }
-    line(365, 320, 365, 440);
-    for (int y=320; y<441; y+=40) {
-      line(20, y, 400, y);
+    // ECRAN
+    stroke(0, 48, 73);
+    strokeWeight(4);
+    fill(ecranCalculCouleur);
+    if (answer[compteurNiveau12]=='V') {
+      fill(calculBonCouleur);
     }
-    text("Lvl.", 27, 350);
-    text("Ans.", 27, 390);
-    text("Sec.", 27, 430);
+    if (answer[compteurNiveau12]=='X') {
+      fill(calculMauvaisCouleur);
+    }
+    rect(477, 126, 265, 90, 30); // rectangle résultat
 
     // TOUCHES DU PAVÉ    
     int compteurCarre = 0;
-    for (int y=185; y<456; y+=90) {
-      for (int x=445; x<646; x+=100) {
+    for (int y=225; y<496; y+=90) {
+      for (int x=479; x<680; x+=100) {
         fill(190);
         rect(x, y, 65, 65);
         if (mouseX<x+65&&mouseX>x&&mouseY>y&&mouseY<y+65) {
@@ -133,24 +145,25 @@ void afficherJeuCalculRapide() {
           }
         }
         fill(0);
-        compteurCarre+=1;
+        compteurCarre++;
         String affichageCase;
         textAlign(CENTER);
-        if (compteurNiveau>3&&compteurNiveau<8) {
+        if (compteurNiveau12>3&&compteurNiveau12<8) {
           currentPave[10]=10;
           currentPave[12]=12;
         }
+        textFont(pixel);
         switch(currentPave[compteurCarre]) {
         case 10:
-          textSize(25);
+          textSize(35);
           affichageCase=" DEL";
           break;
         case 12:
-          textSize(25);
+          textSize(35);
           affichageCase=" OK";
           break;
         default:
-          textSize(35);
+          textSize(45);
           affichageCase=str(currentPave[compteurCarre]);
         }
         text(affichageCase, x+32, y+45);
@@ -159,62 +172,125 @@ void afficherJeuCalculRapide() {
     }
     // TEXTE
     fill(0);
-    textSize(40);
-    text("CALCULATOR", 70, 100);
-    textSize(27);
+    textFont(pixel);
     if (testReponseSaisie==false) {
       chronoQuestion=int((millis()-memoireChronoQuestion)/1000);
-      fill(3*millis()/4%255, 0, 0);
+      fill(100, 3*millis()/4%200, millis()/4%200);
     }
-    text("Chrono : "+chronoQuestion+ " s", 50, 300); // afficher le chrono
+    text("Chrono : "+chronoQuestion+ " s", 90, 300); // afficher le chrono
     fill(0);
-    text("Bonnes réponses : "+score32, 120, height-40); // afficher le score
-    text("Q°" + compteurNiveau, 30, height-40); // afficher le numéro de question
-    text("Résoudre :", 45, 150);
-    text(calculEnonce[compteurNiveau], 65, 230); // affiche l'énoncé en fonction du niveau en cours
-    textSize(50);
-    text(resultat, 470, 145);
+    textSize(40);
+    text(score32, 350, height-32);
+    text(compteurNiveau12, 102, height-32); // afficher le numéro de question
+    textAlign(CENTER);
+    switch(compteurNiveau12) {
+    case 4:
+      textSize(40);
+      break;
+    case 10:
+      textSize(35);
+      break;
+    default:
+      textSize(50);
+      break;
+    }
+    text(calculEnonce[compteurNiveau12], 225, 220); // affiche l'énoncé en fonction du niveau en cours
+    textAlign(LEFT);
+    textSize(55);
+    text(resultat, 510, 187);
     // BOUTON SUIVANT
     if (testReponseSaisie==true) { // afficher le bouton suivant
-      fill(boutonCouleur);
-      rect(210, 450, 170, 50);
+      int suivHover=0;
+      if (mouseX>365&&mouseX<435&&mouseY>250&&mouseY<320) {
+        suivHover=10;
+        fill(hover);
+      } else {
+        suivHover=30;
+        fill(neutre);
+      }
+      stroke(0, 48, 73);
+      strokeWeight(5);
+      rect(365, 250, 70, 70, suivHover);
       fill(0);
-      textSize(27);
-      text("Suivant !", 240, 485);
+      String suiv;
+      int x=383;
+      textFont(meteora);
+      if (compteurNiveau12==10) {
+        suiv="Fin";
+        textSize(27);
+        x=375;
+      } else {
+        suiv=">>";
+        textSize(30);
+        x=383;
+      }
+      text(suiv, x, 295);
     }
-  }
-  if (compteurNiveau==11) {
-    stroke(0);
-    strokeWeight(6);
-    fill(255);
-    rect(100, 50, 600, 150);
-    rect(100, 230, 370, 250);
-    rect(500, 360, 200, 120);
+  } 
+
+  if (compteurNiveau12==11) {
+    image(finImg[compteurGlobalNiveaux], 0, 0);
+    textFont(meteora);
+    textAlign(CENTER);
     fill(0);
-    textSize(27);
+    textSize(24);
+    text("Apparement le calcul c'est ton truc... \nTu as réussi, bravo ! Voici tes statistiques", width/2, 190);
     textAlign(LEFT);
-    text("blabla bravo", 155, 95);
-    fill(200, 200, 255);
-    rect(620, 510, 160, 60);
     fill(0);
-    text("->"+" Garage", 640, 549);
-    text("Bonnnes réponses : "+score32, 130, 280);
-    text("Bonus chrono : × "+compteurBonusChrono, 130, 330);
+    textSize(22);
+    text("Bonnes réponses : ", 130, 345);
+    text("Bonus chrono : x ", 130, 390);   
+    text("Bonus escargot* : ", 130, 435);
+    textSize(15);
+    text("*Avoir passé plus de\nsecondes à répondre au total", 140, 470); 
+    textSize(23);
     String bonusEscargot="Non";
+    fill(reponseMauvaisCouleur);
     if (chronoFinal>200) {
       bonusEscargot="Oui";
+      fill(reponseJusteCouleur);
     }
-    text("Bonus escargot* : "+bonusEscargot, 130, 380);
-    text("TOTAL", 550, 400);
-    text(argent32+" $", 550, 440);
-    textSize(20);
-    text("*Avoir passé plus de 200\nsecondes à répondre au total", 130, 430);
+    text(bonusEscargot, 130+textWidth("Bonus escargot* :"), 435);
+    textFont(pixel);
+    textAlign(LEFT);
+    textSize(50);
+    textAlign(CENTER);
+    fill(0, 48, 73);
+    text(argent32+" $", 575, 380);
+    fill(0);
+    textSize(40);
+    textAlign(LEFT);
+    text(score32, 360, 347);
+    text(compteurBonusChrono, 335, 392); 
+    textSize(22);
+    text("200", 313, 470);
+    int homeHover12=20;
+    color neutre12=color(252,191,73),hover12=color(240,159,4);
+    if (mouseX>588&&mouseX<676&&mouseY>438&&mouseY<520) {
+      homeHover12=20;
+      fill(hover12);
+    } else {
+      homeHover12=60;
+      fill(neutre12);
+    }
+    rect(588, 438, 88, 82, homeHover12);
+    fill(0);
+    textSize(60);
+    textFont(arial);
+    textAlign(CENTER);
+    text("⌂", 633, 490);
+    textFont(meteora);
+    if (niveauTermine[2]==true) {
+      affichageEcran[1]=false;
+      affichageEcranPrincipal=true;
+      affichageEcranPrincipal();
+    }
   }
 }
 
 void boutonDELOK() {
   int boutonOK, boutonDEL, numBas;
-  switch(compteurNiveau) {
+  switch(compteurNiveau12) {
   case 8:
     boutonOK=11;
     boutonDEL=10;
@@ -258,7 +334,7 @@ void boutonDELOK() {
   if (currentCase[boutonOK]==true) {
     testReponseSaisie=true;
     verifCalculBon();
-    chronoReponse[compteurNiveau]=chronoQuestion;
+    chronoReponse[compteurNiveau12]=chronoQuestion;
     currentCase[boutonOK]=false;
   }
   if (currentCase[boutonDEL]==true) {
@@ -273,8 +349,8 @@ void boutonDELOK() {
 
 void calculSuivantOKFonction() {
   testReponseSaisie = false;
-  compteurNiveau++;
-  ecranCalculCouleur = color(200);
+  compteurNiveau12++;
+  ecranCalculCouleur = color(255, 218, 169);
   resultat="";
   memoireChronoQuestion=millis();
 }
@@ -305,7 +381,7 @@ void argent12Fonction() {
 }
 
 void conversionPave() {
-  switch(compteurNiveau) {
+  switch(compteurNiveau12) {
     // PAVES FIXES
   case 1:
   case 2:
@@ -395,7 +471,7 @@ void paveJSON() {
 
 
 void typePaveMobile() {
-  chronoPave=int((millis()-memoireChronoPave)/2000);
+  chronoPave=int((millis()-memoireChronoPave)/1500);
   switch(chronoPave) {
   case 0:
     typePaveMobile=0;
@@ -425,15 +501,15 @@ void reponseEntree() {
 }
 
 void verifCalculBon() {
-  //print("\nle résultat était " + calculSolution[compteurNiveau]+"\ntu as répondu " + resultat);
-  if (resultat.equals(calculSolution[compteurNiveau])) {
+  //print("\nle résultat était " + calculSolution[compteurNiveau12]+"\ntu as répondu " + resultat);
+  if (resultat.equals(calculSolution[compteurNiveau12])) {
     score32++;
-    answer[compteurNiveau]=good;
+    answer[compteurNiveau12]=good;
     ecranCalculCouleur=calculBonCouleur;
     //println("\ndonc bonne réponse !!");
   } else {
     ecranCalculCouleur=calculMauvaisCouleur;
-    answer[compteurNiveau]=bad;
+    answer[compteurNiveau12]=bad;
     //println("\ndonc mauvaise réponse ...");
   }
 }
