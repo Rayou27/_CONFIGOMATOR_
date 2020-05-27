@@ -10,8 +10,8 @@ int[][] murHorizontal = new int[12][21], murVertical=new int[12][26];
 char fleche ='→';
 String colID, liID, caseID;
 String dernierMouvement;
-color couleurTrait = color(255, 0, 0), couleurMur=color(79, 43, 111);
-color[] couleur = {color(255, 20, 20), color(0, 220, 0), color(255, 220, 0), color(0, 0, 220)};
+color couleurTrait = color(255, 0, 0), couleurMur=color(79, 43, 111), couleurQuadrillage=color(247, 229, 211);
+color[] couleur = {color(255, 20, 20), color(0, 220, 0), color(255, 127, 17), color(0, 0, 220)};
 color boutonNeutre=color(200, 200, 255);
 color couleurBouton;
 boolean colSelect=false, liSelect=false, carreSelect=false;
@@ -26,7 +26,9 @@ JSONObject objetColonnes, objetLignes, objetCombo,
   objetHorizontal, objetVertical, objetNombreHorizontal, objetNombreVertical;
 
 void setup22() {
-  background(45, 132, 138);
+  reglesImg[4]=loadImage("data22/regles22.png");
+  niveauImg[4]=loadImage("data22/level22.png");
+  finImg[4]=loadImage("data22/fin22.png");
   linedotJSON = loadJSONArray("data22/linedot.json");
   pointTP();
   ordrePoint();
@@ -42,13 +44,17 @@ void draw22() {
     afficherPoints();
     boutonEffacer();
     afficherMurs();
-
-    fill(255);
-    noStroke();
-    rect(40, 20, 90, 45);
+    fill(162, 175, 200);
+    stroke(0, 48, 73);
+    strokeWeight(6);
+    rect(39, 211, 119, 60, 60);
+    rect(39, 311, 119, 60, 60);
     fill(0);
-    textSize(25);
-    text("Lvl."+compteurNiveau22, 55, 50);
+    textAlign(CENTER);
+    textFont(pixel);
+    textSize(50);
+    text(compteurNiveau22, 99, 255);
+    text(compteurReplay22-compteurNiveau22, 99, 355);
     rejoins();
   }
   if (compteurNiveau22==11) {
@@ -68,10 +74,15 @@ void keyPressed22() {
 }
 
 void mouseClicked22() {
-  if (mouseX>620&&mouseX<780&&mouseY>510&&mouseY<570) {
+  if (mouseX>430&&mouseX<680&&mouseY>450&&mouseY<530&&compteurNiveau22==0) {
+    compteurNiveau22=1;
     mouseClickedBoutonEffacer=true;
   }
-  for (int i=0; i<=3; i++) {
+  if (mouseX>63&&mouseX<133&&mouseY>430&&mouseY<500&&compteurNiveau22!=0&&compteurNiveau22!=11) {
+    mouseClickedBoutonEffacer=true;
+  }
+  if(mouseX>588&&mouseX<676&&mouseY>438&&mouseY<520&&compteurNiveau22==11){
+    niveauTermine[4]=true;
   }
 }
 
@@ -82,7 +93,7 @@ void tracerTrait() {
     // haut
     if (dernierMouvement!="DOWN" // pour empêcher de revenir sur ses pas
       &&keyCode==UP&&yCentreCarre>140 // pour dessiner seulement dans le carré blanc
-      &&(get(xCentreCarre, yCentreCarre-80)==color(255) // que la destination du trait soit une case blanche...
+      &&(get(xCentreCarre, yCentreCarre-80)==couleurQuadrillage // que la destination du trait soit une case blanche...
       ||get(xCentreCarre, yCentreCarre-71)==couleurTrait) // ...ou le point d'arrivée de la couleur en question
       &&get(xCentreCarre, yCentreCarre-40)!=couleurMur) { // et qu'il n'y ait pas un mur sur le passage
       stroke(couleurTrait);
@@ -94,7 +105,7 @@ void tracerTrait() {
     // BAS
     if (dernierMouvement!="UP"
       &&keyCode==DOWN&& yCentreCarre<=420
-      &&(get(xCentreCarre, yCentreCarre+80)==color(255)
+      &&(get(xCentreCarre, yCentreCarre+80)==couleurQuadrillage
       ||get(xCentreCarre, yCentreCarre+71)==couleurTrait)
       &&get(xCentreCarre, yCentreCarre+40)!=couleurMur) {
       stroke(couleurTrait);
@@ -106,7 +117,7 @@ void tracerTrait() {
     // GAUCHE
     if (dernierMouvement!="RIGHT"
       &&keyCode==LEFT&&xCentreCarre>240
-      &&(get(xCentreCarre-80, yCentreCarre)==color(255)
+      &&(get(xCentreCarre-80, yCentreCarre)==couleurQuadrillage
       ||get(xCentreCarre-71, yCentreCarre)==couleurTrait)
       &&get(xCentreCarre-40, yCentreCarre)!=couleurMur) {
       stroke(couleurTrait);
@@ -118,7 +129,7 @@ void tracerTrait() {
     // DROITE  
     if (dernierMouvement!="LEFT"
       &&keyCode==RIGHT&& xCentreCarre<=520
-      &&(get(xCentreCarre+80, yCentreCarre)==color(255)
+      &&(get(xCentreCarre+80, yCentreCarre)==couleurQuadrillage
       ||get(xCentreCarre+71, yCentreCarre)==couleurTrait)
       &&get(xCentreCarre+40, yCentreCarre)!=couleurMur) {
       stroke(couleurTrait);
@@ -131,32 +142,31 @@ void tracerTrait() {
 }
 
 void afficherEcranDebut22() {
-  background(45, 132, 138);
-  fill(0);
-  textSize(40);
+  image(reglesImg[compteurGlobalNiveaux], 0, 0);
   textAlign(CENTER);
-  text("2-1", width/2, 100);
-  textSize(60);
-  text("Line Dot", width/2, 170);
-  stroke(0);
-  strokeWeight(6);
-  fill(255);
-  rect(100, 200, 600, 250);
+  textFont(meteora);
   fill(0);
-  textSize(27);
-  textAlign(LEFT);
-  text("Ici, tu dois relier des points de couleurs\nprésents sur le quadrillage. Interdit \nde repasser sur un trait déjà fait.\nUtilise les 4 flèches directionnelles du\nclavier pour te déplacer. ", 140, 250);
-  fill(200, 200, 255);
-  rect(620, 510, 160, 60);
-  fill(0);
-  text("Let's Go~", 640, 549);
-  if (mouseClickedBoutonEffacer==true) {
-    compteurNiveau22=1;
+  textSize(24);
+  text("Ici, tu dois relier des points de couleurs\nprésents sur le quadrillage. Interdit \nde repasser sur un trait déjà fait.\nUtilise les quatre flèches directionnelles du\nclavier pour te déplacer.\nTu ne peux pas traverser les murs...", width/2, 220);
+  int letsgoHover22=0;
+  if (mouseX>430&&mouseX<680&&mouseY>450&&mouseY<530) {
+    letsgoHover22=10;
+    fill(hover);
+  } else {
+    letsgoHover22=30;
+    fill(neutre);
   }
+  stroke(0, 48, 73);
+  strokeWeight(4);
+  rect(430, 450, 250, 80, letsgoHover22);
+  fill(0); // fill le texte en hover aussi /!\
+  textSize(35);
+  text("Let's Go !!", 557, 503);
 }
 
 void afficherQuadrillage() {
-  fill(255);
+  image(niveauImg[compteurGlobalNiveaux], 0, 0);
+  fill(247, 229, 211);
   stroke(0);
   strokeWeight(3);
   rect(200, 100, 400, 400);
@@ -189,26 +199,47 @@ void afficherMurs() {
 }
 
 void afficherEcranFin22() {
-  background(45, 132, 138);
-  stroke(0);
-  strokeWeight(6);
-  fill(255);
-  rect(100, 50, 600, 250);
-  rect(100, 330, 370, 150);
-  rect(500, 360, 200, 120);
+  image(finImg[compteurGlobalNiveaux], 0, 0);
   fill(0);
+  textFont(meteora);
   textSize(27);
+  textAlign(CENTER);
+  text("Bravo, tu en as enfin fini avec cette\nbouillabaisse de fils colorés !!!\nVoyons l'argent que tu as remporté\ngrâce à cette épreuve...", width/2, 185);
   textAlign(LEFT);
-  text("Bravo, tu en as enfin fini avec cette\nbouillabaisse de fils colorés !!!\nVoyons l'argent que tu as remporté\ngrâce à cette épreuve...", 150, 120);
-  fill(200, 200, 255);
-  rect(620, 510, 160, 60);
+  textSize(22);
+  text("Nombre de replay : ", 130, 405);
+  text("  replay = ", 130, 470);
+  textFont(pixel);
+  textSize(50);
+  textAlign(CENTER);
+  text(argent22+" $", 575, 410);
+  text(compteurReplay22, 250, 440);
+  textSize(35);
+  text(1, 135, 472);
+  text("-750 $", 300, 472);
+  int homeHover22=20;
+  color neutre22=color(252, 191, 73), hover22=color(240, 159, 4);
+  if (mouseX>588&&mouseX<676&&mouseY>438&&mouseY<520) {
+    homeHover22=20;
+    fill(hover22);
+  } else {
+    homeHover22=60;
+    fill(neutre22);
+  }
+  stroke(0);
+  strokeWeight(4);
+  rect(588, 438, 88, 82, homeHover22);
   fill(0);
-  text(fleche+" Garage", 640, 549);
-  text("Nombre de replay : "+(compteurReplay22-11), 130, 380);
-  text("1 replay = -750$ ", 130, 430);
-  text("TOTAL", 550, 400);
-  text(argent22+" $", 550, 440);
-  textSize(20);
+  textSize(60);
+  textFont(arial);
+  textAlign(CENTER);
+  text("⌂", 633, 490);
+  textFont(meteora);
+  if (niveauTermine[4]==true) {
+    affichageEcran[4]=false;
+    affichageEcranPrincipal=true;
+    affichageEcranPrincipal();
+  }
 }
 
 public int argent22() {
@@ -218,7 +249,6 @@ public int argent22() {
 }
 
 void afficherPoints() {
-  smooth(8);
   if (compteurNiveau22>0&&compteurNiveau22<11) {
     // NIVEAU 1
     for (int i=0; i<4; i++) {
@@ -253,7 +283,6 @@ void afficherPoints() {
       }
     }
   }
-  noSmooth();
 }
 
 void verificationPoint() {
@@ -277,18 +306,39 @@ void verificationPoint() {
 
 void boutonEffacer() {
   // BOX
-  stroke(0);
-  strokeWeight(2);
-  fill(couleurBouton);
-  rect(620, 510, 160, 60);
-  // TEXTE
-  textSize(30);
-  fill(0);
-  if (arrivee[3]==false) {
-    text("Rejouer..", 640, 550);
+  noStroke();
+  fill(173, 182, 196);
+  rect(60, 427, 90, 80);
+  int suivHover22=30;
+  if (mouseX>63&&mouseX<133&&mouseY>430&&mouseY<500) {
+    suivHover22=10;
+    fill(hover);
   } else {
-    text("Suivant !", 640, 550);
+    suivHover22=30;
+    fill(neutre);
   }
+  stroke(0, 48, 73);
+  strokeWeight(5);
+  rect(63, 430, 70, 70, suivHover22);
+  fill(0);
+  String suiv22="";
+  int x=99;
+  textFont(meteora);
+  if (arrivee[3]==true) {
+    if (compteurNiveau22==10) {
+      suiv22="Fin";
+      textSize(27);
+      x=99;
+    } else {
+      suiv22=">>";
+      textSize(30);
+      x=99;
+    }
+  } else {
+    image(replay, 78, 448);
+  }
+  text(suiv22, x, 475);
+
   // FONCTIONNEL
   if (mouseClickedBoutonEffacer==true) {
     if (arrivee[3]==true) {
@@ -317,23 +367,37 @@ void boutonEffacer() {
 
 // MESSAGE REJOINS
 void rejoins() {
-  fill(255);
   noStroke();
-  rect(30, 367, 165, 55);
-  fill(0);
-  textSize(20);
-  String nomCouleur="rouge";
-  String[] baseCouleur={"rouge", "vert", "jaune", "bleu"};
+  fill(173, 182, 196);
+  rect(610, 130, 90, 327);
   for (int i=0; i<=3; i++) {
     if (couleurTrait==couleur[i]) {
-      nomCouleur=baseCouleur[i];
-      textSize(13);
+      int y;
+      switch(i) {
+      case 0:
+        y=180;
+        break;
+      case 1:
+        y=270;
+        break;
+      case 2:
+        y=360;
+        break;        
+      case 3:
+        y=450;
+        break;
+      default:
+        y=180;
+        break;
+      }
+      textFont(arial);
+      textSize(60);
+      textAlign(LEFT);
       fill(couleur[i]);
-      text("Rejoins la couleur "+nomCouleur, 40, 400);
+      text(fleche, 630, y);
     }
     if (arrivee[3]==true) {
-      fill(0);
-      text("finiiii", 60, 400);
+      image(valide, 700, 500, 50, 50);
       couleurBouton=couleur[1];
     } else {
       couleurBouton=boutonNeutre;

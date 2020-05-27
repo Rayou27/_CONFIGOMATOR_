@@ -21,7 +21,6 @@ boolean[] currentCase = new boolean[13];
 JSONArray calculrapideJSON;
 
 void setup12() {
-  background(237, 136, 59);
   calculrapideJSON = loadJSONArray("data12/calculrapide.json");
   reglesImg[2]=loadImage("data12/regles12.png");
   niveauImg[2]=loadImage("data12/level12.png");
@@ -73,11 +72,6 @@ void mouseClicked12() {
 }
 
 void afficherJeuCalculRapide() {
-
-
-
-
-
   // PAGE ACCUEIL MINI JEU
   if (compteurNiveau12 == 0) {
     image(reglesImg[compteurGlobalNiveaux], 0, 0);
@@ -85,17 +79,17 @@ void afficherJeuCalculRapide() {
     textFont(meteora);
     textSize(27);
     text("Dix énoncés de calcul, + ou - simples \n(lol). Donne ta réponse sur le pavé \nnumérique affiché à l'écran et ce le \nplus vite posible !!", width/2, 250);
-    int letsgoHover=0;
+    int letsgoHover12=0;
     if (mouseX>430&&mouseX<680&&mouseY>450&&mouseY<530) {
-      letsgoHover=10;
+      letsgoHover12=10;
       fill(hover);
     } else {
-      letsgoHover=30;
+      letsgoHover12=30;
       fill(neutre);
     }
     stroke(0, 48, 73);
     strokeWeight(4);
-    rect(430, 450, 250, 80, letsgoHover);
+    rect(430, 450, 250, 80, letsgoHover12);
     fill(0); // fill le texte en hover aussi /!\
     textSize(35);
     text("Let's Go !!", 557, 503);
@@ -129,7 +123,6 @@ void afficherJeuCalculRapide() {
       fill(calculMauvaisCouleur);
     }
     rect(477, 126, 265, 90, 30); // rectangle résultat
-
     // TOUCHES DU PAVÉ    
     int compteurCarre = 0;
     for (int y=225; y<496; y+=90) {
@@ -227,7 +220,6 @@ void afficherJeuCalculRapide() {
       text(suiv, x, 295);
     }
   } 
-
   if (compteurNiveau12==11) {
     image(finImg[compteurGlobalNiveaux], 0, 0);
     textFont(meteora);
@@ -281,7 +273,7 @@ void afficherJeuCalculRapide() {
     text("⌂", 633, 490);
     textFont(meteora);
     if (niveauTermine[2]==true) {
-      affichageEcran[1]=false;
+      affichageEcran[2]=false;
       affichageEcranPrincipal=true;
       affichageEcranPrincipal();
     }

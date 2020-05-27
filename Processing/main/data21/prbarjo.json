@@ -49,32 +49,32 @@
         ],
     [
         {
-            "0": "Ici, tu joues une petite bille de couleur\nqui doit traverser un labyrinthe sans \ntoucher les bords ! Des bonus t'attendent \n un peu partout... bonne chance !",
-            "1": "Choisis la couleur de ta\nbille et commence le\nniveau en passant\npar tout en haut !",
-            "2": "OH UNE CLEF !!\nva la chercher pour\ndébloquer la suite du niveau\nLe mur bleu tue...",
-            "3": "Ce bon vieux Minotaure...\nÉchappe toi à tout prix\nde ce labyrinthe..Indice :\npasse par la gauche ;)",
-            "4": "La zone bleue grossit ta\nbille... qui est maintenant\nun cube :((",
+            "0": "Ici, tu joues une petite bille de couleur\nqui doit traverser un labyrinthe sans \ntoucher les bords ! Des obstacles \nt'attendent un peu partout... \nBonne chance !",
+            "1": "Choisis la couleur de \nta bille et commence \nle niveau en passant\npar tout en haut !",
+            "2": "OH UNE CLEF !!\nva la chercher pour\ndébloquer la suite du\nniveau. Le mur \nbleu tue...",
+            "3": "Notre cher ami'Notaure.\nÉchappe toi à tout prix\nde ce labyrinthe..Indice:\npasse par la gauche ;)",
+            "4": "La zone bleue grossit\nta bille... qui est\nmaintenant un cube :((",
             "5": "Désirez vous un thé ?",
-            "6": "Une ? Deux !? Nonnn 3 clés\nà récupérer. A toi de\ndéterminer l'ordre hehe",
-            "7": "Calomnie !! Maintenant les\nmurs se mettent à bouger???\nPas le choix, esquive les...",
+            "6": "Une ? Deux !? Nonnn\ntrois clés à récupérer.\nA toi de déterminer \nl'ordre hehe",
+            "7": "Calomnie !! Maintenant\nles murs se mettent\nà bouger??? Pas le\nchoix, esquive les...",
             "8": "T'es dans la sauce",
-            "9": "Ici c'est Octogone sans règles",
-            "10": "Le voilà notre boss de fin...\nUne chose à dire : GLHF",
-            "11": "Fiouu, les 10 niveaux sont complets,\nvoyons voir l'argent que tu as gagné\ngrâce à ça..."
+            "9": "Ici c'est Octogone sans\nrègles (la preuve il\nest tordu...)",
+            "10": "Le voilà notre boss de\nfin... Une chose à dire :\nGLHF",
+            "11": "Fiouu, les dix niveaux sont complets,\nvoyons voir l'argent que tu as gagné..."
         }, 
         {
             "0": "Pas de chance :(",
             "1": "T'as parkinson ?",
             "2": "Change de souris",
             "3": "Pas facile hein ?",
-            "4": "Des mains de bûcherons"
+            "4": "Des mains de\nbûcherons"
         },
         {
-            "0": "Point faible : TROP FORT",
-            "1": "T'as un aimbot c'est ça ?",
+            "0": "Point faible :\nTROP FORT",
+            "1": "T'as un aimbot\nc'est ça ?",
             "2": "Un pro du sniper",
-            "3": "T'es chirurgien toi",
-            "4": "C'était pas très dur..."
+            "3": "T'es chirurgien\ntoi",
+            "4": "C'était pas très\ndur..."
         }
     ]
 ]

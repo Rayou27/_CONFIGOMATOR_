@@ -1,10 +1,10 @@
 int mx, my, dBille=5;
 int xValide, yValide;
-int compteurNiveau21=2, compteurPerdu21=0, compteurFrontiere21=0, argent21=0;
+int compteurNiveau21=0, compteurPerdu21=0, compteurFrontiere21=0, argent21=0;
 int randomEnt, yBloc1=335, vMob=1;
 color terrainOut = color(0), frontiere = color(196), gagne = color(158, 246, 156), big = color(119, 198, 255), clef = color(255, 201, 14), mobColor=color(109, 76, 65), murClef=color(8, 9, 99);
 color colorPicker, zoneDebut, zoneFin, couleurBille;
-String rainbowFinal="Oui";
+String rainbowFinal="Non";
 String[] texteBulle = new String[12], textePerdu =new String[5], texteGagne = new String[5];
 color[] couleurChoixBille = new color[9];
 boolean terrainOutAtteint=false, frontiereTouchee=false, partiePerdue=false, partieGagnee=false;
@@ -16,9 +16,16 @@ PImage[] map = new PImage[11];
 JSONArray prbarjoJSON;
 
 void setup21() {
+  // BACKGROUND
+  reglesImg[3]=loadImage("data21/regles21.png");
+  niveauImg[3]=loadImage("data21/level21.png");
+  finImg[3]=loadImage("data21/fin21.png");
   // IMAGES NIVEAUX
   for (int i=1; i<=10; i++) {
     map[i] = loadImage("data21/map/Map "+i+".png");
+    if (i<9) {
+      rainbow[i]=false;
+    }
   }
   // IMAGES SUPPLEMENTAIRES
   smileyPerdu = loadImage("data21/autres/smiley perdu.png");
@@ -29,7 +36,7 @@ void setup21() {
   bulle = loadImage("data21/autres/bulle.png");
   clefImg=loadImage("data21/autres/key.png");
   mx = constrain(mx, 440, 800);
-  xValide=290;
+  xValide=300;
   yValide=480;
   prbarjoJSON = loadJSONArray("data21/prbarjo.json");
   prbarjoJSON();
@@ -52,132 +59,153 @@ void draw21() {
 
 void afficher21() {
   affichageEcranPrBarjo();
-  recupPixel();
   testZone();
   etatNiveau21();
   setDepart();
   boutons();
-  afficherValide();
   entiteMobile();
-  clefOK();
+  clefOKFonction();
   bille();
   rainbow();
 }
 
 void afficherEcranDebut21() {
-  background(155, 155, 0);
-  fill(0);
-  textSize(40);
-  textAlign(CENTER);
-  text(niveauEnCours, width/2, 100);
-  textSize(60);
-  text("Pr Barjo", width/2, 170);
-  stroke(0);
-  strokeWeight(6);
-  fill(255);
-  rect(100, 200, 600, 250);
+  image(reglesImg[compteurGlobalNiveaux], 0, 0);
+  textFont(meteora);
   fill(0);
   textSize(27);
-  textAlign(LEFT);
-  text(texteBulle[compteurNiveau21], 135, 270);
-  fill(200, 200, 255);
-  rect(620, 510, 160, 60);
-  fill(0);
-  text("Let's Go~", 640, 549);
-}
+  textAlign(CENTER);
+  text(texteBulle[compteurNiveau21], width/2, 230);
+  int letsgoHover21=0;
+  if (mouseX>430&&mouseX<680&&mouseY>450&&mouseY<530) {
+    letsgoHover21=10;
+    fill(hover);
+  } else {
+    letsgoHover21=30;
+    fill(neutre);
+  }
+  stroke(0, 48, 73);
+  strokeWeight(4);
+  rect(430, 450, 250, 80, letsgoHover21);
+  fill(0); // fill le texte en hover aussi /!\
+  textSize(35);
+  text("Let's Go !!", 557, 503);
+}  
 
 void affichageEcranPrBarjo() {
-  background(155, 155, 0);
-  translate(0, 0);
+  image(niveauImg[compteurGlobalNiveaux], 0, 0);
   image(map[compteurNiveau21], 440, 0);
-  // GEOMETRIE
-  fill(220);
-  noStroke();
-  rect(0, 415, 440, 185);
-  stroke(255);
-  strokeWeight(5);
-  noFill();
-  rect(100, 20, 230, 65);
-  // PERSO ET BULLE
-  image(persoConfigo21, 25, 140);
-  image(bulle, 105, 110);
-  // TEXTE
-  fill(couleurChoixBille[4]);
-  textSize(50);
-  text("Pr BARJO", 110, 70);
-  fill(0);
   textSize(25);
-  text("Lvl. "+compteurNiveau21, 15, 60);
-  textSize(20);
-  text("Morts : "+compteurPerdu21, 15, 135);
-  text("Bonus frontière : "+compteurFrontiere21, 15, 110);
-  textSize(15);
+  textFont(pixel);
+  textSize(50);
+  textAlign(LEFT);
+  fill(0);
+  text(compteurPerdu21, 284, 147);
+  text(compteurFrontiere21, 295, 205);
+  text(compteurNiveau21, 387, 205);
+  textFont(meteora);
+  textSize(18);
+  textAlign(LEFT);
   if (partiePerdue==false&&partieGagnee==false) {
-    text(texteBulle[compteurNiveau21], 190, 180);
+    text(texteBulle[compteurNiveau21], 190, 267);
   }
   if (partiePerdue==true) {
-    text(textePerdu[randomEnt], 200, 200);
+    textSize(20);
+    textAlign(CENTER);
+    fill(255, 0, 0);
+    text(textePerdu[randomEnt], 290, 300);
   }
   if (partieGagnee==true) {
-    text(texteGagne[randomEnt], 200, 200);
+    textSize(20);
+    fill(0, 200, 0);
+    textAlign(CENTER);
+    text(texteGagne[randomEnt], 290, 300);
   }
   // CASES BOULES
   int n=1;
   for (int y=440; y<521; y+=80) {
-    for (int x=50; x<351; x+=100) {
+    for (int x=70; x<356; x+=95) {
       // RECTANGLES VIERGES
       fill(255);
       stroke(2);
-      strokeWeight(3);
-      rect(x, y, 60, 60);
-      // FOND GRIS
+      strokeWeight(4);
+      int bouleHover21=20;
+      // HOVER  GRIS
       if (mouseX<x+60&&mouseX>x&&mouseY>y&&mouseY<y+60) {
         fill(190);
-        rect(x, y, 60, 60);
+        bouleHover21=10;
         if (mousePressed==true) {
           fill(140);
-          rect(x, y, 60, 60);
           couleurBille=couleurChoixBille[n];
           xValide=x+40;
           yValide=y+40;
           rainbow[n]=true;
         }
       }
+      rect(x, y, 60, 60, bouleHover21);
       // BILLES DE COULEUR
       fill(couleurChoixBille[n]);
       ellipse(x+30, y+30, 30, 30);
       n++;
     }
   }
+  image(valide, xValide, yValide);
 }
 
 void afficherEcranFin21() {
-  background(155, 155, 0);
-  stroke(0);
-  strokeWeight(6);
-  fill(255);
-  rect(100, 50, 600, 150);
-  rect(100, 230, 370, 250);
-  rect(500, 360, 200, 120);
+  image(finImg[compteurGlobalNiveaux], 0, 0);
+  textFont(meteora);
+  textAlign(CENTER);
   fill(0);
-  textSize(27);
+  textSize(24);
+  text(texteBulle[compteurNiveau21], width/2, 190);
   textAlign(LEFT);
-  text(texteBulle[compteurNiveau21], 155, 95);
-  fill(200, 200, 255);
-  rect(620, 510, 160, 60);
   fill(0);
-  text(fleche+" Garage", 640, 549);
-  text("Nombre de morts : "+compteurPerdu21, 130, 280);
-  text("Bonus bordure : × "+compteurFrontiere21, 130, 330);
-  text("Bonus Rainbow* : "+rainbowFinal, 130, 380);
-  text("TOTAL", 550, 400);
-  text(argent21+" $", 550, 440);
-  textSize(20);
-  text("*Avoir testé au moins une fois\nchaque couleur", 130, 430);
-}
-
-void afficherValide() {
-  image(valide, xValide, yValide);
+  textSize(22);
+  text("Nombre de morts : ", 130, 345);
+  text("Bonus bordure : x ", 130, 390);   
+  text("Bonus Rainbow* : ", 130, 435);
+  textSize(15);
+  text("*Avoir testé au moins une fois\nchaque couleur", 140, 470); 
+  textSize(23);
+  fill(reponseMauvaisCouleur);
+  if (rainbowTest==true) {
+    rainbowFinal="Oui";
+    fill(reponseJusteCouleur);
+  }
+  text(rainbowFinal, 115+textWidth("Bonus Rainbow* : "), 435);
+  textFont(pixel);
+  textAlign(LEFT);
+  textSize(50);
+  textAlign(CENTER);
+  fill(0, 48, 73);
+  text(argent21+" $", 575, 380);
+  fill(0);
+  textSize(40);
+  textAlign(LEFT);
+  text(score32, 355, 347);
+  text(compteurFrontiere21, 345, 392);  
+  int homeHover21=20;
+  color neutre21=color(252, 191, 73), hover21=color(240, 159, 4);
+  if (mouseX>588&&mouseX<676&&mouseY>438&&mouseY<520) {
+    homeHover21=20;
+    fill(hover21);
+  } else {
+    homeHover21=60;
+    fill(neutre21);
+  }
+  rect(588, 438, 88, 82, homeHover21);
+  fill(0);
+  textSize(60);
+  textFont(arial);
+  textAlign(CENTER);
+  text("⌂", 633, 490);
+  textFont(meteora);
+  if (niveauTermine[3]==true) {
+    affichageEcran[3]=false;
+    affichageEcranPrincipal=true;
+    affichageEcranPrincipal();
+  }
 }
 
 void bille() {
@@ -205,11 +233,8 @@ void bille() {
   }
 }
 
-void recupPixel() {
-  colorPicker=map[compteurNiveau21].get(mx-440, my);
-}
-
 void testZone() {
+  colorPicker=map[compteurNiveau21].get(mx-440, my);
   if ((colorPicker==terrainOut||mobTouche==true)&&partieGagnee==false) {
     terrainOutAtteint=true;
   }
@@ -254,33 +279,48 @@ void setDepart() {
 
 void boutons() {
   if (partieGagnee==true||partiePerdue==true) {
-    fill(255);
-    rect(340, 15, 75, 50);
-    if (partieGagnee==true) {
-      // rectangle suivant
-      textSize(60);
-      fill(0);
-      text(fleche, 350, 60); // texte suivant
+    // BOUTON SUIVANT
+    int suivHover21=0;
+    if (mouseX>335&&mouseX<405&&mouseY>90&&mouseY<160) {
+      suivHover21=10;
+      fill(hover);
+    } else {
+      suivHover21=30;
+      fill(neutre);
     }
-    if (partiePerdue==true) {
-      image(replay, 358, 20); // image replay
+    stroke(0, 48, 73);
+    strokeWeight(5);
+    rect(335, 90, 70, 70, suivHover21);
+    fill(0);
+    String suiv;
+    textFont(meteora);
+    if (compteurNiveau21==10&&partieGagnee==true) {
+      suiv="Fin";
+      textSize(27);
+      text(suiv, 370, 136);
+    } else if (partieGagnee==true) {
+      suiv=">>";
+      textSize(30);
+      text(suiv, 370, 136);
+    } else {
+      image(replay, 350, 106);
     }
   }
 }
 
 void etatNiveau21() {
   if (terrainOutAtteint==true) {
-    textSize(40);
-    fill(255, 0, 0);
-    text("perdu :(", 210, 370);
     partiePerdue=true;
   }
   if (frontiereTouchee==true&&terrainOutAtteint==false) {
     textSize(40);
     int clignotant = millis();
     fill(0, 0, clignotant % 255); // inspiré du code exemple de la référence processing pour millis()
-    ellipse(170, 355, 50, 50);
-    text("BORDURE !", 210, 370);
+  } else {
+    fill(0);
+  }
+  if (partieGagnee==false) {
+    ellipse(370, 125, 50, 50);
   }
   if (frontiereTouchee==true) {  
     frontiereTouchee=false;
@@ -288,13 +328,12 @@ void etatNiveau21() {
 }
 
 void skipNiveau21() {
-  randomEnt = (int)random(0, 5); // ATTENTION MODIFIER
-  if (compteurNiveau21==0&&mouseX>620&&mouseX<780&&mouseY>510&&mouseY<570) {
+  if (mouseX>430&&mouseX<680&&mouseY>450&&mouseY<530&&compteurNiveau21==0) {
     compteurNiveau21=1;
   }
-  if (compteurNiveau21!=11&&compteurNiveau21!=0 && mouseX > 340 && mouseX < 415 && mouseY > 15 && mouseY < 75) {
+  if (compteurNiveau21!=11&&compteurNiveau21!=0 && mouseX>335&&mouseX<405&&mouseY>90&&mouseY<160) {
     if (partieGagnee==true) {
-      compteurNiveau21+=1;
+      compteurNiveau21++;
       partieGagnee=false;
       println("go pour le niveau "+compteurNiveau21);
       if (bonusFrontiere==true) {
@@ -312,46 +351,15 @@ void skipNiveau21() {
     setDepart=false;
     mobTouche=false;
     allClefFalse();
+    randomEnt = (int)random(0, 5);
+  }
+  if(compteurNiveau21==11&&mouseX>588&&mouseX<676&&mouseY>438&&mouseY<520){
+    niveauTermine[3]=true;
   }
 }
 
 void entiteMobile() {
   if (compteurNiveau21==7) { 
-    // moissonneuse batteuse 1
-    stroke(mobColor);
-    pushMatrix();
-    translate(746, 65);
-    rotate(radians(frameCount*2.5));
-    strokeWeight(7);
-    line(0, 0, 30, 0);
-    popMatrix();
-    // moissonneuse batteuse 2
-    pushMatrix();
-    translate(670, 463);
-    rotate(radians(frameCount*2.5));
-    strokeWeight(4);
-    line(0, 0, 20, 0);
-    popMatrix();
-    // bloc 1
-    if (frameCount%1==0) { // pour ralentir il faut augmenter le nombre derrière le %
-      yBloc1+=vMob;
-      if (yBloc1>390) {
-        yBloc1=390;
-        vMob*=-1;
-      }
-    }
-    if (yBloc1<345) {
-      yBloc1=345;
-      vMob*=-1;
-    }
-    stroke(mobColor);
-    strokeWeight(4);
-    fill(mobColor);
-    rect(580, yBloc1, 15, 10);
-    rect(620, yBloc1, 15, 10);
-    mobTouche();
-  }
-  if (compteurNiveau21==8) { 
     // moissonneuse batteuse 1
     stroke(mobColor);
     pushMatrix();
@@ -396,7 +404,7 @@ boolean mobTouche() {
   return mobTouche;
 }
 
-void clefOK() {
+void clefOKFonction() {
   if (compteurNiveau21==2) {
     if (clefOK[1]==true) {
       fill(255);
@@ -473,14 +481,11 @@ void rainbow() {
     &&rainbow[4]==true&&rainbow[5]==true&&rainbow[6]==true
     &&rainbow[7]==true&&rainbow[8]==true) {
     rainbowTest=true;
-    rainbowFinal="Oui";
-  } else {
-    rainbowFinal="Non";
   }
 }
 
 public int argent21() {
-  if (rainbowFinal=="Oui") {
+  if (rainbowTest==true) {
     argent21=10500;
   } else {
     argent21=0;
