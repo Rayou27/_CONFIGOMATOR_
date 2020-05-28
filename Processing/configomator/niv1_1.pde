@@ -1,6 +1,6 @@
 int vraiFauxScore=0;
 int vraiFauxCompteurQuestion =0;
-int argentGagne31 =0;
+int argent11 =0;
 color reponseVraiCouleur, reponseFauxCouleur;
 color reponseJusteCouleur = color(8, 120, 38), reponseMauvaisCouleur = color(204, 31, 31), 
   neutre = color(234, 226, 183), hover=color(220, 220, 200);
@@ -71,7 +71,6 @@ void mouseClicked11() {
   // TEST BOUTON GARAGE
   if (vraiFauxCompteurQuestion==11 &&mouseX>588&&mouseX<676&&mouseY>438&&mouseY<520) {
     niveauTermine[1]=true;
-    print("banane");
   }
 }
 
@@ -91,6 +90,7 @@ void afficherJeuVraiFaux() {
     image(reglesImg[compteurGlobalNiveaux], 0, 0);
     textSize(27);
     textAlign(CENTER);
+    fill(0);
     text("Dix affirmations, à toi de trouver si \nelles sont vraies ou fausses ! Plus \ntu as de réponses justes et plus \ntu gagnes d'argent.", width/2, 250);
     int letsgoHover=0;
     if (mouseX>430&&mouseX<680&&mouseY>450&&mouseY<530) {
@@ -234,7 +234,7 @@ void vraiFauxEcranFin() {
   // PAGE FIN
   if (vraiFauxCompteurQuestion == 11) {
     image(finImg[compteurGlobalNiveaux], 0, 0);
-    argentGagne31=vraiFauxScore*5000;
+    argent11=vraiFauxScore*5000;
     textSize(25);
     fill(0);
     text("Tu t'es débrouillé tant bien que mal pour \nterminer ce Vrai/Faux, bravo ! \nVoici tes statistiques", width/2, 195);
@@ -258,7 +258,7 @@ void vraiFauxEcranFin() {
     fill(255, 215, 0);
     text(vraiFauxScore+"/10", 300, 405);
     textSize(50);
-    text(argentGagne31 +"$", 575, 400);
+    text(argent11 +"$", 575, 400);
 
     int homeHover=20;
     if (mouseX>588&&mouseX<676&&mouseY>438&&mouseY<520) {

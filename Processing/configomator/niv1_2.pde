@@ -1,5 +1,5 @@
 int compteurNiveau12 = 0;
-int score32, argent32;
+int score12, argent12;
 int typePaveMobile, compteurBonusChrono, chronoFinal;
 int memoireChronoQuestion=millis(), chronoQuestion;
 int memoireChronoPave=millis(), chronoPave;
@@ -173,7 +173,7 @@ void afficherJeuCalculRapide() {
     text("Chrono : "+chronoQuestion+ " s", 90, 300); // afficher le chrono
     fill(0);
     textSize(40);
-    text(score32, 350, height-32);
+    text(score12, 350, height-32);
     text(compteurNiveau12, 102, height-32); // afficher le numéro de question
     textAlign(CENTER);
     switch(compteurNiveau12) {
@@ -248,11 +248,11 @@ void afficherJeuCalculRapide() {
     textSize(50);
     textAlign(CENTER);
     fill(0, 48, 73);
-    text(argent32+" $", 575, 380);
+    text(argent12+" $", 575, 380);
     fill(0);
     textSize(40);
     textAlign(LEFT);
-    text(score32, 360, 347);
+    text(score12, 360, 347);
     text(compteurBonusChrono, 335, 392); 
     textSize(22);
     text("200", 313, 470);
@@ -365,11 +365,11 @@ void argent12Fonction() {
     chronoFinal+=chronoReponse[i];
   }
   if (chronoFinal>200) {
-    argent32=10000;
+    argent12=10000;
   } else {
-    argent32=0;
+    argent12=0;
   }
-  argent32+=20000+250*compteurBonusChrono*score32;
+  argent12+=20000+250*compteurBonusChrono*score12;
 }
 
 void conversionPave() {
@@ -495,7 +495,7 @@ void reponseEntree() {
 void verifCalculBon() {
   //print("\nle résultat était " + calculSolution[compteurNiveau12]+"\ntu as répondu " + resultat);
   if (resultat.equals(calculSolution[compteurNiveau12])) {
-    score32++;
+    score12++;
     answer[compteurNiveau12]=good;
     ecranCalculCouleur=calculBonCouleur;
     //println("\ndonc bonne réponse !!");

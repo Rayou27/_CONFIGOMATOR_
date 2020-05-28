@@ -257,12 +257,11 @@ void afficherPoints() {
         stroke(0);
         strokeWeight(3);
         fill(couleur[i]);
-        ellipse(xJSON[billeDepart[compteurNiveau22][i]], yJSON[billeDepart[compteurNiveau22][i]], 40, 40);
       } else {
         noStroke();
         fill(couleur[i]);
-        ellipse(xJSON[billeDepart[compteurNiveau22][i]], yJSON[billeDepart[compteurNiveau22][i]], 40, 40);
       }
+      ellipse(xJSON[billeDepart[compteurNiveau22][i]], yJSON[billeDepart[compteurNiveau22][i]], 40, 40);
       // POINTS D'ARRIVEE
       int d;
       noStroke();

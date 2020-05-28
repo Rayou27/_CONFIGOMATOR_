@@ -11,7 +11,7 @@ boolean terrainOutAtteint=false, frontiereTouchee=false, partiePerdue=false, par
 boolean setDepart = false, mobTouche=false, debutPartie=true, rainbowTest=false, bonusFrontiere=true;
 boolean[] rainbow = new boolean[9];
 boolean[] clefOK = new boolean[5];
-PImage smileyPerdu, smileyGagne, replay, valide, persoConfigo21, bulle, clefImg;
+PImage smileyPerdu, smileyGagne, replay, valide, clefImg;
 PImage[] map = new PImage[11];
 JSONArray prbarjoJSON;
 
@@ -32,8 +32,6 @@ void setup21() {
   smileyGagne = loadImage("data21/autres/smiley gagne.png");
   replay = loadImage("data21/autres/replay.png");
   valide = loadImage("data21/autres/valide.png");
-  persoConfigo21 = loadImage("data21/autres/persoconfigo21.png");
-  bulle = loadImage("data21/autres/bulle.png");
   clefImg=loadImage("data21/autres/key.png");
   mx = constrain(mx, 440, 800);
   xValide=300;
@@ -183,7 +181,7 @@ void afficherEcranFin21() {
   fill(0);
   textSize(40);
   textAlign(LEFT);
-  text(score32, 355, 347);
+  text(score12, 355, 347);
   text(compteurFrontiere21, 345, 392);  
   int homeHover21=20;
   color neutre21=color(252, 191, 73), hover21=color(240, 159, 4);

@@ -24,14 +24,18 @@ void affichageEcranNiveaux() {
   }
   if (affichageEcran[1]==true) {
     draw11();
+    partieLancee=false;
   }
   if (affichageEcran[2]==true) {
     draw12();
+    partieLancee=false;
   }
   if (affichageEcran[3]==true) {
     draw21();
+    partieLancee=false;
   }
   if (affichageEcran[4]==true) {
     draw22();
+    partieLancee=false;
   }
 }
